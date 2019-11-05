@@ -10,5 +10,11 @@ package backend;
  * @author Santiago
  */
 public class Articulo {
+    private String origen;
+    private int precio;
+    private String material;
+    private String codigo;
+
+    
     
 }

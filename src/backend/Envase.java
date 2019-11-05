@@ -10,5 +10,6 @@ package backend;
  * @author Santiago
  */
 public class Envase {
-    
+    private String nombre;
+    private int id;
 }

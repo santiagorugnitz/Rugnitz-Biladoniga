@@ -5,15 +5,10 @@
  */
 package backend;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Santiago
  */
-public class Venta {
-    private ArrayList<Articulo> productos;
-    private ArrayList<Envase> envases;
-    
+public class Sistema {
     
 }
