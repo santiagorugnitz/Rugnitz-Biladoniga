@@ -14,6 +14,16 @@ import java.util.ArrayList;
 public class Venta {
     private ArrayList<Articulo> productos;
     private ArrayList<Envase> envases;
+
+    public ArrayList<Articulo> getProductos() {
+        return productos;
+    }
+
+    public ArrayList<Envase> getEnvases() {
+        return envases;
+    }
+
+    
     
     
 }

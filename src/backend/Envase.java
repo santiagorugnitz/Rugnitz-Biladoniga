@@ -11,5 +11,9 @@ package backend;
  */
 public class Envase {
     private String nombre;
-    private int id;
+    private int vecesUsado;
+
+    int getVecesUsado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

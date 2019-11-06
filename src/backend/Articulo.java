@@ -13,8 +13,15 @@ public class Articulo {
     private String origen;
     private int precio;
     private String material;
-    private String codigo;
+    private int vecesComprado;
 
+    int getVecesComprado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void aumentarUso(){
+        this.vecesComprado++;
+    }
     
     
 }
