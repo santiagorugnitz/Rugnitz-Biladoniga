@@ -7,7 +7,6 @@ package backend;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  *
@@ -47,6 +46,14 @@ public class Sistema {
             return true;
         }
         else return false;
+    }
+    
+    public void actualizarArticulo(int id,String origen,int precio,String material,Articulo.Tipo tipo){
+        Articulo a=this.articulos.get(id);
+        a.setOrigen(origen);
+        a.setPrecio(precio);
+        a.setMaterial(material);
+        a.setTipo(tipo);
     }
 
     public boolean agregarEnvase(String nombre, Articulo.Tipo[] tipos, int costeProduccion) {
