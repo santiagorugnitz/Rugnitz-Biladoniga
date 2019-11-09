@@ -21,12 +21,11 @@ import javafx.stage.Stage;
  */
 public class Utilitarios {
 
-    public static void cambiarVentana(Object win, ActionEvent event, String fxml) {
+    public static FXMLLoader cambiarVentana(Object win, ActionEvent event, String fxml) {
+        FXMLLoader loader = new FXMLLoader(win.getClass().getResource(fxml));
 
         try {
-            Parent tableViewParent;
-
-            tableViewParent = FXMLLoader.load(win.getClass().getResource(fxml));
+            Parent tableViewParent = loader.load();
             Scene tableViewScene = new Scene(tableViewParent);
 
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -36,7 +35,8 @@ public class Utilitarios {
         } catch (IOException ex) {
             Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        return loader;
     }
 
     public static void cerrarSesion(Object win, ActionEvent event) {

@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="325.52" prefWidth="315.32" style="-fx-background-color: #0f1642;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="pane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="325.52" prefWidth="315.32" style="-fx-background-color: #0f1642;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.ProductoController">
    <children>
       <ImageView fx:id="imagen" fitHeight="177.0" fitWidth="142.0" layoutX="122.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -25,7 +25,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btn_comprar" layoutX="159.0" layoutY="286.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="158.08" style="-fx-background-color: #6F64F8; -jfx-unselected-color: #6F64F8;">
+      <Button fx:id="btn_comprar" layoutX="159.0" layoutY="286.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="156.0" style="-fx-background-color: #6F64F8; -jfx-unselected-color: #6F64F8;">
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
