@@ -17,6 +17,7 @@ public class Articulo {
     //TODO: agregar mas supongo
     public enum Tipo{BEBIDA,SECO,HUMEDO};
     
+    private String nombre;
     private String origen;
     private int precio;
     private String material;
@@ -26,6 +27,14 @@ public class Articulo {
     private int vecesComprado;
     private Image imagen;
     private double valoracion;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public Image getImagen() {
         return imagen;
@@ -95,7 +104,8 @@ public class Articulo {
         return this.vecesComprado;
     }
 
-    public Articulo(String origen, int precio, String material, int id, Tipo tipo,Image imagen) {
+    public Articulo(String nombre,String origen, int precio, String material, int id, Tipo tipo,Image imagen) {
+        this.nombre=nombre;
         this.origen = origen;
         this.precio = precio;
         this.material = material;
@@ -107,6 +117,12 @@ public class Articulo {
         this.valoracion=0;
     }
     
+    public Articulo(double v){
+        this.valoracion=v;
+    }
+    public Articulo(int p){
+        this.precio=p;
+    }
     
     
 }

@@ -5,6 +5,7 @@
  */
 package backend;
 
+import java.awt.Image;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -48,10 +49,11 @@ public class Sistema {
      * @param material Material del articulo
      * @param tipo  Tipo del articulo
      */
-    public boolean agregarArticulo(String origen, int precio, String material, Articulo.Tipo tipo) {
+    public boolean agregarArticulo(String nombre,String origen, int precio, String material, Articulo.Tipo tipo,Image imagen) {
         if (precio >= 0) {
-            //Articulo a = new Articulo(origen, precio, material, this.articulos.size() + 1, tipo);
-            //this.articulos.add(a);
+            Articulo a = new Articulo(nombre,origen, precio, material, this.articulos.size() + 1, tipo,imagen);
+            this.articulos.add(a);
+
             return true;
         }
         else return false;
