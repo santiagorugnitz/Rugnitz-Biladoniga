@@ -92,8 +92,8 @@ public class Articulo {
         this.tipo = tipo;
     }
 
-    public void aumentarUso() {
-        this.vecesComprado++;
+    public void aumentarUso(int n) {
+        this.vecesComprado+=n;
     }
     
     public void setDisponible(boolean disponible){
