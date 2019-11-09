@@ -5,14 +5,13 @@
  */
 package frontend;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -32,20 +31,13 @@ public class TiendaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }
-
-    @FXML
-    private void carrito(ActionEvent event) {
-
-        frontend.Utilitarios.cambiarVentana(this, event, "/frontend/Carro.fxml");
 
     }
 
     @FXML
-    private void cerrarSesion(ActionEvent event) {
-        frontend.Utilitarios.cerrarSesion(this, event);
-
+    private void handleButtonAction(ActionEvent event) {
+        ProductoController prod = new ProductoController();
+        vbox.getChildren().add(prod);
     }
 
 }
