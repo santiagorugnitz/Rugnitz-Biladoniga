@@ -14,10 +14,17 @@ import java.util.ArrayList;
  * @author Santiago
  */
 public class Venta {
-    private ArrayList<Articulo> productos;
-    private ArrayList<Envase> envases;
-    private ArrayList<Integer> cantidades;
+    private ArrayList<Compra> compras;
     private LocalDate fecha;
+    private int total;
+
+    public ArrayList<Compra> getCompras() {
+        return compras;
+    }
+
+    public int getTotal() {
+        return total;
+    }
 
     public LocalDate getFecha() {
         return fecha;
@@ -27,19 +34,10 @@ public class Venta {
         this.fecha = fecha;
     }
 
-    public ArrayList<Articulo> getProductos() {
-        return productos;
-    }
-
-    public ArrayList<Envase> getEnvases() {
-        return envases;
-    }
-
     public Venta() {
-        this.productos=new ArrayList();
-        this.envases= new ArrayList();
-        this.cantidades= new ArrayList();
+        this.compras=new ArrayList();
         this.fecha= LocalDate.now();
+        this.total=0;
     }
     
     public boolean cambiarFecha(int anio,int mes,int dia) {
@@ -55,19 +53,11 @@ public class Venta {
     }
     
     public void agregarArticulo(Articulo a,Envase e,int unidades){
-        this.productos.add(a);
-        this.envases.add(e);
-        this.cantidades.add(unidades);
+        this.compras.add(new Compra(a,e,unidades));
+        this.total+=a.getPrecio()*unidades;
     }
     public void quitarArticulo(int pos){
-        if(pos<productos.size())return;
-        this.productos.remove(pos);
-        this.envases.remove(pos);
+        this.total-=compras.get(pos).total();
+        compras.remove(pos);
     }
-
-    
-
-    
-    
-    
 }
