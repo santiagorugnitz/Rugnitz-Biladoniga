@@ -22,11 +22,11 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(
-                getClass().getResource("/frontend/Tienda.fxml"));
+                getClass().getResource("/frontend/Inicio.fxml"));
         //stage.initStyle(StageStyle.UNIFIED);
-
+        Sistema sistema = new Sistema();
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
+        //scene.getStylesheets().add("/styles/Styles.css");
 
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);

@@ -7,6 +7,8 @@ package frontend;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -22,6 +24,13 @@ public class CarroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
+    @FXML
+    private void cerrarSesion(ActionEvent event) {
+        System.out.println("haaa");
+        frontend.Utilitarios.cerrarSesion(this, event);
+
+    }
+
 }
