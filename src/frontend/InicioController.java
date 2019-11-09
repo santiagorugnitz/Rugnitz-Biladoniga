@@ -5,8 +5,11 @@
  */
 package frontend;
 
+import static frontend.Utilitarios.cambiarVentana;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +19,7 @@ import javafx.fxml.Initializable;
  *
  * @author Nahuel
  */
-public class CarroController implements Initializable {
+public class InicioController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -27,10 +30,19 @@ public class CarroController implements Initializable {
     }
 
     @FXML
-    private void cerrarSesion(ActionEvent event) {
-        System.out.println("haaa");
-        frontend.Utilitarios.cerrarSesion(this, event);
+    public void admin() {
 
     }
 
+    @FXML
+    public void consumidor(ActionEvent event) throws IOException {
+        cambiarVentana(this,event,"/frontend/Tienda.fxml");
+    }
+
+    @FXML
+    public void salir() {
+        Platform.exit();
+        System.exit(0);
+
+    }
 }
