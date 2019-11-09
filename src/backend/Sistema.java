@@ -21,6 +21,14 @@ public class Sistema {
     private ArrayList<Articulo> articulos;
     private int beneficioAmbiental;
     private Venta carrito;
+    
+    public Sistema(){
+        this.ventas= new ArrayList();
+        this.envases =new ArrayList();
+        this.articulos = new ArrayList();
+        this.beneficioAmbiental=0;
+        this.carrito= new Venta();
+    }
 
     public Venta getCarrito() {
         return carrito;
