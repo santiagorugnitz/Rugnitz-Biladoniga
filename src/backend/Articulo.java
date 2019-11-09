@@ -5,6 +5,7 @@
  */
 package backend;
 
+import java.awt.Image;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +24,25 @@ public class Articulo {
     private boolean disponible;
     private Tipo tipo;
     private int vecesComprado;
+    private Image imagen;
+    private double valoracion;
 
+    public Image getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Image imagen) {
+        this.imagen = imagen;
+    }
+
+    public double getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(double valoracion) {
+        this.valoracion = valoracion;
+    }
+    
     public String getOrigen() {
         return origen;
     }
@@ -76,7 +95,7 @@ public class Articulo {
         return this.vecesComprado;
     }
 
-    public Articulo(String origen, int precio, String material, int id, Tipo tipo) {
+    public Articulo(String origen, int precio, String material, int id, Tipo tipo,Image imagen) {
         this.origen = origen;
         this.precio = precio;
         this.material = material;
@@ -84,6 +103,8 @@ public class Articulo {
         this.disponible = true;
         this.tipo = tipo;
         this.vecesComprado = 0;
+        this.imagen=imagen;
+        this.valoracion=0;
     }
     
     
