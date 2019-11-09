@@ -5,6 +5,8 @@
  */
 package backend;
 
+import frontend.InicioController;
+import frontend.TiendaController;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -21,13 +23,28 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(
-                getClass().getResource("/frontend/Tienda.fxml"));
-        //stage.initStyle(StageStyle.UNIFIED);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/frontend/Inicio.fxml"));
+        Parent root = loader.load();
+
+        //Cargo el sistema
+        Sistema s = new Sistema();
+        //ARTICULOS POR DEFECTO
+        s.agregarArticulo("uru", 20, "caucho", Articulo.Tipo.SECO);
+        s.agregarArticulo("uru", 123, "caucho", Articulo.Tipo.SECO);
+        s.agregarArticulo("uru", 42, "caucho", Articulo.Tipo.SECO);
+        s.agregarArticulo("uru", 220, "caucho", Articulo.Tipo.SECO);
+        s.agregarArticulo("uru", 1, "caucho", Articulo.Tipo.SECO);
+        s.agregarArticulo("uru", 55, "caucho", Articulo.Tipo.SECO);
+        s.agregarArticulo("uru", 12, "caucho", Articulo.Tipo.SECO);
+        s.agregarArticulo("uru", 556, "caucho", Articulo.Tipo.SECO);
+        s.agregarArticulo("uru", 556, "caucho", Articulo.Tipo.SECO);
+
+        //FIN ARTICULOS POR DEFECTO
+        InicioController controlador = loader.getController();
+        controlador.setSistema(s);
+        loader.setController(controlador);
 
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
         stage.show();
@@ -46,4 +63,3 @@ public class Main extends Application {
     }
 
 }
-

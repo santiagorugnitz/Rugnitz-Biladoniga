@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="160.0" prefWidth="960.0" style="-fx-background-color: #2B3253;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.CarroItemController">
+   <children>
+      <ImageView fx:id="imagen" fitHeight="137.0" fitWidth="152.0" layoutX="23.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/jbl-speaker.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lbl_precio" alignment="CENTER_RIGHT" layoutX="809.0" layoutY="13.0" prefHeight="53.0" prefWidth="127.0" text="\$234" textAlignment="RIGHT" textFill="#7e72f2">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Group layoutX="354.0" layoutY="18.0">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#6f64f8" height="24.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <ImageView fitHeight="14.0" fitWidth="14.0" layoutX="35.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/star.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbl_nota" layoutX="9.0" prefHeight="30.0" prefWidth="35.0" text="2.3" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Label fx:id="lbl_nombre" layoutX="160.0" layoutY="18.0" prefHeight="30.0" prefWidth="141.0" text="Parlante JBL" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <HBox layoutX="159.0" layoutY="102.0" prefHeight="36.0" prefWidth="172.0">
+         <children>
+            <Label prefHeight="36.0" prefWidth="81.0" text="Categoria" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="36.0" prefWidth="81.0" text="Atributo2" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <JFXComboBox layoutX="153.0" layoutY="69.0" prefHeight="31.0" prefWidth="147.0" />
+      <Label alignment="CENTER" layoutX="557.0" layoutY="21.0" prefHeight="27.0" prefWidth="90.0" text="12" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_agregar" layoutX="627.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/mas.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btn_eliminar" layoutX="528.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/menos.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

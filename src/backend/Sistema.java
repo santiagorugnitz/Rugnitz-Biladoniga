@@ -60,6 +60,7 @@ public class Sistema {
         if (precio >= 0) {
             Articulo a = new Articulo(nombre, origen, precio, material, this.articulos.size() + 1, tipo, imagen);
             this.articulos.add(a);
+
             return true;
         } else {
             return false;
