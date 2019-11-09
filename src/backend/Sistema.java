@@ -21,8 +21,8 @@ public class Sistema {
     private ArrayList<Articulo> articulos;
     private int beneficioAmbiental;
     private Venta carrito;
-    
-    public Venta getCarrito(){
+
+    public Venta getCarrito() {
         return carrito;
     }
 
@@ -56,9 +56,9 @@ public class Sistema {
      * @param material Material del articulo
      * @param tipo Tipo del articulo
      */
-    public boolean agregarArticulo(String nombre, String origen, int precio, String material, Articulo.Tipo tipo, Image imagen) {
+    public boolean agregarArticulo(String nombre, String origen, int precio, String material, Articulo.Tipo tipo, Image imagen,String[] categorias) {
         if (precio >= 0) {
-            Articulo a = new Articulo(nombre, origen, precio, material, this.articulos.size() + 1, tipo, imagen);
+            Articulo a = new Articulo(nombre, origen, precio, material, this.articulos.size() + 1, tipo, imagen,categorias);
             this.articulos.add(a);
 
             return true;
@@ -114,9 +114,9 @@ public class Sistema {
             Compra c = carrito.getCompras().get(i);
             c.getArticulo().aumentarUso(c.getCantidad());
             c.getEnvase().aumentarUso(c.getCantidad());
-            this.actualizarBeneficio(c.getEnvase(),c.getCantidad());
+            this.actualizarBeneficio(c.getEnvase(), c.getCantidad());
         }
-        carrito= new Venta();
+        carrito = new Venta();
         actualizarListas();
     }
 
@@ -161,24 +161,27 @@ public class Sistema {
      *
      * @param e Envase reutilizado
      */
-    public void actualizarBeneficio(Envase e,int n) {
-        this.beneficioAmbiental += e.getCosteProduccion()*n;
+    public void actualizarBeneficio(Envase e, int n) {
+        this.beneficioAmbiental += e.getCosteProduccion() * n;
     }
 
-    /**
-     * PRE: - POS: Filtra la lista de articulos segun una condicion dada
-     *
-     * @param c Comparador de articulos
-     * @param limite Articulo limite
-     */
-    public ArrayList<Articulo> filtrarArticulos(Comparator<Articulo> c, Articulo limite) {
+    public ArrayList<Articulo> filtrarArticulos(int precioDesde, int precioHasta, double minValoracion, String[] categorias) {
         ArrayList<Articulo> ret = new ArrayList();
         for (Articulo articulo : articulos) {
-            if (c.compare(articulo, limite) < 0) {
+            if (articulo.getPrecio() <= precioHasta && articulo.getPrecio() >= precioDesde && articulo.getValoracion() >= minValoracion&& unoEnComun(categorias,articulo.getCategorias())) {
                 ret.add(articulo);
             }
         }
         return ret;
+    }
+    
+    private boolean unoEnComun(String[] a1,String[] a2){
+        for (int i = 0; i < a2.length; i++) {
+            for (int j = 0; j < a2.length; j++) {
+                if(a1[i].equals(a2[j]))return true;
+            }
+        }
+        return false;
     }
 
 }

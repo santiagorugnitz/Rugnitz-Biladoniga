@@ -21,6 +21,7 @@ public class Articulo {
     private String origen;
     private int precio;
     private String material;
+    private String[] categorias;
     private int id;
     private boolean disponible;
     private Tipo tipo;
@@ -103,8 +104,11 @@ public class Articulo {
     public int getVecesComprado() {
         return this.vecesComprado;
     }
+    public String[] getCategorias(){
+        return this.categorias;
+    }
 
-    public Articulo(String nombre,String origen, int precio, String material, int id, Tipo tipo,Image imagen) {
+    public Articulo(String nombre,String origen, int precio, String material, int id, Tipo tipo,Image imagen,String[] categorias) {
         this.nombre=nombre;
         this.origen = origen;
         this.precio = precio;
@@ -115,14 +119,9 @@ public class Articulo {
         this.vecesComprado = 0;
         this.imagen=imagen;
         this.valoracion=0;
+        this.categorias=categorias;
     }
     
-    public Articulo(double v){
-        this.valoracion=v;
-    }
-    public Articulo(int p){
-        this.precio=p;
-    }
     
     
 }
