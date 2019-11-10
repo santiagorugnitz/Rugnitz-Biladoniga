@@ -56,6 +56,7 @@ public class Venta {
         this.compras.add(new Compra(a,e,unidades));
         this.total+=a.getPrecio()*unidades;
     }
+    
     public void quitarArticulo(int pos){
         this.total-=compras.get(pos).total();
         compras.remove(pos);

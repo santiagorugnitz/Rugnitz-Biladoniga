@@ -107,6 +107,16 @@
                   </JFXButton>
                </children>
             </VBox>
+            <Group layoutX="119.0" layoutY="273.0">
+               <children>
+                  <Circle fill="#7e72f2" layoutX="17.0" layoutY="16.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label fx:id="lbl_cantidad_carro" alignment="CENTER" layoutX="3.0" layoutY="5.0" prefHeight="22.0" prefWidth="27.0" text="20" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
          </children>
       </AnchorPane>
       <Text fill="WHITE" layoutX="297.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtros" wrappingWidth="213.0000114440918">
@@ -209,16 +219,6 @@
             <VBox fx:id="vbox" prefHeight="675.0" prefWidth="993.0" spacing="20.0" />
          </content>
       </ScrollPane>
-      <Group layoutX="125.0" layoutY="273.0">
-         <children>
-            <Circle fill="#7e72f2" layoutX="17.0" layoutY="16.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label alignment="CENTER" layoutX="10.0" layoutY="7.0" text="20" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-         </children>
-      </Group>
       <Rectangle arcHeight="23.0" arcWidth="23.0" fill="#0f1642" height="62.0" layoutX="277.0" layoutY="23.0" stroke="BLACK" strokeDashOffset="55.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="0.0" width="1306.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="10.0" />
       <JFXButton fx:id="btn_cerrar" layoutX="1404.0" layoutY="12.0" onAction="#cerrarSesion" text="Cerrar Sesion" textFill="WHITE" AnchorPane.leftAnchor="1404.0" AnchorPane.topAnchor="12.0">
          <font>

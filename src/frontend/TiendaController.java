@@ -17,13 +17,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -39,11 +37,16 @@ public class TiendaController implements Initializable {
     VBox vbox;
     @FXML
     AnchorPane pane;
-    Sistema sistema;
+    @FXML
+    Label lbl_cantidad_carro;
+
+    private Sistema sistema;
 
     public void inicializarDatos(Sistema s) {
         this.sistema = s;
         this.cargarArticulos(s.getArticulos());
+        lbl_cantidad_carro.setText(String.valueOf(
+                sistema.getCarrito().getTotal()));
     }
 
     @Override
@@ -52,7 +55,12 @@ public class TiendaController implements Initializable {
 
     @FXML
     private void carrito(ActionEvent event) {
-        frontend.Utilitarios.cambiarVentana(this, event, "/frontend/Carro.fxml");
+        FXMLLoader fxml = frontend.Utilitarios.
+                cambiarVentana(this, event, "/frontend/Carro.fxml");
+        CarroController controller = fxml.getController();
+        controller.inicializarDatos(sistema, lbl_cantidad_carro);
+        fxml.setController(controller);
+
     }
 
     @FXML
@@ -63,7 +71,7 @@ public class TiendaController implements Initializable {
 
     private void cargarArticulos(ArrayList<Articulo> listArt) {
         this.vbox.getChildren().clear();
-        
+
         int maxFila = 0;
         HBox filas = new HBox();
         filas.setSpacing(20);
@@ -75,11 +83,11 @@ public class TiendaController implements Initializable {
 
                 FXMLLoader fxml = new FXMLLoader(
                         getClass().getResource("/frontend/Producto.fxml"));
-                Node nodo = fxml.load();
+                Parent nodo = fxml.load();
 
                 //Carga los datos
                 ProductoController controller = fxml.getController();
-                controller.inicializarDatos(art);
+                controller.inicializarDatos(art, sistema, lbl_cantidad_carro);
                 fxml.setController(controller);
 
                 //Cargo el nuevo objeto

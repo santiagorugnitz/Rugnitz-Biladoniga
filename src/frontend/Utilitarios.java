@@ -27,7 +27,7 @@ public class Utilitarios {
         try {
             Parent tableViewParent = loader.load();
             Scene tableViewScene = new Scene(tableViewParent);
-
+              
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             window.setScene(tableViewScene);
