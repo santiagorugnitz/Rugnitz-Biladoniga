@@ -43,14 +43,16 @@ public class CarroItemController implements Initializable {
     Label subtotal;
     CarroController carro_controlador;
     Sistema sistema;
-    
+    Integer posicion;
+
     public void inicializarDatos(Compra venta,
             Sistema sistema,
             Label cantidad_carrito,
             Label total,
             Label subtotal,
-            CarroController carro_controlador) {
-        
+            CarroController carro_controlador,
+            Integer posicion) {
+
         this.venta = venta;
         this.cantidad_carrito = cantidad_carrito;
         this.carro_controlador = carro_controlador;
@@ -60,8 +62,9 @@ public class CarroItemController implements Initializable {
         this.sistema = sistema;
         this.total = total;
         this.subtotal = subtotal;
+        this.posicion = posicion;
         actualizar();
-        
+
     }
 
     @Override
@@ -86,9 +89,16 @@ public class CarroItemController implements Initializable {
     private void actualizar() {
         this.lbl_precio.setText("$" + String.valueOf(venta.total()));
         this.lbl_cantidad.setText(String.valueOf(this.venta.getCantidad()));
-        String precioTotal = String.valueOf(sistema.getCarrito().getTotal());
+        String precioTotal = "$"+String.valueOf(sistema.getCarrito().getTotal());
         this.total.setText(precioTotal);
         this.subtotal.setText(precioTotal);
+    }
+
+    @FXML
+    public void eliminarElemento(ActionEvent evento) {
+        //Integer posArt = this.venta.getArticulo();
+        this.sistema.getCarrito().quitarArticulo(posicion);
+        this.carro_controlador.cargarArticulos();
     }
 
     @FXML

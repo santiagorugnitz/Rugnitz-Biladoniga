@@ -33,11 +33,11 @@ public class InicioController implements Initializable {
      * Initializes the controller class.
      */
     private Sistema sistema;
-    
-    public void setSistema(Sistema sistema){
+
+    public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -53,12 +53,12 @@ public class InicioController implements Initializable {
 
         FXMLLoader fxml = Utilitarios.
                 cambiarVentana(this, event, "/frontend/Tienda.fxml");
-        
-//Carga los datos
+
+        //Carga los datos
         TiendaController controller = fxml.getController();
         controller.inicializarDatos(sistema);
         fxml.setController(controller);
-        
+
     }
 
     @FXML

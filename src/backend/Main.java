@@ -50,7 +50,10 @@ public class Main extends Application {
         loader.setController(controlador);
 
         Scene scene = new Scene(root);
-        stage.setTitle("JavaFX and Maven");
+
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.centerOnScreen();
+        stage.setTitle("EchoShop");
         stage.setScene(scene);
         stage.show();
     }

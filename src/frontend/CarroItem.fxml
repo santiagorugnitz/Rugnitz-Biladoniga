@@ -18,7 +18,7 @@
             <Image url="@img/jbl-speaker.png" />
          </image>
       </ImageView>
-      <Label fx:id="lbl_precio" alignment="CENTER_RIGHT" layoutX="819.0" layoutY="23.0" prefHeight="53.0" prefWidth="127.0" text="\$234" textAlignment="RIGHT" textFill="#7e72f2">
+      <Label fx:id="lbl_precio" alignment="CENTER_RIGHT" layoutX="819.0" layoutY="23.0" prefHeight="53.0" prefWidth="127.0" text="\$234" textAlignment="RIGHT" textFill="#6f64f8">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -80,6 +80,11 @@
                </image>
             </ImageView>
          </graphic>
+      </JFXButton>
+      <JFXButton alignment="CENTER" layoutX="829.0" layoutY="111.0" onAction="#eliminarElemento" prefHeight="39.0" prefWidth="117.0" text="Eliminar" textFill="#f24a4a">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
       </JFXButton>
    </children>
 </AnchorPane>

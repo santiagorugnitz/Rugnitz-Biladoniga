@@ -62,20 +62,23 @@ public class CarroController implements Initializable {
     @FXML
     private void cerrarSesion(ActionEvent event) {
         System.out.println("haaa");
-        frontend.Utilitarios.cerrarSesion(this, event);
+        frontend.Utilitarios.cerrarSesion(this, event,this.sistema);
 
     }
 
     @FXML
     private void comprar(ActionEvent event) {
         System.out.println("haaa");
-        frontend.Utilitarios.cerrarSesion(this, event);
+        frontend.Utilitarios.cerrarSesion(this, event,this.sistema);
 
     }
 
-    private void cargarArticulos() {
+    public void cargarArticulos() {
         ArrayList<Compra> listCompras = this.sistema.getCarrito().getCompras();
         this.lista_compras.getChildren().clear();
+        String precioTotal = "$"+String.valueOf(sistema.getCarrito().getTotal());
+        lbl_total.setText(precioTotal);
+        lbl_subtotal.setText(precioTotal);
 
         for (int i = 0; i < listCompras.size(); i++) {
             try {
@@ -93,8 +96,9 @@ public class CarroController implements Initializable {
                 controller.inicializarDatos(art, sistema, lbl_cantidad_carro,
                         this.lbl_total,
                         this.lbl_subtotal,
-                        this);
-                fxml.setController(controller);
+                        this,
+                        i);
+                //fxml.setController(controller);
 
                 //Cargo el nuevo objeto
                 this.lista_compras.getChildren().add(nodo);

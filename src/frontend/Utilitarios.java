@@ -5,14 +5,17 @@
  */
 package frontend;
 
+import backend.Sistema;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -27,33 +30,25 @@ public class Utilitarios {
         try {
             Parent tableViewParent = loader.load();
             Scene tableViewScene = new Scene(tableViewParent);
-              
+
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             window.setScene(tableViewScene);
+            ((Stage) (window.getScene().getWindow())).centerOnScreen();
+
             window.show();
         } catch (IOException ex) {
             Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return loader;
     }
 
-    public static void cerrarSesion(Object win, ActionEvent event) {
-
-        Parent tableViewParent;
-        try {
-            tableViewParent = FXMLLoader.load(win.getClass().getResource("/frontend/Inicio.fxml"));
-            Scene tableViewScene = new Scene(tableViewParent);
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(tableViewScene);
-            window.show();
-
-        } catch (IOException ex) {
-            Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public static void cerrarSesion(Object win, ActionEvent event,Sistema sistema) {        
+        FXMLLoader loader = cambiarVentana(win, event, "/frontend/Inicio.fxml");
+        InicioController controlador = loader.getController();
+        controlador.setSistema(sistema);
+        
     }
 
 }

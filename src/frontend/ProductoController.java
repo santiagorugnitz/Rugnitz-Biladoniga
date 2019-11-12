@@ -25,6 +25,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -70,9 +71,10 @@ public class ProductoController implements Initializable {
             Scene scene = new Scene(root);
 
             ComprarController controlador = loader.getController();
-            controlador.inicializarDatos(sistema, articulo,lbl_cantidadCarrito);
+            controlador.inicializarDatos(sistema, articulo, lbl_cantidadCarrito);
             loader.setController(controlador);
-
+            
+            newstage.initStyle(StageStyle.UNDECORATED);
             newstage.setScene(scene);
             newstage.initModality(Modality.APPLICATION_MODAL);
             newstage.showAndWait();

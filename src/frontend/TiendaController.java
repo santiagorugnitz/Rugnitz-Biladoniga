@@ -65,7 +65,7 @@ public class TiendaController implements Initializable {
 
     @FXML
     private void cerrarSesion(ActionEvent event) {
-        frontend.Utilitarios.cerrarSesion(this, event);
+        frontend.Utilitarios.cerrarSesion(this, event,this.sistema);
 
     }
 
