@@ -57,7 +57,6 @@ public class Venta {
     public void agregarArticulo(Articulo a, Envase e, int unidades) {
         this.compras.add(new Compra(a, e, unidades));
     }
-
     public void quitarArticulo(int pos) {
         compras.remove(pos);
     }

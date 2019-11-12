@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,19 +11,19 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="160.0" prefWidth="960.0" style="-fx-background-color: #2B3253;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.CarroItemController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="960.0" style="-fx-background-color: #2B3253;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.CarroItemController">
    <children>
-      <ImageView fx:id="imagen" fitHeight="137.0" fitWidth="152.0" layoutX="23.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imagen" fitHeight="137.0" fitWidth="152.0" layoutX="33.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/jbl-speaker.png" />
          </image>
       </ImageView>
-      <Label fx:id="lbl_precio" alignment="CENTER_RIGHT" layoutX="809.0" layoutY="13.0" prefHeight="53.0" prefWidth="127.0" text="\$234" textAlignment="RIGHT" textFill="#7e72f2">
+      <Label fx:id="lbl_precio" alignment="CENTER_RIGHT" layoutX="819.0" layoutY="23.0" prefHeight="53.0" prefWidth="127.0" text="\$234" textAlignment="RIGHT" textFill="#6f64f8">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Group layoutX="354.0" layoutY="18.0">
+      <Group layoutX="364.0" layoutY="28.0">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#6f64f8" height="24.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
             <ImageView fitHeight="14.0" fitWidth="14.0" layoutX="35.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
@@ -38,12 +38,12 @@
             </Label>
          </children>
       </Group>
-      <Label fx:id="lbl_nombre" layoutX="160.0" layoutY="18.0" prefHeight="30.0" prefWidth="141.0" text="Parlante JBL" textAlignment="RIGHT" textFill="WHITE">
+      <Label fx:id="lbl_nombre" layoutX="170.0" layoutY="28.0" prefHeight="30.0" prefWidth="141.0" text="Parlante JBL" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <HBox layoutX="159.0" layoutY="102.0" prefHeight="36.0" prefWidth="172.0">
+      <HBox layoutX="169.0" layoutY="112.0" prefHeight="36.0" prefWidth="172.0">
          <children>
             <Label prefHeight="36.0" prefWidth="81.0" text="Categoria" textAlignment="RIGHT" textFill="WHITE">
                <font>
@@ -57,13 +57,13 @@
             </Label>
          </children>
       </HBox>
-      <JFXComboBox layoutX="153.0" layoutY="69.0" prefHeight="31.0" prefWidth="147.0" />
-      <Label alignment="CENTER" layoutX="557.0" layoutY="21.0" prefHeight="27.0" prefWidth="90.0" text="12" textFill="WHITE">
+      <JFXComboBox layoutX="163.0" layoutY="79.0" prefHeight="31.0" prefWidth="147.0" />
+      <Label fx:id="lbl_cantidad" alignment="CENTER" layoutX="609.0" layoutY="15.0" prefHeight="27.0" prefWidth="90.0" text="12" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btn_agregar" layoutX="627.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+      <JFXButton fx:id="btn_sumar" layoutX="699.0" layoutY="9.0" onAction="#sumar_item" text=" " textFill="WHITE">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -71,8 +71,8 @@
                </image>
             </ImageView>
          </graphic>
-      </Button>
-      <Button fx:id="btn_eliminar" layoutX="528.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+      </JFXButton>
+      <JFXButton fx:id="btn_restar" layoutX="573.0" layoutY="8.0" onAction="#restar_item" text=" " textFill="WHITE">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -80,6 +80,11 @@
                </image>
             </ImageView>
          </graphic>
-      </Button>
+      </JFXButton>
+      <JFXButton alignment="CENTER" layoutX="829.0" layoutY="111.0" onAction="#eliminarElemento" prefHeight="39.0" prefWidth="117.0" text="Eliminar" textFill="#f24a4a">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

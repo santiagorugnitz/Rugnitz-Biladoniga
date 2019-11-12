@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -15,64 +17,8 @@
 
 <AnchorPane id="AnchorPane" minHeight="-Infinity" prefHeight="900.0" prefWidth="1600.0" styleClass="mainFxmlClass" stylesheets="@css/tienda.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.CarroController">
    <children>
-      <AnchorPane layoutX="24.0" layoutY="28.0" prefHeight="900.0" prefWidth="284.0" style="-fx-background-color: #0F1642;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Button layoutX="13.0" layoutY="118.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="240.0" style="-fx-background-color: transparent;" />
-            <Button layoutX="13.0" layoutY="160.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="240.0" style="-fx-background-color: #9E94FF;" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="160.0" />
-            <ImageView fitHeight="27.0" fitWidth="235.0" layoutX="29.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/logo.png" />
-               </image>
-            </ImageView>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="○           Propuesta" wrappingWidth="213.0000114440918" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="85.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="○           Puntos de venta" wrappingWidth="213.0000114440918" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="125.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="○           Tienda" wrappingWidth="213.0000114440918" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="165.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text fill="#999999" layoutX="29.0" layoutY="251.423828125" strokeType="OUTSIDE" strokeWidth="0.0" text="Secciones" wrappingWidth="83.6708984375" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="232.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Text>
-            <Button layoutX="14.0" layoutY="79.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="240.0" style="-fx-background-color: transparent;" />
-            <VBox layoutX="21.0" layoutY="269.0" spacing="15.0">
-               <children>
-                  <JFXButton disable="true" prefHeight="37.0" prefWidth="75.0" text="Carrito" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="CENTER" text="Historial" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="CENTER" text="Calendario" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-      <JFXButton layoutX="1493.0" layoutY="22.0" text="Salir" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </JFXButton>
       <Rectangle arcHeight="23.0" arcWidth="23.0" fill="#0f1642" height="62.0" layoutY="10.0" stroke="BLACK" strokeDashOffset="55.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="0.0" width="1300.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="10.0" />
-      <JFXButton fx:id="btn_cerrar" layoutX="1409.0" layoutY="14.0" onAction="#cerrarSesion" text="Cerrar Sesion" textFill="WHITE" AnchorPane.leftAnchor="1400.0" AnchorPane.topAnchor="15.0">
+      <JFXButton layoutX="1409.0" layoutY="14.0" onAction="#cerrarSesion" text="Cerrar Sesion" textFill="WHITE" AnchorPane.leftAnchor="1400.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -100,7 +46,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btn_comprar" layoutX="1340.0" layoutY="207.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="193.0" style="-fx-background-color: #0F1642;" text="Comprar" textFill="WHITE">
+      <Button layoutX="1340.0" layoutY="207.0" mnemonicParsing="false" onAction="#comprar" prefHeight="55.0" prefWidth="193.0" style="-fx-background-color: #0F1642;" text="Comprar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -111,20 +57,118 @@
          </font>
       </Label>
       <VBox alignment="TOP_CENTER" layoutX="1282.0" layoutY="312.0" prefHeight="563.0" prefWidth="316.0" spacing="10.0" />
-      <Label layoutX="1009.0" layoutY="846.0" prefHeight="55.0" prefWidth="145.0" text="SubTotal:" textFill="WHITE">
+      <Label layoutX="985.0" layoutY="846.0" prefHeight="55.0" prefWidth="145.0" text="SubTotal:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_subtotal" layoutX="1150.0" layoutY="852.0" prefHeight="35.0" prefWidth="99.0" text="\$240" textFill="#7e72f2">
+      <Label fx:id="lbl_subtotal" alignment="CENTER_RIGHT" layoutX="1117.0" layoutY="852.0" prefHeight="45.0" prefWidth="132.0" text="\$240" textFill="#7e72f2">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
       <ScrollPane hbarPolicy="NEVER" layoutX="290.0" layoutY="149.0" prefHeight="688.0" prefWidth="975.0" style="-fx-background-color: transparent; -fx-background: #2B3253;" vbarPolicy="NEVER">
          <content>
-            <VBox fx:id="vbox" prefHeight="675.0" prefWidth="969.0" spacing="20.0" />
+            <VBox fx:id="lista_compras" prefHeight="675.0" prefWidth="969.0" spacing="20.0" />
          </content>
       </ScrollPane>
+      <AnchorPane layoutX="24.0" layoutY="28.0" prefHeight="900.0" prefWidth="284.0" style="-fx-background-color: #0F1642;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="27.0" fitWidth="235.0" layoutX="29.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/logo.png" />
+               </image>
+            </ImageView>
+            <Text fill="#999999" layoutX="29.0" layoutY="251.423828125" strokeType="OUTSIDE" strokeWidth="0.0" text="Secciones" wrappingWidth="83.6708984375" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="232.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <VBox layoutX="21.0" layoutY="269.0" spacing="15.0">
+               <children>
+                  <JFXButton disable="true" prefHeight="37.0" prefWidth="75.0" text="Carrito" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" text="Historial" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" text="Calendario" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </VBox>
+            <VBox layoutX="25.0" layoutY="79.0" prefHeight="149.0" prefWidth="225.0" spacing="15.0">
+               <children>
+                  <JFXButton alignment="TOP_LEFT" prefHeight="35.0" prefWidth="226.0" text=" " textFill="WHITE">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <Circle fill="#1f93ff00" layoutY="14.0" radius="7.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
+                              <Label layoutX="53.0" text="Propuestas" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Group>
+                     </graphic>
+                     <font>
+                        <Font />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" prefHeight="35.0" prefWidth="193.0" text=" " textFill="WHITE">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <Circle fill="#1f93ff00" layoutY="14.0" radius="7.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
+                              <Label layoutX="53.0" text="Puntos de Venta" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Group>
+                     </graphic>
+                     <font>
+                        <Font />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" prefHeight="35.0" prefWidth="227.0" style="-fx-background-color: #9E94FF;" text=" " textFill="#9e94ff">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <Circle fill="#1f93ff00" layoutY="14.0" radius="7.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
+                              <Label layoutX="53.0" text="Tienda" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Group>
+                     </graphic>
+                     <font>
+                        <Font />
+                     </font>
+                  </JFXButton>
+               </children>
+            </VBox>
+            <Group layoutX="119.0" layoutY="273.0">
+               <children>
+                  <Circle fill="#7e72f2" layoutX="17.0" layoutY="16.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label fx:id="lbl_cantidad_carro" alignment="CENTER" layoutX="3.0" layoutY="5.0" prefHeight="22.0" prefWidth="27.0" text="20" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
