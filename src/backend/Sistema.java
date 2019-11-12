@@ -191,5 +191,20 @@ public class Sistema {
         }
         return false;
     }
+    
+    public void agregarAlCarrito(Articulo a,Envase e,int unidades){
+        carrito.agregarArticulo(a, e, unidades);
+    }
+    
+    public void quitarDelCarrito(int pos){
+        carrito.quitarArticulo(pos);
+    }
+    
+    public void editarCantCarrito(int pos,int cantNueva){
+        carrito.getCompras().get(pos).setCantidad(cantNueva);
+    }
+    public void borrarCarrito(){
+        carrito=new Venta();
+    }
 
 }
