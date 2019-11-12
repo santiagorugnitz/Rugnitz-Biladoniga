@@ -21,13 +21,13 @@ public class Sistema {
     private ArrayList<Articulo> articulos;
     private int beneficioAmbiental;
     private Venta carrito;
-    
-    public Sistema(){
-        this.ventas= new ArrayList();
-        this.envases =new ArrayList();
+
+    public Sistema() {
+        this.ventas = new ArrayList();
+        this.envases = new ArrayList();
         this.articulos = new ArrayList();
-        this.beneficioAmbiental=0;
-        this.carrito= new Venta();
+        this.beneficioAmbiental = 0;
+        this.carrito = new Venta();
     }
 
     public Venta getCarrito() {
@@ -64,9 +64,9 @@ public class Sistema {
      * @param material Material del articulo
      * @param tipo Tipo del articulo
      */
-    public boolean agregarArticulo(String nombre, String origen, int precio, String material, Articulo.Tipo tipo, Image imagen,String[] categorias) {
+    public boolean agregarArticulo(String nombre, String origen, int precio, String material, Articulo.Tipo tipo, Image imagen, String[] categorias) {
         if (precio >= 0) {
-            Articulo a = new Articulo(nombre, origen, precio, material, this.articulos.size() + 1, tipo, imagen,categorias);
+            Articulo a = new Articulo(nombre, origen, precio, material, this.articulos.size() + 1, tipo, imagen, categorias);
             this.articulos.add(a);
 
             return true;
@@ -176,35 +176,41 @@ public class Sistema {
     public ArrayList<Articulo> filtrarArticulos(int precioDesde, int precioHasta, double minValoracion, String[] categorias) {
         ArrayList<Articulo> ret = new ArrayList();
         for (Articulo articulo : articulos) {
-            if (articulo.getPrecio() <= precioHasta && articulo.getPrecio() >= precioDesde && articulo.getValoracion() >= minValoracion&& unoEnComun(categorias,articulo.getCategorias())) {
+            if (articulo.getPrecio() <= precioHasta && articulo.getPrecio() >= precioDesde && articulo.getValoracion() >= minValoracion && unoEnComun(categorias, articulo.getCategorias())) {
                 ret.add(articulo);
             }
         }
         return ret;
     }
-    
-    private boolean unoEnComun(String[] a1,String[] a2){
+
+    private boolean unoEnComun(String[] a1, String[] a2) {
         for (int i = 0; i < a2.length; i++) {
             for (int j = 0; j < a2.length; j++) {
-                if(a1[i].equals(a2[j]))return true;
+                if (a1[i].equals(a2[j])) {
+                    return true;
+                }
             }
         }
         return false;
     }
-    
-    public void agregarAlCarrito(Articulo a,Envase e,int unidades){
+
+    public void agregarAlCarrito(Articulo a, Envase e, int unidades) {
         carrito.agregarArticulo(a, e, unidades);
     }
-    
-    public void quitarDelCarrito(int pos){
+
+    public void quitarDelCarrito(int pos) {
         carrito.quitarArticulo(pos);
     }
-    
-    public void editarCantCarrito(int pos,int cantNueva){
+
+    public void editarCantCarrito(int pos, int cantNueva) {
         carrito.getCompras().get(pos).setCantidad(cantNueva);
     }
-    public void borrarCarrito(){
-        carrito=new Venta();
+
+    public void borrarCarrito() {
+        carrito = new Venta();
     }
 
+    public int cantCarrito(){
+        return carrito.getCompras().size();
+    }
 }

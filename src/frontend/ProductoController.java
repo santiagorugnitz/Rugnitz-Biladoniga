@@ -47,7 +47,7 @@ public class ProductoController implements Initializable {
     private Articulo articulo;
     private Label lbl_cantidadCarrito;
 
-    public void inicializarDatos(Articulo articulo, Sistema sistema, Label cantidad) {
+    public void inicializarDatos(Articulo articulo,Sistema sistema, Label cantidad) {
         lbl_precio.setText("$" + String.valueOf(articulo.getPrecio()));
         lbl_nombre.setText(articulo.getNombre());
         this.sistema = sistema;
