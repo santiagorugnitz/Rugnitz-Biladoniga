@@ -5,10 +5,8 @@
  */
 package frontend;
 
-import backend.Articulo;
 import backend.Compra;
 import backend.Sistema;
-import backend.Venta;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,7 +19,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -62,28 +59,31 @@ public class CarroController implements Initializable {
     @FXML
     private void cerrarSesion(ActionEvent event) {
         System.out.println("haaa");
-        frontend.Utilitarios.cerrarSesion(this, event,this.sistema);
+        frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
 
     }
 
     @FXML
     private void comprar(ActionEvent event) {
         System.out.println("haaa");
-        frontend.Utilitarios.cerrarSesion(this, event,this.sistema);
+        frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
 
     }
 
     public void cargarArticulos() {
+        String cant = String.valueOf(sistema.cantCarrito());
+        this.cantidad.setText(cant);
+        this.lbl_cantidad_carro.setText(cant);
+        
+        
         ArrayList<Compra> listCompras = this.sistema.getCarrito().getCompras();
         this.lista_compras.getChildren().clear();
-        String precioTotal = "$"+String.valueOf(sistema.getCarrito().getTotal());
+        String precioTotal = "$" + String.valueOf(sistema.getCarrito().getTotal());
         lbl_total.setText(precioTotal);
         lbl_subtotal.setText(precioTotal);
 
         for (int i = 0; i < listCompras.size(); i++) {
             try {
-
-                Compra art = listCompras.get(i);
 
                 //Cargar el objeto
                 FXMLLoader fxml = new FXMLLoader(
@@ -93,7 +93,7 @@ public class CarroController implements Initializable {
                 //Carga los datos
                 CarroItemController controller = fxml.getController();
 
-                controller.inicializarDatos(art, sistema, lbl_cantidad_carro,
+                controller.inicializarDatos(sistema, lbl_cantidad_carro,
                         this.lbl_total,
                         this.lbl_subtotal,
                         this,

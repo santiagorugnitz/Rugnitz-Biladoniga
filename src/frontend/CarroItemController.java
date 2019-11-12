@@ -37,7 +37,7 @@ public class CarroItemController implements Initializable {
     @FXML
     Button btn_restar;
 
-    Compra venta;
+    Compra compra;
     Label cantidad_carrito;
     Label total;
     Label subtotal;
@@ -45,24 +45,29 @@ public class CarroItemController implements Initializable {
     Sistema sistema;
     Integer posicion;
 
-    public void inicializarDatos(Compra venta,
-            Sistema sistema,
+    public void inicializarDatos(Sistema sistema,
             Label cantidad_carrito,
             Label total,
             Label subtotal,
             CarroController carro_controlador,
             Integer posicion) {
 
-        this.venta = venta;
-        this.cantidad_carrito = cantidad_carrito;
         this.carro_controlador = carro_controlador;
-        this.lbl_nombre.setText(venta.getArticulo().getNombre());
-        this.lbl_nota.setText(String.valueOf(
-                venta.getArticulo().getValoracion()));
         this.sistema = sistema;
+        this.compra = sistema.getCarrito().getCompras().get(posicion);
+
+        //Cargo los labels de la compra
+        this.lbl_nombre.setText(compra.getArticulo().getNombre());
+        this.lbl_nota.setText(String.valueOf(
+                compra.getArticulo().getValoracion()));
+
+        //Se pasan los labels
+        this.cantidad_carrito = cantidad_carrito;
         this.total = total;
         this.subtotal = subtotal;
         this.posicion = posicion;
+
+        //Actualiza los datos
         actualizar();
 
     }
@@ -76,8 +81,8 @@ public class CarroItemController implements Initializable {
     public void sumar_item(ActionEvent evento) {
         btn_restar.setDisable(false);
 
-        Integer nuevaCantidad = this.venta.getCantidad() + 1;
-        this.venta.setCantidad(nuevaCantidad);
+        Integer nuevaCantidad = compra.getCantidad() + 1;
+        compra.setCantidad(nuevaCantidad);
 
         actualizar();
 
@@ -87,9 +92,12 @@ public class CarroItemController implements Initializable {
     }
 
     private void actualizar() {
-        this.lbl_precio.setText("$" + String.valueOf(venta.total()));
-        this.lbl_cantidad.setText(String.valueOf(this.venta.getCantidad()));
-        String precioTotal = "$"+String.valueOf(sistema.getCarrito().getTotal());
+        //Cargo el item de compra
+        this.lbl_precio.setText("$" + String.valueOf(compra.total()));
+        this.lbl_cantidad.setText(String.valueOf(compra.getCantidad()));
+
+        //Cargo el total y subtotal
+        String precioTotal = "$" + String.valueOf(sistema.getCarrito().getTotal());
         this.total.setText(precioTotal);
         this.subtotal.setText(precioTotal);
     }
@@ -97,7 +105,7 @@ public class CarroItemController implements Initializable {
     @FXML
     public void eliminarElemento(ActionEvent evento) {
         //Integer posArt = this.venta.getArticulo();
-        this.sistema.getCarrito().quitarArticulo(posicion);
+        this.sistema.quitarDelCarrito(this.posicion);
         this.carro_controlador.cargarArticulos();
     }
 
@@ -105,8 +113,8 @@ public class CarroItemController implements Initializable {
     public void restar_item(ActionEvent evento) {
         this.btn_sumar.setDisable(false);
 
-        Integer nuevaCantidad = this.venta.getCantidad() - 1;
-        this.venta.setCantidad(nuevaCantidad);
+        Integer nuevaCantidad = compra.getCantidad() - 1;
+        compra.setCantidad(nuevaCantidad);
 
         actualizar();
 
