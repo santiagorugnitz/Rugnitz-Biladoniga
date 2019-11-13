@@ -8,6 +8,8 @@ package frontend;
 import backend.Articulo;
 import backend.Sistema;
 import static frontend.Utilitarios.crearError;
+import static frontend.Utilitarios.ir_carrito;
+import static frontend.Utilitarios.ir_tienda;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -66,7 +68,7 @@ public class TiendaController implements Initializable {
         this.sistema = s;
         this.cargarArticulos(s.getArticulos());
         lbl_cantidad_carro.setText(String.valueOf(
-                sistema.getCarrito().getTotal()));
+                sistema.cantCarrito()));
         eliminarFiltros(null);
     }
 
@@ -110,16 +112,10 @@ public class TiendaController implements Initializable {
 
     @FXML
     private void carrito(ActionEvent event) {
-        if (sistema.cantCarrito() != 0) {
-            FXMLLoader fxml = frontend.Utilitarios.
-                    cambiarVentana(this, event, "/frontend/Carro.fxml");
-            CarroController controller = fxml.getController();
-            controller.inicializarDatos(sistema, lbl_cantidad_carro);
-            fxml.setController(controller);
-        }else{
-            crearError(this,"Carrito Vacio");
-        }
+        ir_carrito(this, event, sistema,this.lbl_cantidad_carro);
     }
+    
+    
 
     @FXML
     private void cerrarSesion(ActionEvent event) {
