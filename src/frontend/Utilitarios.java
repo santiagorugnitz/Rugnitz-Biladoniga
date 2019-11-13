@@ -14,7 +14,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -42,13 +44,40 @@ public class Utilitarios {
         return loader;
     }
 
-    public static void cerrarSesion(Object win, ActionEvent event,Sistema sistema) {        
+    public static void cerrarSesion(Object win, ActionEvent event, Sistema sistema) {
         FXMLLoader loader = cambiarVentana(win, event, "/frontend/Inicio.fxml");
         InicioController controlador = loader.getController();
         controlador.setSistema(sistema);
-        
+
     }
 
-    public static void crearPopup(){
+    public static FXMLLoader crearError(Object win, String mensaje) {
+
+        Stage newstage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader(win.getClass().
+                getResource("/frontend/ErrorPopup.fxml"));
+
+        try {
+
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            //Cargar Mensaje
+            ErrorPopupController errorControlador = loader.getController();
+            errorControlador.setMensaje(mensaje);
+
+            newstage.initStyle(StageStyle.UNDECORATED);
+            newstage.setScene(scene);
+            newstage.initModality(Modality.APPLICATION_MODAL);
+            ((Stage) (newstage.getScene().getWindow())).centerOnScreen();
+
+            newstage.showAndWait();
+
+        } catch (IOException ex) {
+
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return loader;
     }
 }

@@ -13,12 +13,17 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 
 /**
@@ -29,16 +34,16 @@ import javafx.scene.layout.VBox;
 public class CarroController implements Initializable {
 
     @FXML
-    Label lbl_cantidad_carro;
+    private Label lbl_cantidad_carro;
     @FXML
-    Label lbl_total;
+    private Label lbl_total;
     @FXML
-    Label lbl_subtotal;
+    private Label lbl_subtotal;
     @FXML
-    VBox lista_compras;
+    private VBox lista_compras;
 
-    Sistema sistema;
-    Label cantidad;
+    private Sistema sistema;
+    private Label cantidad;
 
     public void inicializarDatos(Sistema sistema, Label cantidad) {
         this.sistema = sistema;
@@ -48,12 +53,11 @@ public class CarroController implements Initializable {
         Integer precioTotal = this.sistema.getCarrito().getTotal();
         this.lbl_subtotal.setText("$" + String.valueOf(precioTotal));
         this.lbl_total.setText("$" + String.valueOf(precioTotal));
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }
 
     @FXML
@@ -74,8 +78,7 @@ public class CarroController implements Initializable {
         String cant = String.valueOf(sistema.cantCarrito());
         this.cantidad.setText(cant);
         this.lbl_cantidad_carro.setText(cant);
-        
-        
+
         ArrayList<Compra> listCompras = this.sistema.getCarrito().getCompras();
         this.lista_compras.getChildren().clear();
         String precioTotal = "$" + String.valueOf(sistema.getCarrito().getTotal());
@@ -98,7 +101,6 @@ public class CarroController implements Initializable {
                         this.lbl_subtotal,
                         this,
                         i);
-                //fxml.setController(controller);
 
                 //Cargo el nuevo objeto
                 this.lista_compras.getChildren().add(nodo);

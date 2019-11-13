@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -73,11 +72,6 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </JFXButton>
-      <Label alignment="CENTER" layoutX="1276.0" layoutY="89.0" prefHeight="70.0" prefWidth="304.0" text="Reservados" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="48.0" />
-         </font>
-      </Label>
       <VBox alignment="TOP_CENTER" layoutX="1234.0" layoutY="152.0" prefHeight="723.0" prefWidth="364.0" spacing="10.0" />
    </children>
 </AnchorPane>

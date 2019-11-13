@@ -5,13 +5,13 @@
  */
 package frontend;
 
-import backend.Venta;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -19,24 +19,21 @@ import javafx.stage.Stage;
  *
  * @author Nahuel
  */
-public class PreComprarController extends ComprarController {
+public class ErrorPopupController implements Initializable {
+
+    @FXML
+    private Label mensaje;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
     }
 
-    @FXML
-    @Override
-    public void confirmar(ActionEvent evento) {
+    public void setMensaje(String men) {
+        this.mensaje.setText(men);
+    }
 
-        Venta venta = this.sistema.getCarrito();
-        Integer cantidad = Integer.valueOf(lbl_cantidad.getText());
-        venta.agregarArticulo(articulo, null, cantidad);
-        this.lbl_cantidadCarrito.setText(
-                String.valueOf(this.sistema.getCarrito()
-                        .getCompras().size()));
+    public void volver(ActionEvent evento) {
         Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();
         window.close();
 

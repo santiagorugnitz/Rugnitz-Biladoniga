@@ -24,26 +24,26 @@ import javafx.scene.control.Label;
 public class CarroItemController implements Initializable {
 
     @FXML
-    Label lbl_nombre;
+    private Label lbl_nombre;
     @FXML
-    Label lbl_nota;
+    private Label lbl_nota;
     @FXML
-    Label lbl_cantidad;
+    private Label lbl_cantidad;
     @FXML
-    Label lbl_precio;
+    private Label lbl_precio;
 
     @FXML
-    Button btn_sumar;
+    private Button btn_sumar;
     @FXML
-    Button btn_restar;
+    private Button btn_restar;
 
-    Compra compra;
-    Label cantidad_carrito;
-    Label total;
-    Label subtotal;
-    CarroController carro_controlador;
-    Sistema sistema;
-    Integer posicion;
+    private Compra compra;
+    private Label cantidad_carrito;
+    private Label total;
+    private Label subtotal;
+    private CarroController carro_controlador;
+    private Sistema sistema;
+    private Integer posicion;
 
     public void inicializarDatos(Sistema sistema,
             Label cantidad_carrito,

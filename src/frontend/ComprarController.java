@@ -26,15 +26,15 @@ import javafx.stage.Stage;
 public class ComprarController implements Initializable {
 
     @FXML
-    private Label lbl_cantidad;
+    protected Label lbl_cantidad;
     @FXML
-    private Button btn_menos;
+    protected Button btn_menos;
     @FXML
-    private Button btn_mas;
+    protected Button btn_mas;
 
-    private Sistema sistema;
-    private Articulo articulo;
-    private Label lbl_cantidadCarrito;
+    protected Sistema sistema;
+    protected Articulo articulo;
+    protected Label lbl_cantidadCarrito;
 
     /**
      * Initializes the controller class.
