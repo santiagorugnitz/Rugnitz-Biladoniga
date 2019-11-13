@@ -42,12 +42,12 @@ public class HistorialItemController implements Initializable {
             Label cantidad_carrito, Integer posicion) {
 
         this.sistema = sistema;
-        this.venta = sistema.getVentas().get(posicion);
+    //    this.venta = sistema.getVentas().get(posicion);
 
         //Cargo los labels de la compra
-        this.lbl_nombre.setText(venta.get);
-        this.lbl_nota.setText(String.valueOf(
-                venta.getArticulo().getValoracion()));
+ //       this.lbl_nombre.setText(venta.get);
+  //      this.lbl_nota.setText(String.valueOf(
+  //              venta.getArticulo().getValoracion()));
 
     }
 
