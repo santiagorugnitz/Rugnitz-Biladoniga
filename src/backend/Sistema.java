@@ -173,10 +173,18 @@ public class Sistema {
         this.beneficioAmbiental += e.getCosteProduccion() * n;
     }
 
-    public ArrayList<Articulo> filtrarArticulos(int precioDesde, int precioHasta, double minValoracion, String[] categorias) {
+    public ArrayList<Articulo> filtrarArticulos(int precioDesde, int precioHasta,
+            double minValoracion, String[] categorias,
+            String nombre) {
         ArrayList<Articulo> ret = new ArrayList();
         for (Articulo articulo : articulos) {
-            if (articulo.getPrecio() <= precioHasta && articulo.getPrecio() >= precioDesde && articulo.getValoracion() >= minValoracion && unoEnComun(categorias, articulo.getCategorias())) {
+            boolean categoriaCorrecta = categorias.length==0?
+                    true:unoEnComun(categorias, articulo.getCategorias());
+            boolean nombreContenido = nombre.length()==0?
+                    true:articulo.getNombre().contains(nombre);
+            if (articulo.getPrecio() <= precioHasta && articulo.getPrecio() 
+                    >= precioDesde && articulo.getValoracion() >= minValoracion 
+                    && categoriaCorrecta && nombreContenido) {
                 ret.add(articulo);
             }
         }
@@ -184,7 +192,7 @@ public class Sistema {
     }
 
     private boolean unoEnComun(String[] a1, String[] a2) {
-        for (int i = 0; i < a2.length; i++) {
+        for (int i = 0; i < a1.length; i++) {
             for (int j = 0; j < a2.length; j++) {
                 if (a1[i].equals(a2[j])) {
                     return true;
