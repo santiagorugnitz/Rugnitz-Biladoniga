@@ -52,11 +52,6 @@ public class MapaController implements Initializable {
     }
 
     @FXML
-    void puntosVenta(ActionEvent event) {
-        //no hace nada
-    }
-
-    @FXML
     void tienda(ActionEvent event) {
         FXMLLoader fxml =Utilitarios.cambiarVentana(this, event, "/frontend/Tienda.fxml");
             

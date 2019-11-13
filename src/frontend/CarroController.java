@@ -74,14 +74,13 @@ public class CarroController implements Initializable {
 
     @FXML
     private void comprar(ActionEvent event) {
-        if(sistema.cantCarrito()>0){
-        String html = this.sistema.registrarVenta();
-        mostrarFactura(html);
-        this.cargarArticulos();
-      //  System.out.println("haaa");
-      //  frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
-        }
-        else{
+        if (sistema.cantCarrito() > 0) {
+            String html = this.sistema.registrarVenta();
+            mostrarFactura(html);
+            this.cargarArticulos();
+            //  System.out.println("haaa");
+            //  frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
+        } else {
             Utilitarios.crearError(this, "Carrito Vacío");
         }
     }
@@ -153,4 +152,20 @@ public class CarroController implements Initializable {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    void propuestas(ActionEvent event) {
+        //soon
+
+    }
+
+    @FXML
+    void puntosVenta(ActionEvent event) {
+        FXMLLoader fxml = Utilitarios.cambiarVentana(this, event, "/frontend/Mapa.fxml");
+        //Carga los datos
+        MapaController controller = fxml.getController();
+        controller.inicializarDatos(sistema);
+        fxml.setController(controller);
+    }
+
 }

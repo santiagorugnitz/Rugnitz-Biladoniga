@@ -227,5 +227,12 @@ public class TiendaController implements Initializable {
         fxml.setController(controller);
 
     }
+        @FXML
+    void propuestas(ActionEvent event) {
+        //soon
+
+    }
+
+
 
 }

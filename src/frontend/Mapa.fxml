@@ -42,7 +42,7 @@
                         <Font />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" onAction="#puntosVenta" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #9e94ff;" text=" " textFill="#9e94ff">
+                  <JFXButton alignment="TOP_LEFT" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #9e94ff;" text=" " textFill="#9e94ff">
                      <graphic>
                         <Group>
                            <children>

@@ -65,13 +65,13 @@ public class HistorialController implements Initializable {
 
                 //Carga los datos
                 CarroItemController controller = fxml.getController();
-/*
+
                 controller.inicializarDatos(sistema, lbl_cantidad_carro,
                         this.lbl_total,
                         this.lbl_subtotal,
                         this,
                         i);
-*/
+
                 //Cargo el nuevo objeto
                 this.listaVentas.getChildren().add(nodo);
 
