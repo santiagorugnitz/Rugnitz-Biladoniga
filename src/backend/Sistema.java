@@ -116,16 +116,21 @@ public class Sistema {
      * PRE:- POS: Se agrega la venta a la lista y se actualizan los usos de los
      * elementos y el beneficio global
      */
-    public void registrarVenta() {
+    public String registrarVenta() {
+        //TODO descomentar cuando las compras tengan envases no nulos
         ventas.add(carrito);
+        /*
         for (int i = 0; i < carrito.getCompras().size(); i++) {
             Compra c = carrito.getCompras().get(i);
             c.getArticulo().aumentarUso(c.getCantidad());
             c.getEnvase().aumentarUso(c.getCantidad());
             this.actualizarBeneficio(c.getEnvase(), c.getCantidad());
         }
+        */
+        String ret=carrito.generarTicketDGI();
         carrito = new Venta();
         actualizarListas();
+        return ret;
     }
 
     /**
