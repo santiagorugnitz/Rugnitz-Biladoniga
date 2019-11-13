@@ -104,7 +104,7 @@
             </VBox>
             <VBox layoutX="25.0" layoutY="79.0" prefHeight="149.0" prefWidth="225.0" spacing="15.0">
                <children>
-                  <JFXButton alignment="TOP_LEFT" prefHeight="35.0" prefWidth="226.0" text=" " textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" onAction="#propuestas" prefHeight="35.0" prefWidth="226.0" text=" " textFill="WHITE">
                      <graphic>
                         <Group>
                            <children>
@@ -121,7 +121,7 @@
                         <Font />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" prefHeight="35.0" prefWidth="193.0" text=" " textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" onAction="#puntosVenta" prefHeight="35.0" prefWidth="193.0" text=" " textFill="WHITE">
                      <graphic>
                         <Group>
                            <children>
@@ -138,7 +138,7 @@
                         <Font />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" prefHeight="35.0" prefWidth="227.0" style="-fx-background-color: #9E94FF;" text=" " textFill="#9e94ff">
+                  <JFXButton alignment="TOP_LEFT" onAction="#tienda" prefHeight="35.0" prefWidth="227.0" style="-fx-background-color: #9E94FF;" text=" " textFill="#9e94ff">
                      <graphic>
                         <Group>
                            <children>

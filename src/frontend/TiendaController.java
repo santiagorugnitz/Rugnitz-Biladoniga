@@ -217,5 +217,22 @@ public class TiendaController implements Initializable {
         //this.sinLimite.setSelected(true);
         actualizarListaArticulos();
     }
+    
+    @FXML
+    void puntosVenta(ActionEvent event) {
+        FXMLLoader fxml =Utilitarios.cambiarVentana(this, event, "/frontend/Mapa.fxml");    
+        //Carga los datos
+        MapaController controller = fxml.getController();
+        controller.inicializarDatos(sistema);
+        fxml.setController(controller);
+
+    }
+        @FXML
+    void propuestas(ActionEvent event) {
+        //soon
+
+    }
+
+
 
 }

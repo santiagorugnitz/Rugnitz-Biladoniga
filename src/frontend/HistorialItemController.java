@@ -45,7 +45,7 @@ public class HistorialItemController implements Initializable {
         this.venta = sistema.getVentas().get(posicion);
 
         //Cargo los labels de la compra
-        this.lbl_nombre.setText(venta.get);
+       this.lbl_nombre.setText(venta.get);
         this.lbl_nota.setText(String.valueOf(
                 venta.getArticulo().getValoracion()));
 

@@ -21,11 +21,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -70,9 +74,15 @@ public class CarroController implements Initializable {
 
     @FXML
     private void comprar(ActionEvent event) {
-        System.out.println("haaa");
-        frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
-
+        if (sistema.cantCarrito() > 0) {
+            String html = this.sistema.registrarVenta();
+            mostrarFactura(html);
+            this.cargarArticulos();
+            //  System.out.println("haaa");
+            //  frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
+        } else {
+            Utilitarios.crearError(this, "Carrito Vacío");
+        }
     }
 
     public void cargarArticulos() {
@@ -116,4 +126,46 @@ public class CarroController implements Initializable {
     private void tienda(ActionEvent event) {
         ir_tienda(this, event, sistema);
     }
+
+    private void mostrarFactura(String html) {
+        Stage stage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader(getClass().
+                getResource("/frontend/Factura.fxml"));
+
+        try {
+
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            stage.initStyle(StageStyle.UNDECORATED);
+            FacturaController controller = loader.getController();
+            controller.inicializarDatos(html);
+            loader.setController(controller);
+            stage.centerOnScreen();
+            stage.setTitle("Factura");
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    void propuestas(ActionEvent event) {
+        //soon
+
+    }
+
+    @FXML
+    void puntosVenta(ActionEvent event) {
+        FXMLLoader fxml = Utilitarios.cambiarVentana(this, event, "/frontend/Mapa.fxml");
+        //Carga los datos
+        MapaController controller = fxml.getController();
+        controller.inicializarDatos(sistema);
+        fxml.setController(controller);
+    }
+
 }
