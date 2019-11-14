@@ -83,9 +83,4 @@ public class ProductoController implements Initializable {
         }
     }
 
-    @FXML
-    private void preComprar(ActionEvent evento) {
-        System.out.println("holaaa");
-    }
-
 }

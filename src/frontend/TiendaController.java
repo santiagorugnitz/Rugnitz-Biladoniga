@@ -10,6 +10,8 @@ import backend.Sistema;
 import static frontend.Utilitarios.crearError;
 import static frontend.Utilitarios.ir_carrito;
 import static frontend.Utilitarios.ir_historial;
+import static frontend.Utilitarios.ir_propuestas;
+import static frontend.Utilitarios.ir_puntosVenta;
 import static frontend.Utilitarios.ir_tienda;
 import java.io.IOException;
 import java.net.URL;
@@ -111,21 +113,6 @@ public class TiendaController implements Initializable {
 
     }
 
-    @FXML
-    private void carrito(ActionEvent event) {
-        ir_carrito(this, event, sistema);
-    }
-
-    @FXML
-    private void historial(ActionEvent event) {
-        ir_historial(this, event, sistema);
-    }
-
-    @FXML
-    private void cerrarSesion(ActionEvent event) {
-        frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
-    }
-
     private void actualizarListaArticulos() {
         ArrayList<Articulo> listaArt = this.sistema.
                 filtrarArticulos(desde, hasta, valoracion,
@@ -223,19 +210,28 @@ public class TiendaController implements Initializable {
     }
 
     @FXML
-    void puntosVenta(ActionEvent event) {
-        FXMLLoader fxml = Utilitarios.cambiarVentana(this, event, "/frontend/Mapa.fxml");
-        //Carga los datos
-        MapaController controller = fxml.getController();
-        controller.inicializarDatos(sistema);
-        fxml.setController(controller);
-
+    private void carrito(ActionEvent event) {
+        ir_carrito(this, event, sistema);
     }
 
     @FXML
-    void propuestas(ActionEvent event) {
-        //soon
+    private void historial(ActionEvent event) {
+        ir_historial(this, event, sistema);
+    }
 
+    @FXML
+    private void cerrarSesion(ActionEvent event) {
+        frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
+    }
+
+    @FXML
+    private void puntosVenta(ActionEvent event) {
+        ir_puntosVenta(this, event, sistema);
+    }
+
+    @FXML
+    private void propuestas(ActionEvent event) {
+        ir_propuestas(this, event, sistema);
     }
 
 }

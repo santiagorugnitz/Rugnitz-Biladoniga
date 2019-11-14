@@ -21,6 +21,7 @@ public class Sistema {
     private ArrayList<Propuesta> propuestas;
 
     private int beneficioAmbiental;
+    private ArrayList<Propuesta> propuestasCliente;
     private Venta carrito;
 
     public Sistema() {
@@ -28,6 +29,7 @@ public class Sistema {
         this.envases = new ArrayList();
         this.articulos = new ArrayList();
         this.propuestas = new ArrayList();
+        this.propuestasCliente = new ArrayList();
 
         this.beneficioAmbiental = 0;
         this.carrito = new Venta();
@@ -75,13 +77,6 @@ public class Sistema {
         } else {
             return false;
         }
-    }
-
-    public void agregarPropuesta(String nombre, String descripcion, int cantidadVotos,
-            Image imagen, String[] categorias) {
-        Propuesta propuesta = new Propuesta(nombre, descripcion, cantidadVotos,
-                imagen, categorias);
-        this.propuestas.add(propuesta);
     }
 
     /**
@@ -244,6 +239,10 @@ public class Sistema {
         return propuestas;
     }
 
+    public ArrayList<Propuesta> getPropuestasCliente() {
+        return this.propuestasCliente;
+    }
+
     public ArrayList<Propuesta> filtrarPropuesta(String nombre) {
         ArrayList<Propuesta> ret = new ArrayList();
         for (Propuesta propuesta : propuestas) {
@@ -256,4 +255,22 @@ public class Sistema {
         return ret;
     }
 
+    public void agregarPropuesta(String nombre, String descripcion,
+            int cantidadVotos,
+            Image imagen, String[] categorias) {
+        Propuesta propuesta = new Propuesta(nombre, descripcion, cantidadVotos,
+                imagen, categorias);
+        this.propuestas.add(propuesta);
+        this.propuestasCliente.add(propuesta);
+
+    }
+
+    public void agregarVotoPropuesta(Propuesta propuesta) {
+        propuesta.agregarVoto();
+        this.removerPropuesta(propuesta);
+    }
+
+    public void removerPropuesta(Propuesta propuesta) {
+        this.propuestasCliente.remove(propuesta);
+    }
 }
