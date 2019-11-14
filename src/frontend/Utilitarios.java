@@ -84,16 +84,15 @@ public class Utilitarios {
     }
 
     @FXML
-    public static void ir_carrito(Object win, ActionEvent event, Sistema sistema,
-            Label lbl_cantidad_carro) {
+    public static void ir_carrito(Object win, ActionEvent event, Sistema sistema) {
+        
         if (sistema.cantCarrito() != 0) {
             FXMLLoader fxml = frontend.Utilitarios.
                     cambiarVentana(win, event, "/frontend/Carro.fxml");
-            
+
             CarroController controller = fxml.getController();
-            controller.inicializarDatos(sistema, lbl_cantidad_carro);
-            
-            fxml.setController(controller);
+            controller.inicializarDatos(sistema);
+
         } else {
             crearError(win, "Carrito Vacio");
         }
@@ -102,16 +101,29 @@ public class Utilitarios {
     @FXML
     public static void ir_tienda(Object win, ActionEvent event, Sistema sistema) {
 
-        if (sistema.cantCarrito() != 0) {
+        FXMLLoader fxml = frontend.Utilitarios.
+                cambiarVentana(win, event, "/frontend/Tienda.fxml");
+
+        TiendaController controller = fxml.getController();
+
+        controller.inicializarDatos(sistema);
+
+    }
+
+    @FXML
+    public static void ir_historial(Object win, ActionEvent event, Sistema sistema) {
+
+        if (sistema.cantVentas() != 0) {
             FXMLLoader fxml = frontend.Utilitarios.
-                    cambiarVentana(win, event, "/frontend/Tienda.fxml");
-            
-            TiendaController controller = fxml.getController();
-            
+                    cambiarVentana(win, event, "/frontend/Historial.fxml");
+
+            HistorialController controller = fxml.getController();
+
             controller.inicializarDatos(sistema);
-            fxml.setController(controller);
+
         } else {
-            crearError(win, "Carrito Vacio");
+            crearError(win, "Historial Vacio");
         }
     }
+
 }

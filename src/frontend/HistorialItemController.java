@@ -5,6 +5,7 @@
  */
 package frontend;
 
+import backend.Compra;
 import backend.Sistema;
 import backend.Venta;
 import java.net.URL;
@@ -30,24 +31,22 @@ public class HistorialItemController implements Initializable {
     private Label lbl_nota;
 
     @FXML
-    private Sistema sistema;
-    //private Compra venta;
+    private Compra venta;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
 
-    public void inicializarDatos(Sistema sistema,
-            Label cantidad_carrito, Integer posicion) {
-
-        this.sistema = sistema;
-        this.venta = sistema.getVentas().get(posicion);
+    public void inicializarDatos(Compra venta) {
+        this.venta = venta;
 
         //Cargo los labels de la compra
-       this.lbl_nombre.setText(venta.get);
+        this.lbl_nombre.setText(venta.getArticulo().getNombre());
         this.lbl_nota.setText(String.valueOf(
                 venta.getArticulo().getValoracion()));
+        this.lbl_precio.setText("$"+String.valueOf(venta.total()));
+        this.lbl_cantidad.setText(String.valueOf(venta.getCantidad()));
 
     }
 

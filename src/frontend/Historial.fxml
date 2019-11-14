@@ -30,7 +30,7 @@
             </Text>
             <VBox layoutX="24.0" layoutY="319.0" spacing="15.0">
                <children>
-                  <JFXButton alignment="TOP_LEFT" prefHeight="37.0" prefWidth="113.0" text="Productos" textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" onAction="#tienda" prefHeight="37.0" prefWidth="113.0" text="Productos" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -120,7 +120,7 @@
          </children>
       </AnchorPane>
       <Rectangle arcHeight="23.0" arcWidth="23.0" fill="#0f1642" height="62.0" layoutX="277.0" layoutY="23.0" stroke="BLACK" strokeDashOffset="55.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="0.0" width="1306.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="10.0" />
-      <JFXButton fx:id="btn_cerrar" layoutX="1404.0" layoutY="17.0" onAction="#cerrarSesion" text="Cerrar Sesion" textFill="WHITE" AnchorPane.leftAnchor="1404.0" AnchorPane.topAnchor="17.0">
+      <JFXButton layoutX="1404.0" layoutY="17.0" onAction="#cerrarSesion" text="Cerrar Sesion" textFill="WHITE" AnchorPane.leftAnchor="1404.0" AnchorPane.topAnchor="17.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -131,15 +131,16 @@
          </font>
       </Label>
       <Line endX="100.0" layoutX="344.0" layoutY="116.0" startX="-39.0" stroke="WHITE" strokeWidth="6.0" />
-      <ScrollPane hbarPolicy="NEVER" layoutX="295.0" layoutY="145.0" prefHeight="743.0" prefWidth="375.0" style="-fx-background-color: transparent; -fx-background: #0F1642;" vbarPolicy="NEVER" AnchorPane.leftAnchor="295.0" AnchorPane.topAnchor="145.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="295.0" layoutY="145.0" style="-fx-background-color: transparent; -fx-background: #2B3253;" vbarPolicy="NEVER">
          <content>
-            <VBox fx:id="lista_compras" prefHeight="725.0" prefWidth="373.0" spacing="20.0" />
+            <VBox fx:id="lista_ordenes" prefHeight="740.0" prefWidth="375.0" spacing="20.0" />
          </content>
       </ScrollPane>
-      <ScrollPane hbarPolicy="NEVER" layoutX="688.0" layoutY="142.0" prefHeight="745.0" prefWidth="906.0" style="-fx-background-color: transparent; -fx-background: #2B3253;" vbarPolicy="NEVER" AnchorPane.topAnchor="142.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="700.0" layoutY="141.0" style="-fx-background-color: transparent; -fx-background: #2B3253;" vbarPolicy="NEVER">
          <content>
-            <VBox fx:id="lista_compras1" prefHeight="750.0" prefWidth="904.0" spacing="20.0" />
+            <VBox fx:id="lista_ventas" prefHeight="740.0" prefWidth="890.0" spacing="20.0" />
          </content>
       </ScrollPane>
+      <Line endX="36.0" endY="-52.0" layoutX="649.0" layoutY="194.0" startX="36.0" startY="688.6666870117188" stroke="WHITE" strokeWidth="6.0" />
    </children>
 </AnchorPane>

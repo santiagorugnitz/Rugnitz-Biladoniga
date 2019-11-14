@@ -7,6 +7,7 @@ package frontend;
 
 import backend.Compra;
 import backend.Sistema;
+import static frontend.Utilitarios.ir_historial;
 import static frontend.Utilitarios.ir_tienda;
 import java.io.IOException;
 import java.net.URL;
@@ -48,12 +49,10 @@ public class CarroController implements Initializable {
     private VBox lista_compras;
 
     private Sistema sistema;
-    private Label cantidad;
 
-    public void inicializarDatos(Sistema sistema, Label cantidad) {
+    public void inicializarDatos(Sistema sistema) {
         this.sistema = sistema;
-        this.cantidad = cantidad;
-        this.lbl_cantidad_carro.setText(cantidad.getText());
+        this.lbl_cantidad_carro.setText(String.valueOf(sistema.getCarrito()));
         this.cargarArticulos();
         Integer precioTotal = this.sistema.getCarrito().getTotal();
         this.lbl_subtotal.setText("$" + String.valueOf(precioTotal));
@@ -67,9 +66,7 @@ public class CarroController implements Initializable {
 
     @FXML
     private void cerrarSesion(ActionEvent event) {
-        System.out.println("haaa");
         frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
-
     }
 
     @FXML
@@ -78,8 +75,6 @@ public class CarroController implements Initializable {
             String html = this.sistema.registrarVenta();
             mostrarFactura(html);
             this.cargarArticulos();
-            //  System.out.println("haaa");
-            //  frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
         } else {
             Utilitarios.crearError(this, "Carrito Vacío");
         }
@@ -87,7 +82,6 @@ public class CarroController implements Initializable {
 
     public void cargarArticulos() {
         String cant = String.valueOf(sistema.cantCarrito());
-        this.cantidad.setText(cant);
         this.lbl_cantidad_carro.setText(cant);
 
         ArrayList<Compra> listCompras = this.sistema.getCarrito().getCompras();
@@ -125,6 +119,11 @@ public class CarroController implements Initializable {
     @FXML
     private void tienda(ActionEvent event) {
         ir_tienda(this, event, sistema);
+    }
+
+    @FXML
+    private void historial(ActionEvent event) {
+        ir_historial(this, event, sistema);
     }
 
     private void mostrarFactura(String html) {
