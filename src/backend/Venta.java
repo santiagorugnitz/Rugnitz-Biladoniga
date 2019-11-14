@@ -22,14 +22,6 @@ public class Venta {
         return compras;
     }
 
-    public int getTotal() {
-        int total = 0;
-        for (int i = 0; i < compras.size(); i++) {
-            total += compras.get(i).getCantidad() * compras.get(i).getArticulo().getPrecio();
-        }
-        return total;
-    }
-
     public LocalDate getFecha() {
         return fecha;
     }
@@ -39,8 +31,16 @@ public class Venta {
     }
 
     public Venta() {
-        this.compras = new ArrayList();
-        this.fecha = LocalDate.now();
+        this.compras=new ArrayList();
+        this.setFecha(LocalDate.now());
+    }
+    
+    public int getTotal() {
+        int total = 0;
+        for (int i = 0; i < compras.size(); i++) {
+            total += compras.get(i).getCantidad() * compras.get(i).getArticulo().getPrecio();
+        }
+        return total;
     }
 
     public boolean cambiarFecha(int anio, int mes, int dia) {
@@ -50,7 +50,7 @@ public class Venta {
         } catch (DateTimeException e) {
             return false;
         }
-        this.fecha = d;
+        this.setFecha(d);
         return true;
     }
 
@@ -205,7 +205,4 @@ public class Venta {
         return ret;
     }
 
-    public int cantidadCarrito() {
-        return this.compras.size();
-    }
 }

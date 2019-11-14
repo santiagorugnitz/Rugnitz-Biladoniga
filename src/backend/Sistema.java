@@ -98,7 +98,6 @@ public class Sistema {
         Articulo a = this.articulos.get(id);
         a.setOrigen(origen);
         a.setPrecio(precio);
-        a.setMaterial(material);
         a.setTipo(tipo);
     }
 
@@ -251,6 +250,16 @@ public class Sistema {
                     ? true : propuesta.getNombre().contains(nombre);
             if (nombreContenido) {
                 ret.add(propuesta);
+            }
+        }
+        return ret;
+    }
+
+    public ArrayList<Envase> envasesCompatibles(Articulo a) {
+        ArrayList<Envase> ret = new ArrayList();
+        for (Envase envase : this.envases) {
+            if (envase.admiteElTipo(a.getTipo())) {
+                ret.add(envase);
             }
         }
         return ret;

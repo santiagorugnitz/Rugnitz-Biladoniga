@@ -32,6 +32,14 @@ public class Envase {
         this.id = id;
     }
 
+    public int getVecesUsado() {
+        return vecesUsado;
+    }
+
+    private void setVecesUsado(int vecesUsado) {
+        this.vecesUsado = vecesUsado;
+    }
+
     public Articulo.Tipo[] getTipos() {
         return tipos;
     }
@@ -47,23 +55,33 @@ public class Envase {
     public void setCosteProduccion(int costeProduccion) {
         this.costeProduccion = costeProduccion;
     }
+
     
 
-    public int getVecesUsado() {
-        return this.vecesUsado;
+    public Envase(){
+        
+    }
+    
+    public Envase(String nombre, int vecesUsado, Articulo.Tipo[] tipos,int costeProduccion) {
+        this.setNombre(nombre);
+        this.setId(-1);
+        this.setVecesUsado(0);
+        this.setTipos(tipos);
+        this.setCosteProduccion(costeProduccion);
     }
 
     public void aumentarUso(int n) {
-        this.vecesUsado+=n;
+        this.setVecesUsado(this.getVecesUsado()+n);
     }
-
-    public Envase(String nombre, int vecesUsado, Articulo.Tipo[] tipos,int costeProduccion) {
-        this.nombre = nombre;
-        this.vecesUsado = vecesUsado;
-        this.tipos = tipos;
-        this.costeProduccion=costeProduccion;
+    
+    public boolean admiteElTipo(Articulo.Tipo t){
+        for (int i = 0; i < tipos.length; i++) {
+           if(t == tipos[i])return true;
+            
+        }
+        return false;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
