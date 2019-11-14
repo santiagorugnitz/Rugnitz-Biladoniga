@@ -5,6 +5,7 @@
  */
 package backend;
 
+import frontend.InicioController;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -21,14 +22,46 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(
-                getClass().getResource("/frontend/Tienda.fxml"));
-        //stage.initStyle(StageStyle.UNIFIED);
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/frontend/Inicio.fxml"));
+
+        Parent root = loader.load();
+
+        //Cargo el sistema
+        Sistema s = new Sistema();
+        //ARTICULOS POR DEFECTO
+
+        s.agregarArticulo("agua", "china", 34, "cs", Articulo.Tipo.SECO, null, 
+                new String[]{"Vegano","Libre de Gluten"});
+        s.agregarArticulo("agdgdfua", "china", 33, "cs", Articulo.Tipo.SECO, null, 
+                new String[]{"Vegano","Libre de Gluten"});
+        s.agregarArticulo("sddg", "add", 1111, "cs", Articulo.Tipo.SECO, null, 
+                new String[]{"Organico","Libre de Azucar"});
+        s.agregarArticulo("dfg", "china", 3454, "cs", Articulo.Tipo.SECO, null,
+                new String[]{"Libre de Gluten"});
+        s.agregarArticulo("vbvc", "china", 566, "cs", Articulo.Tipo.SECO, null, 
+                new String[]{"Libre de Gluten"});
+        s.agregarArticulo("tttt", "china", 3244, "cs", Articulo.Tipo.SECO, null, 
+                new String[]{"Libre de Gluten","Vegano"});
+        s.agregarArticulo("qwr", "china", 664, "cs", Articulo.Tipo.SECO, null, 
+                new String[]{"Libre de Gluten"});
+        s.agregarArticulo("xcvxcv", "china", 77, "cs", Articulo.Tipo.SECO, null, 
+                new String[]{"Libre de Gluten"});
+        s.agregarArticulo("awwf", "china", 5445, "cs", Articulo.Tipo.SECO, null, 
+                new String[]{"Libre de Gluten"});
+        s.agregarArticulo("dffggf", "china", 455, "cs", Articulo.Tipo.SECO, null, 
+                new String[]{"Libre de Gluten"});
+
+        //FIN ARTICULOS POR DEFECTO
+        InicioController controlador = loader.getController();
+        controlador.setSistema(s);
+        loader.setController(controlador);
 
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
 
-        stage.setTitle("JavaFX and Maven");
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.centerOnScreen();
+        stage.setTitle("EchoShop");
         stage.setScene(scene);
         stage.show();
     }
@@ -46,4 +79,3 @@ public class Main extends Application {
     }
 
 }
-

@@ -53,8 +53,8 @@ public class Envase {
         return this.vecesUsado;
     }
 
-    public void aumentarUso() {
-        this.vecesUsado++;
+    public void aumentarUso(int n) {
+        this.vecesUsado+=n;
     }
 
     public Envase(String nombre, int vecesUsado, Articulo.Tipo[] tipos,int costeProduccion) {
