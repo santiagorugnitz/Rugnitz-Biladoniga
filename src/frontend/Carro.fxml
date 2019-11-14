@@ -80,7 +80,7 @@
             </Text>
             <VBox layoutX="24.0" layoutY="319.0" spacing="15.0">
                <children>
-                  <JFXButton alignment="TOP_LEFT" onAction="#tienda" prefHeight="37.0" prefWidth="113.0" text="Productos" textFill="WHITE">
+                  <JFXButton fx:id="productos" alignment="TOP_LEFT" onAction="#tienda" prefHeight="37.0" prefWidth="113.0" text="Productos" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

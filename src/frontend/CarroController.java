@@ -7,7 +7,10 @@ package frontend;
 
 import backend.Compra;
 import backend.Sistema;
+import static frontend.Utilitarios.crearError;
 import static frontend.Utilitarios.ir_historial;
+import static frontend.Utilitarios.ir_propuestas;
+import static frontend.Utilitarios.ir_puntosVenta;
 import static frontend.Utilitarios.ir_tienda;
 import java.io.IOException;
 import java.net.URL;
@@ -18,11 +21,13 @@ import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
@@ -47,6 +52,8 @@ public class CarroController implements Initializable {
     private Label lbl_subtotal;
     @FXML
     private VBox lista_compras;
+    @FXML
+    private Button productos;
 
     private Sistema sistema;
 
@@ -74,7 +81,8 @@ public class CarroController implements Initializable {
         if (sistema.cantCarrito() > 0) {
             String html = this.sistema.registrarVenta();
             mostrarFactura(html);
-            this.cargarArticulos();
+            productos.fire();
+
         } else {
             Utilitarios.crearError(this, "Carrito Vacío");
         }
@@ -89,6 +97,11 @@ public class CarroController implements Initializable {
         String precioTotal = "$" + String.valueOf(sistema.getCarrito().getTotal());
         lbl_total.setText(precioTotal);
         lbl_subtotal.setText(precioTotal);
+
+        if (sistema.cantCarrito() == 0) {
+            crearError(this, "Carrito Vacio");
+            productos.fire();
+        }
 
         for (int i = 0; i < listCompras.size(); i++) {
             try {
@@ -116,16 +129,6 @@ public class CarroController implements Initializable {
         }
     }
 
-    @FXML
-    private void tienda(ActionEvent event) {
-        ir_tienda(this, event, sistema);
-    }
-
-    @FXML
-    private void historial(ActionEvent event) {
-        ir_historial(this, event, sistema);
-    }
-
     private void mostrarFactura(String html) {
         Stage stage = new Stage();
 
@@ -144,7 +147,7 @@ public class CarroController implements Initializable {
             stage.centerOnScreen();
             stage.setTitle("Factura");
             stage.setScene(scene);
-            stage.show();
+            stage.showAndWait();
 
         } catch (IOException ex) {
 
@@ -153,18 +156,22 @@ public class CarroController implements Initializable {
     }
 
     @FXML
-    void propuestas(ActionEvent event) {
-        //soon
-
+    private void tienda(ActionEvent event) {
+        ir_tienda(this, event, sistema);
     }
 
     @FXML
-    void puntosVenta(ActionEvent event) {
-        FXMLLoader fxml = Utilitarios.cambiarVentana(this, event, "/frontend/Mapa.fxml");
-        //Carga los datos
-        MapaController controller = fxml.getController();
-        controller.inicializarDatos(sistema);
-        fxml.setController(controller);
+    private void historial(ActionEvent event) {
+        ir_historial(this, event, sistema);
     }
 
+    @FXML
+    private void puntosVenta(ActionEvent event) {
+        ir_puntosVenta(this, event, sistema);
+    }
+
+    @FXML
+    private void propuestas(ActionEvent event) {
+        ir_propuestas(this, event, sistema);
+    }
 }

@@ -16,16 +16,7 @@
             <Image url="@img/jbl-speaker.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="7.0" layoutY="264.0" onAction="#preComprar" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #B8C2CC;" text=" " textFill="WHITE" AnchorPane.topAnchor="264.0">
-         <graphic>
-            <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/aaaaaa.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
-      <JFXButton layoutX="173.0" layoutY="264.0" onAction="#comprar" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #6F64F8;" text=" " textFill="WHITE" AnchorPane.topAnchor="264.0">
+      <JFXButton layoutX="6.0" layoutY="264.0" onAction="#comprar" prefHeight="40.0" prefWidth="307.0" style="-fx-background-color: #6F64F8;" text=" " textFill="WHITE" AnchorPane.topAnchor="264.0">
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>

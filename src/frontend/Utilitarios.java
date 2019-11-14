@@ -83,9 +83,8 @@ public class Utilitarios {
         return loader;
     }
 
-    @FXML
     public static void ir_carrito(Object win, ActionEvent event, Sistema sistema) {
-        
+
         if (sistema.cantCarrito() != 0) {
             FXMLLoader fxml = frontend.Utilitarios.
                     cambiarVentana(win, event, "/frontend/Carro.fxml");
@@ -98,7 +97,6 @@ public class Utilitarios {
         }
     }
 
-    @FXML
     public static void ir_tienda(Object win, ActionEvent event, Sistema sistema) {
 
         FXMLLoader fxml = frontend.Utilitarios.
@@ -107,10 +105,8 @@ public class Utilitarios {
         TiendaController controller = fxml.getController();
 
         controller.inicializarDatos(sistema);
-
     }
 
-    @FXML
     public static void ir_historial(Object win, ActionEvent event, Sistema sistema) {
 
         if (sistema.cantVentas() != 0) {
@@ -126,4 +122,19 @@ public class Utilitarios {
         }
     }
 
+    public static void ir_puntosVenta(Object win, ActionEvent event, Sistema sistema) {
+        FXMLLoader fxml = Utilitarios.cambiarVentana(
+                win, event, "/frontend/Mapa.fxml");
+        //Carga los datos
+        MapaController controller = fxml.getController();
+        controller.inicializarDatos(sistema);
+    }
+
+    public static void ir_propuestas(Object win, ActionEvent event, Sistema sistema) {
+        FXMLLoader fxml = Utilitarios.cambiarVentana(
+                win, event, "/frontend/Propuestas.fxml");
+        //Carga los datos
+        PropuestasController controller = fxml.getController();
+        controller.inicializarDatos(sistema);
+    }
 }

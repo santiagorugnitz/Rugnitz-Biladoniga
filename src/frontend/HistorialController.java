@@ -9,6 +9,8 @@ import backend.Compra;
 import backend.Sistema;
 import backend.Venta;
 import static frontend.Utilitarios.ir_carrito;
+import static frontend.Utilitarios.ir_propuestas;
+import static frontend.Utilitarios.ir_puntosVenta;
 import static frontend.Utilitarios.ir_tienda;
 import java.io.IOException;
 import java.net.URL;
@@ -69,7 +71,7 @@ public class HistorialController implements Initializable {
                 //Carga los datos
                 HistorialOrdenController controller = fxml.getController();
 
-                controller.inicializarDatos(listCompras.get(i), i,lista_ventas);
+                controller.inicializarDatos(listCompras.get(i), i, lista_ventas);
 
                 //Cargo el nuevo objeto
                 this.lista_ordenes.getChildren().add(nodo);
@@ -80,7 +82,7 @@ public class HistorialController implements Initializable {
         }
 
     }
-    
+
     @FXML
     private void carrito(ActionEvent event) {
         ir_carrito(this, event, sistema);
@@ -94,5 +96,15 @@ public class HistorialController implements Initializable {
     @FXML
     private void cerrarSesion(ActionEvent event) {
         frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
+    }
+
+    @FXML
+    private void puntosVenta(ActionEvent event) {
+        ir_puntosVenta(this, event, sistema);
+    }
+
+    @FXML
+    private void propuestas(ActionEvent event) {
+        ir_propuestas(this, event, sistema);
     }
 }
