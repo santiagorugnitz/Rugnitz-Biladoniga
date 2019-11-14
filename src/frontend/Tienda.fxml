@@ -45,7 +45,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" text="Historial" textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" onAction="#historial" text="Historial" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

@@ -7,16 +7,22 @@ package frontend;
 
 import backend.Compra;
 import backend.Sistema;
+import backend.Venta;
+import static frontend.Utilitarios.ir_carrito;
+import static frontend.Utilitarios.ir_tienda;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -28,17 +34,18 @@ import javafx.scene.layout.VBox;
 public class HistorialController implements Initializable {
 
     @FXML
-    private VBox listaVentas;
+    private VBox lista_ordenes;
+    @FXML
+    private VBox lista_ventas;
     @FXML
     private Label lbl_cantidad_carro;
 
     private Sistema sistema;
-    private Label cantidad;
 
-    public void inicializarDatos(Sistema sistema, Label cantidad) {
+    public void inicializarDatos(Sistema sistema) {
         this.sistema = sistema;
-        this.cantidad = cantidad;
-        this.lbl_cantidad_carro.setText(cantidad.getText());
+        String cantidadCarro = String.valueOf(sistema.cantCarrito());
+        this.lbl_cantidad_carro.setText(cantidadCarro);
         this.cargarHistorial();
     }
 
@@ -48,36 +55,44 @@ public class HistorialController implements Initializable {
     }
 
     public void cargarHistorial() {
-        String cant = String.valueOf(sistema.cantCarrito());
-        this.cantidad.setText(cant);
-        this.lbl_cantidad_carro.setText(cant);
-
-        ArrayList<Compra> listCompras = this.sistema.getCarrito().getCompras();
-        this.listaVentas.getChildren().clear();
+        ArrayList<Venta> listCompras = this.sistema.getVentas();
+        this.lista_ordenes.getChildren().clear();
 
         for (int i = 0; i < listCompras.size(); i++) {
             try {
 
                 //Cargar el objeto
                 FXMLLoader fxml = new FXMLLoader(
-                        getClass().getResource("/frontend/HistorialItem.fxml"));
+                        getClass().getResource("/frontend/HistorialOrden.fxml"));
                 Parent nodo = fxml.load();
 
                 //Carga los datos
-                CarroItemController controller = fxml.getController();
+                HistorialOrdenController controller = fxml.getController();
 
-                controller.inicializarDatos(sistema, lbl_cantidad_carro,
-                        this.lbl_total,
-                        this.lbl_subtotal,
-                        this,
-                        i);
+                controller.inicializarDatos(listCompras.get(i), i,lista_ventas);
 
                 //Cargo el nuevo objeto
-                this.listaVentas.getChildren().add(nodo);
+                this.lista_ordenes.getChildren().add(nodo);
 
             } catch (IOException ex) {
                 Logger.getLogger(TiendaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
+    }
+    
+    @FXML
+    private void carrito(ActionEvent event) {
+        ir_carrito(this, event, sistema);
+    }
+
+    @FXML
+    private void tienda(ActionEvent event) {
+        ir_tienda(this, event, sistema);
+    }
+
+    @FXML
+    private void cerrarSesion(ActionEvent event) {
+        frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
     }
 }

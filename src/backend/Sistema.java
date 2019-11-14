@@ -126,8 +126,8 @@ public class Sistema {
             c.getEnvase().aumentarUso(c.getCantidad());
             this.actualizarBeneficio(c.getEnvase(), c.getCantidad());
         }
-        */
-        String ret=carrito.generarTicketDGI();
+         */
+        String ret = carrito.generarTicketDGI();
         carrito = new Venta();
         actualizarListas();
         return ret;
@@ -183,12 +183,12 @@ public class Sistema {
             String nombre) {
         ArrayList<Articulo> ret = new ArrayList();
         for (Articulo articulo : articulos) {
-            boolean categoriaCorrecta = categorias.length==0?
-                    true:unoEnComun(categorias, articulo.getCategorias());
-            boolean nombreContenido = nombre.length()==0?
-                    true:articulo.getNombre().contains(nombre);
-            if (articulo.getPrecio() <= precioHasta && articulo.getPrecio() 
-                    >= precioDesde && articulo.getValoracion() >= minValoracion 
+            boolean categoriaCorrecta = categorias.length == 0
+                    ? true : unoEnComun(categorias, articulo.getCategorias());
+            boolean nombreContenido = nombre.length() == 0
+                    ? true : articulo.getNombre().contains(nombre);
+            if (articulo.getPrecio() <= precioHasta && articulo.getPrecio()
+                    >= precioDesde && articulo.getValoracion() >= minValoracion
                     && categoriaCorrecta && nombreContenido) {
                 ret.add(articulo);
             }
@@ -223,7 +223,11 @@ public class Sistema {
         carrito = new Venta();
     }
 
-    public int cantCarrito(){
+    public int cantCarrito() {
         return carrito.getCompras().size();
+    }
+
+    public int cantVentas() {
+        return ventas.size();
     }
 }
