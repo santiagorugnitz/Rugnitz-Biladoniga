@@ -93,7 +93,6 @@ public class Sistema {
         Articulo a = this.articulos.get(id);
         a.setOrigen(origen);
         a.setPrecio(precio);
-        a.setMaterial(material);
         a.setTipo(tipo);
     }
 
@@ -255,22 +254,15 @@ public class Sistema {
         return ret;
     }
 
-    public void agregarPropuesta(String nombre, String descripcion,
-            int cantidadVotos,
-            Image imagen, String[] categorias) {
-        Propuesta propuesta = new Propuesta(nombre, descripcion, cantidadVotos,
-                imagen, categorias);
-        this.propuestas.add(propuesta);
-        this.propuestasCliente.add(propuesta);
-
+    public ArrayList<Envase> envasesCompatibles(Articulo a) {
+        ArrayList<Envase> ret = new ArrayList();
+        for (Envase envase : this.envases) {
+            if (envase.admiteElTipo(a.getTipo())) {
+                ret.add(envase);
+            }
+        }
+        return ret;
     }
 
-    public void agregarVotoPropuesta(Propuesta propuesta) {
-        propuesta.agregarVoto();
-        this.removerPropuesta(propuesta);
-    }
 
-    public void removerPropuesta(Propuesta propuesta) {
-        this.propuestasCliente.remove(propuesta);
-    }
 }

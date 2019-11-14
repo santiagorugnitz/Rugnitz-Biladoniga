@@ -38,10 +38,16 @@ public class Compra {
         this.cantidad = cantidad;
     }
 
+    public Compra(){
+        this.setArticulo(new Articulo());
+        this.setEnvase(new Envase());
+        this.setCantidad(0);
+    }
+    
     public Compra(Articulo articulo, Envase envase, int cantidad) {
-        this.articulo = articulo;
-        this.envase = envase;
-        this.cantidad = cantidad;
+        this.setArticulo(articulo);
+        this.setEnvase(envase);
+        this.setCantidad(cantidad);
     }
     
     public int total(){
