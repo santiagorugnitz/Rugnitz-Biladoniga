@@ -8,7 +8,6 @@ package backend;
 import java.awt.Image;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  *
@@ -19,6 +18,8 @@ public class Sistema {
     private ArrayList<Venta> ventas;
     private ArrayList<Envase> envases;
     private ArrayList<Articulo> articulos;
+    private ArrayList<Propuesta> propuestas;
+
     private int beneficioAmbiental;
     private Venta carrito;
 
@@ -26,6 +27,8 @@ public class Sistema {
         this.ventas = new ArrayList();
         this.envases = new ArrayList();
         this.articulos = new ArrayList();
+        this.propuestas = new ArrayList();
+
         this.beneficioAmbiental = 0;
         this.carrito = new Venta();
     }
@@ -68,11 +71,17 @@ public class Sistema {
         if (precio >= 0) {
             Articulo a = new Articulo(nombre, origen, precio, material, this.articulos.size() + 1, tipo, imagen, categorias);
             this.articulos.add(a);
-
             return true;
         } else {
             return false;
         }
+    }
+
+    public void agregarPropuesta(String nombre, String descripcion, int cantidadVotos,
+            Image imagen, String[] categorias) {
+        Propuesta propuesta = new Propuesta(nombre, descripcion, cantidadVotos,
+                imagen, categorias);
+        this.propuestas.add(propuesta);
     }
 
     /**
@@ -230,4 +239,21 @@ public class Sistema {
     public int cantVentas() {
         return ventas.size();
     }
+
+    public ArrayList<Propuesta> getPropuestas() {
+        return propuestas;
+    }
+
+    public ArrayList<Propuesta> filtrarPropuesta(String nombre) {
+        ArrayList<Propuesta> ret = new ArrayList();
+        for (Propuesta propuesta : propuestas) {
+            boolean nombreContenido = nombre.length() == 0
+                    ? true : propuesta.getNombre().contains(nombre);
+            if (nombreContenido) {
+                ret.add(propuesta);
+            }
+        }
+        return ret;
+    }
+
 }

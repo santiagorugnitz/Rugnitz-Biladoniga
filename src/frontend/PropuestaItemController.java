@@ -14,9 +14,11 @@ import javafx.fxml.Initializable;
  *
  * @author Nahuel
  */
-public class PropuestasController implements Initializable {
+public class PropuestaItemController implements Initializable {
 
-
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
