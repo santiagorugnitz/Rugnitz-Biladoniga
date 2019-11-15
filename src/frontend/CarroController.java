@@ -14,26 +14,21 @@ import static frontend.Utilitarios.ir_puntosVenta;
 import static frontend.Utilitarios.ir_tienda;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -54,6 +49,8 @@ public class CarroController implements Initializable {
     private VBox lista_compras;
     @FXML
     private Button productos;
+    @FXML
+    private DatePicker fechaEntrega;
 
     private Sistema sistema;
 
@@ -79,6 +76,9 @@ public class CarroController implements Initializable {
     @FXML
     private void comprar(ActionEvent event) {
         if (sistema.cantCarrito() > 0) {
+            LocalDate fecha = this.fechaEntrega.getValue();
+            this.sistema.getCarrito().setFecha(fecha==null?
+                    LocalDate.now():fecha);
             String html = this.sistema.registrarVenta();
             mostrarFactura(html);
             productos.fire();
@@ -92,7 +92,7 @@ public class CarroController implements Initializable {
         String cant = String.valueOf(sistema.cantCarrito());
         this.lbl_cantidad_carro.setText(cant);
 
-        ArrayList<Compra> listCompras = this.sistema.getCarrito().getCompras();
+        List<Compra> listCompras = this.sistema.getCarrito().getCompras();
         this.lista_compras.getChildren().clear();
         String precioTotal = "$" + String.valueOf(sistema.getCarrito().getTotal());
         lbl_total.setText(precioTotal);
@@ -114,7 +114,7 @@ public class CarroController implements Initializable {
                 //Carga los datos
                 CarroItemController controller = fxml.getController();
 
-                controller.inicializarDatos(sistema, lbl_cantidad_carro,
+                controller.inicializarDatos(sistema,
                         this.lbl_total,
                         this.lbl_subtotal,
                         this,

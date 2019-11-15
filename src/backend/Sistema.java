@@ -5,9 +5,13 @@
  */
 package backend;
 
-import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -15,14 +19,17 @@ import java.util.ArrayList;
  */
 public class Sistema {
 
-    private ArrayList<Venta> ventas;
-    private ArrayList<Envase> envases;
-    private ArrayList<Articulo> articulos;
-    private ArrayList<Propuesta> propuestas;
+    private List<Venta> ventas;
+    private List<Envase> envases;
+    private List<Articulo> articulos;
+    private List<Propuesta> propuestas;
 
     private int beneficioAmbiental;
-    private ArrayList<Propuesta> propuestasCliente;
+
+    private List<Venta> ventasCliente;
+    private List<Propuesta> propuestasCliente;
     private Venta carrito;
+    private boolean esAdmin;
 
     public Sistema() {
         this.ventas = new ArrayList();
@@ -30,24 +37,43 @@ public class Sistema {
         this.articulos = new ArrayList();
         this.propuestas = new ArrayList();
         this.propuestasCliente = new ArrayList();
+        this.ventasCliente = new ArrayList();
 
         this.beneficioAmbiental = 0;
         this.carrito = new Venta();
+        this.esAdmin = true;
+    }
+
+    public void cerrarSesion() {
+        this.propuestasCliente = new ArrayList(propuestas);
+        this.ventasCliente = new ArrayList();
+    }
+
+    public void setEsAdmin(boolean esAdmin) {
+        this.esAdmin = esAdmin;
+    }
+
+    public boolean getEsAdmin() {
+        return this.esAdmin;
     }
 
     public Venta getCarrito() {
         return carrito;
     }
 
-    public ArrayList<Venta> getVentas() {
+    public List<Venta> getVentas() {
         return ventas;
     }
 
-    public ArrayList<Envase> getEnvases() {
+    public List<Venta> getVentasCliente() {
+        return ventas;
+    }
+
+    public List<Envase> getEnvases() {
         return envases;
     }
 
-    public ArrayList<Articulo> getArticulos() {
+    public List<Articulo> getArticulos() {
         return articulos;
     }
 
@@ -69,9 +95,12 @@ public class Sistema {
      * @param material Material del articulo
      * @param tipo Tipo del articulo
      */
-    public boolean agregarArticulo(String nombre, String origen, int precio, String material, Articulo.Tipo tipo, Image imagen, String[] categorias) {
+    public boolean agregarArticulo(String nombre, String origen, int precio,
+            String material, Articulo.Tipo tipo, File img, String[] categorias) throws IOException {
         if (precio >= 0) {
-            Articulo a = new Articulo(nombre, origen, precio, material, this.articulos.size() + 1, tipo, imagen, categorias);
+            Image image = new Image(img.toURI().toURL().toExternalForm());
+            Articulo a = new Articulo(nombre, origen, precio, material,
+                    this.articulos.size() + 1, tipo, image, categorias);
             this.articulos.add(a);
             return true;
         } else {
@@ -122,6 +151,8 @@ public class Sistema {
     public String registrarVenta() {
         //TODO descomentar cuando las compras tengan envases no nulos
         ventas.add(carrito);
+        ventasCliente.add(carrito);
+
         /*
         for (int i = 0; i < carrito.getCompras().size(); i++) {
             Compra c = carrito.getCompras().get(i);
@@ -144,6 +175,8 @@ public class Sistema {
         envases.sort((Envase t, Envase t1) -> t.getVecesUsado() - t1.getVecesUsado());
         articulos.sort((Articulo a, Articulo a1) -> a.getVecesComprado() - a1.getVecesComprado());
         ventas.sort((Venta v, Venta v1) -> v.getFecha().compareTo(v1.getFecha()));
+        ventasCliente.sort((Venta v, Venta v1) -> v.getFecha().compareTo(v1.getFecha()));
+
     }
 
     public void borrarArticulo(int id) {
@@ -181,10 +214,10 @@ public class Sistema {
         this.beneficioAmbiental += e.getCosteProduccion() * n;
     }
 
-    public ArrayList<Articulo> filtrarArticulos(int precioDesde, int precioHasta,
+    public List<Articulo> filtrarArticulos(int precioDesde, int precioHasta,
             double minValoracion, String[] categorias,
             String nombre) {
-        ArrayList<Articulo> ret = new ArrayList();
+        List<Articulo> ret = new ArrayList();
         for (Articulo articulo : articulos) {
             boolean categoriaCorrecta = categorias.length == 0
                     ? true : unoEnComun(categorias, articulo.getCategorias());
@@ -200,9 +233,9 @@ public class Sistema {
     }
 
     private boolean unoEnComun(String[] a1, String[] a2) {
-        for (int i = 0; i < a1.length; i++) {
-            for (int j = 0; j < a2.length; j++) {
-                if (a1[i].equals(a2[j])) {
+        for (String a11 : a1) {
+            for (String a21 : a2) {
+                if (a11.equals(a21)) {
                     return true;
                 }
             }
@@ -234,16 +267,20 @@ public class Sistema {
         return ventas.size();
     }
 
-    public ArrayList<Propuesta> getPropuestas() {
+    public int cantVentasCliente() {
+        return ventasCliente.size();
+    }
+
+    public List<Propuesta> getPropuestas() {
         return propuestas;
     }
 
-    public ArrayList<Propuesta> getPropuestasCliente() {
+    public List<Propuesta> getPropuestasCliente() {
         return this.propuestasCliente;
     }
 
-    public ArrayList<Propuesta> filtrarPropuesta(String nombre) {
-        ArrayList<Propuesta> ret = new ArrayList();
+    public List<Propuesta> filtrarPropuesta(String nombre) {
+        List<Propuesta> ret = new ArrayList();
         for (Propuesta propuesta : propuestas) {
             boolean nombreContenido = nombre.length() == 0
                     ? true : propuesta.getNombre().contains(nombre);
@@ -254,8 +291,8 @@ public class Sistema {
         return ret;
     }
 
-    public ArrayList<Envase> envasesCompatibles(Articulo a) {
-        ArrayList<Envase> ret = new ArrayList();
+    public List<Envase> envasesCompatibles(Articulo a) {
+        List<Envase> ret = new ArrayList();
         for (Envase envase : this.envases) {
             if (envase.admiteElTipo(a.getTipo())) {
                 ret.add(envase);
@@ -264,5 +301,25 @@ public class Sistema {
         return ret;
     }
 
+    public void agregarPropuesta(String nombre, String descripcion,
+            int cantidadVotos,
+            File imagen) throws MalformedURLException {
+
+        Image image = new Image(imagen.toURI().toURL().toExternalForm());
+
+        Propuesta propuesta = new Propuesta(nombre, descripcion, cantidadVotos,
+                image);
+        this.propuestas.add(propuesta);
+        this.propuestasCliente.add(propuesta);
+    }
+
+    public void agregarVotoPropuesta(Propuesta propuesta) {
+        propuesta.agregarVoto();
+        this.removerPropuesta(propuesta);
+    }
+
+    public void removerPropuesta(Propuesta propuesta) {
+        this.propuestasCliente.remove(propuesta);
+    }
 
 }

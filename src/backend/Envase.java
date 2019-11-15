@@ -10,6 +10,7 @@ package backend;
  * @author Santiago
  */
 public class Envase {
+
     private String nombre;
     private int id;
     private int vecesUsado;
@@ -56,13 +57,11 @@ public class Envase {
         this.costeProduccion = costeProduccion;
     }
 
-    
+    public Envase() {
 
-    public Envase(){
-        
     }
-    
-    public Envase(String nombre, int vecesUsado, Articulo.Tipo[] tipos,int costeProduccion) {
+
+    public Envase(String nombre, int vecesUsado, Articulo.Tipo[] tipos, int costeProduccion) {
         this.setNombre(nombre);
         this.setId(-1);
         this.setVecesUsado(0);
@@ -71,17 +70,18 @@ public class Envase {
     }
 
     public void aumentarUso(int n) {
-        this.setVecesUsado(this.getVecesUsado()+n);
+        this.setVecesUsado(this.getVecesUsado() + n);
     }
-    
-    public boolean admiteElTipo(Articulo.Tipo t){
-        for (int i = 0; i < tipos.length; i++) {
-           if(t == tipos[i])return true;
-            
+
+    public boolean admiteElTipo(Articulo.Tipo t) {
+        for (Articulo.Tipo tipo : tipos) {
+            if (t == tipo) {
+                return true;
+            }
         }
         return false;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -99,6 +99,10 @@ public class Envase {
         }
         return true;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return this.getNombre();
+    }
+
 }

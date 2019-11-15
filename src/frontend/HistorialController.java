@@ -5,7 +5,6 @@
  */
 package frontend;
 
-import backend.Compra;
 import backend.Sistema;
 import backend.Venta;
 import static frontend.Utilitarios.ir_carrito;
@@ -14,17 +13,15 @@ import static frontend.Utilitarios.ir_puntosVenta;
 import static frontend.Utilitarios.ir_tienda;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -57,7 +54,9 @@ public class HistorialController implements Initializable {
     }
 
     public void cargarHistorial() {
-        ArrayList<Venta> listCompras = this.sistema.getVentas();
+        List<Venta> listCompras = sistema.getEsAdmin()?
+                this.sistema.getVentas():this.sistema.getVentasCliente();
+        
         this.lista_ordenes.getChildren().clear();
 
         for (int i = 0; i < listCompras.size(); i++) {

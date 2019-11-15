@@ -8,6 +8,7 @@ package backend;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,10 +16,10 @@ import java.util.ArrayList;
  */
 public class Venta {
 
-    private ArrayList<Compra> compras;
+    private List<Compra> compras;
     private LocalDate fecha;
 
-    public ArrayList<Compra> getCompras() {
+    public List<Compra> getCompras() {
         return compras;
     }
 

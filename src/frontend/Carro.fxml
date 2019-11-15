@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -45,12 +46,11 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="1353.0" layoutY="272.0" text="Sugerencias" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="1333.0" layoutY="388.0" text="Fecha de Entrega" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <VBox alignment="TOP_CENTER" layoutX="1282.0" layoutY="312.0" prefHeight="563.0" prefWidth="316.0" spacing="10.0" />
       <Label layoutX="985.0" layoutY="846.0" prefHeight="55.0" prefWidth="145.0" text="SubTotal:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
@@ -91,11 +91,6 @@
                      </font>
                   </JFXButton>
                   <JFXButton alignment="TOP_LEFT" onAction="#historial" text="Historial" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" text="Calendario" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -175,5 +170,6 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </JFXButton>
+      <JFXDatePicker fx:id="fechaEntrega" defaultColor="WHITE" layoutX="1334.0" layoutY="435.0" stylesheets="@css/datePicker.css" />
    </children>
 </AnchorPane>

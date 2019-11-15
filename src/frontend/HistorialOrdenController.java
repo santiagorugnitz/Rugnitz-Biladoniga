@@ -10,6 +10,7 @@ import backend.Venta;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,7 +54,7 @@ public class HistorialOrdenController implements Initializable {
 
     @FXML
     public void seleccionado(ActionEvent seleccionado) {
-        ArrayList<Compra> listCompras = this.venta.getCompras();
+        List<Compra> listCompras = this.venta.getCompras();
         this.lista_ventas.getChildren().clear();
 
         for (int i = 0; i < listCompras.size(); i++) {

@@ -12,11 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="960.0" style="-fx-background-color: #2B3253;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.CarroItemController">
    <children>
-      <ImageView fx:id="imagen" fitHeight="137.0" fitWidth="152.0" layoutX="33.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/jbl-speaker.png" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="image" fitHeight="154.0" fitWidth="160.0" layoutX="3.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="lbl_precio" alignment="CENTER_RIGHT" layoutX="801.0" layoutY="4.0" prefHeight="53.0" prefWidth="127.0" text="\$234" textAlignment="RIGHT" textFill="#6f64f8">
          <font>
             <Font name="System Bold" size="24.0" />

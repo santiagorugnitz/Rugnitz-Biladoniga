@@ -50,11 +50,6 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" text="Calendario" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </JFXButton>
                </children>
             </VBox>
             <VBox layoutX="25.0" layoutY="79.0" prefHeight="149.0" prefWidth="225.0" spacing="15.0">
@@ -112,7 +107,7 @@
                   </JFXButton>
                </children>
             </VBox>
-            <Group layoutX="126.0" layoutY="378.0">
+            <Group fx:id="gpr_cantidad" layoutX="126.0" layoutY="378.0">
                <children>
                   <Circle fill="#7e72f2" layoutX="17.0" layoutY="16.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
                   <Label fx:id="lbl_cantidad_carro" alignment="CENTER" layoutX="3.0" layoutY="5.0" prefHeight="22.0" prefWidth="27.0" text="20" textFill="WHITE">
@@ -264,5 +259,10 @@
             </JFXButton>
          </children>
       </VBox>
+      <Button fx:id="btn_articulos" layoutX="1404.0" layoutY="143.0" mnemonicParsing="false" onAction="#agregarArticulo" prefHeight="26.0" prefWidth="176.0" style="-fx-background-color: #6F64F8;" text="Agregar Articulo" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

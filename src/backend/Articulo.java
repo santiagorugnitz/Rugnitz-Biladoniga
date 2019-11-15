@@ -5,7 +5,7 @@
  */
 package backend;
 
-import java.awt.Image;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -14,8 +14,10 @@ import java.awt.Image;
 public class Articulo {
 
     //TODO: agregar mas supongo
-    public enum Tipo{BEBIDA,SECO,HUMEDO};
-    
+    public enum Tipo {
+        BEBIDA, SECO, HUMEDO
+    };
+
     private String nombre;
     private String origen;
     private int precio;
@@ -107,7 +109,7 @@ public class Articulo {
         this.valoracion = valoracion;
     }
 
-    public Articulo(){
+    public Articulo() {
         this.setNombre("");
         this.setOrigen("");
         this.setPrecio(0);
@@ -118,10 +120,10 @@ public class Articulo {
         this.setImagen(null);
         this.setValoracion(0);
         this.setCategorias(new String[0]);
-    
+
     }
-    
-    public Articulo(String nombre,String origen, int precio, String material, int id, Tipo tipo,Image imagen,String[] categorias) {
+
+    public Articulo(String nombre, String origen, int precio, String material, int id, Tipo tipo, Image imagen, String[] categorias) {
         this.setNombre(nombre);
         this.setOrigen(origen);
         this.setPrecio(precio);
@@ -133,10 +135,9 @@ public class Articulo {
         this.setValoracion(0);
         this.setCategorias(categorias);
     }
-    
+
     public void aumentarUso(int n) {
-        this.setVecesComprado(this.getVecesComprado()+n);
-    }    
-    
-    
+        this.setVecesComprado(this.getVecesComprado() + n);
+    }
+
 }
