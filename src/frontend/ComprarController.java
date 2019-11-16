@@ -20,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 /**
@@ -36,7 +37,7 @@ public class ComprarController implements Initializable {
     @FXML
     private Button btn_mas;
     @FXML
-    private ComboBox listEnvases;
+    private ListView listEnvases;
 
     private Sistema sistema;
     private Articulo articulo;
@@ -59,59 +60,8 @@ public class ComprarController implements Initializable {
         ObservableList<Envase> items = FXCollections.
                 observableArrayList(s.envasesCompatibles(a));
 
-        /*
-        StringConverter<Envase> converter = new StringConverter<Envase>() {
-            @Override
-            public String toString(Envase object) {
-                return object.getNombre();
-            }
-
-            @Override
-            public Envase fromString(String string) {
-                return null;
-            }
-        };
-        this.listEnvases.setConverter(converter);
-         */
         this.listEnvases.setItems(items);
         this.listEnvases.getSelectionModel().selectFirst();
-
-        /*
-        this.listEnvases.setCellFactory((ListView<Envase> p) -> {
-            final ListCell<Envase> cell = new ListCell<Envase>() {
-                @Override
-                protected void updateItem(Envase t, boolean bln) {
-                    super.updateItem(t, bln);
-                    
-                    if (t != null) {
-                        setText(t.getNombre());
-                    } else {
-                        setText(null);
-                    }
-                }
-                
-            };
-            return cell;
-        });
-         */
- /*
-        this.listEnvases.setConverter(new StringConverter<Envase>() {
-            @Override
-            public String toString(Envase envase) {
-                if (envase == null) {
-                    return null;
-                } else {
-                    return envase.getNombre();
-                }
-            }
-
-            @Override
-            public Envase fromString(String string) {
-                return null;
-            }
-
-        });
-         */
     }
 
     @FXML
@@ -146,8 +96,11 @@ public class ComprarController implements Initializable {
     public void confirmar(ActionEvent evento) {
 
         Venta venta = this.sistema.getCarrito();
+        Envase e = (Envase) this.listEnvases.getSelectionModel().getSelectedItem();
         Integer cantidad = Integer.valueOf(lbl_cantidad.getText());
-        venta.agregarArticulo(articulo, null, cantidad);
+
+        venta.agregarArticulo(articulo, e, cantidad);
+
         this.lbl_cantidadCarrito.setText(
                 String.valueOf(this.sistema.getCarrito()
                         .getCompras().size()));

@@ -67,7 +67,8 @@ public class ProductoDescripcionController implements Initializable {
         lbl_precio.setText("Precio: $" + String.valueOf(art.getPrecio()));
         lbl_veces.setText("Veces: " + String.valueOf(art.getVecesComprado()));
         lbl_nota.setText(String.valueOf(art.getValoracion()));
-        String[] categorias = art.getCategorias();
+        Articulo.Categoria[] categorias = art.getCategorias();
+        
         if (categorias.length != 0) {
             String cat = "";
             cat += categorias[0];
@@ -90,6 +91,7 @@ public class ProductoDescripcionController implements Initializable {
     @FXML
     public void votar(ActionEvent evento) {
         nota = (int) notas.getValue();
+        art.agregarValoracion(nota);
     }
 
 }

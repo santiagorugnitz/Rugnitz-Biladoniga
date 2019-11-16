@@ -8,6 +8,7 @@ package frontend;
 import backend.Articulo;
 import backend.Sistema;
 import static frontend.Utilitarios.ir_carrito;
+import static frontend.Utilitarios.ir_estadisticas;
 import static frontend.Utilitarios.ir_historial;
 import static frontend.Utilitarios.ir_propuestas;
 import static frontend.Utilitarios.ir_puntosVenta;
@@ -20,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -63,13 +65,15 @@ public class TiendaController implements Initializable {
     @FXML
     private Button btn_articulos;
     @FXML
+    private Button btn_carro;
+    @FXML
     private Group gpr_cantidad;
 
     //Atributos
     private int desde;
     private int hasta;
     private double valoracion;
-    private List<String> categorias;
+    private List<Articulo.Categoria> categorias;
     private String nombreABuscar;
     //Sistema
     private Sistema sistema;
@@ -82,6 +86,10 @@ public class TiendaController implements Initializable {
                 sistema.cantCarrito()));
         eliminarFiltros(null);
         this.esAdmin = s.getEsAdmin();
+
+        if (esAdmin) {
+            btn_carro.setText("Estadisticas");
+        }
 
         btn_articulos.setVisible(s.getEsAdmin());
         gpr_cantidad.setVisible(!s.getEsAdmin());
@@ -129,7 +137,7 @@ public class TiendaController implements Initializable {
     private void actualizarListaArticulos() {
         List<Articulo> listaArt = this.sistema.
                 filtrarArticulos(desde, hasta, valoracion,
-                        categorias.toArray(new String[categorias.size()]),
+                        categorias.toArray(new Articulo.Categoria[categorias.size()]),
                         nombreABuscar);
         cargarArticulos(listaArt);
     }
@@ -191,12 +199,35 @@ public class TiendaController implements Initializable {
     private void busquedaCategoria(ActionEvent event) {
         CheckBox field = (CheckBox) event.getSource();
         String nombre = field.getText();
+        Articulo.Categoria cat = Articulo.Categoria.BAJAS_CALORIAS;
+
+        switch (nombre) {
+            case "Vegano":
+                cat = Articulo.Categoria.VEGANO;
+                break;
+            case "Libre de Gluten":
+                cat = Articulo.Categoria.LIBRE_DE_GLUTEN;
+
+                break;
+            case "Bajas Calorias":
+                cat = Articulo.Categoria.BAJAS_CALORIAS;
+
+                break;
+            case "Organico":
+                cat = Articulo.Categoria.ORGANICO;
+
+                break;
+            case "Libre de Azucar":
+                cat = Articulo.Categoria.LIBRE_DE_AZUCAR;
+                break;
+        }
 
         if (field.isSelected()) {
-            categorias.add(nombre);
+            categorias.add(cat);
         } else {
-            categorias.remove(nombre);
+            categorias.remove(cat);
         }
+
         this.actualizarListaArticulos();
     }
 
@@ -225,7 +256,11 @@ public class TiendaController implements Initializable {
 
     @FXML
     private void carrito(ActionEvent event) {
-        ir_carrito(this, event, sistema);
+        if (esAdmin) {
+            ir_estadisticas(this, event, sistema);
+        } else {
+            ir_carrito(this, event, sistema);
+        }
     }
 
     @FXML

@@ -8,6 +8,7 @@ package frontend;
 import backend.Sistema;
 import backend.Venta;
 import static frontend.Utilitarios.ir_carrito;
+import static frontend.Utilitarios.ir_estadisticas;
 import static frontend.Utilitarios.ir_propuestas;
 import static frontend.Utilitarios.ir_puntosVenta;
 import static frontend.Utilitarios.ir_tienda;
@@ -54,9 +55,9 @@ public class HistorialController implements Initializable {
     }
 
     public void cargarHistorial() {
-        List<Venta> listCompras = sistema.getEsAdmin()?
-                this.sistema.getVentas():this.sistema.getVentasCliente();
-        
+        List<Venta> listCompras = sistema.getEsAdmin()
+                ? this.sistema.getVentas() : this.sistema.getVentasCliente();
+
         this.lista_ordenes.getChildren().clear();
 
         for (int i = 0; i < listCompras.size(); i++) {
@@ -84,7 +85,11 @@ public class HistorialController implements Initializable {
 
     @FXML
     private void carrito(ActionEvent event) {
-        ir_carrito(this, event, sistema);
+        if (sistema.getEsAdmin()) {
+            ir_estadisticas(this, event, sistema);
+        } else {
+            ir_carrito(this, event, sistema);
+        }
     }
 
     @FXML

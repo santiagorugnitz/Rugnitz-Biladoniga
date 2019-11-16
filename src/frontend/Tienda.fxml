@@ -35,12 +35,12 @@
             </Text>
             <VBox layoutX="24.0" layoutY="319.0" spacing="15.0">
                <children>
-                  <JFXButton alignment="TOP_LEFT" disable="true" prefHeight="37.0" prefWidth="113.0" text="Productos" textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" disable="true" text="Productos" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" onAction="#carrito" prefHeight="37.0" prefWidth="75.0" text="Carrito" textFill="WHITE">
+                  <JFXButton fx:id="btn_carro" alignment="TOP_LEFT" onAction="#carrito" text="Carrito" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

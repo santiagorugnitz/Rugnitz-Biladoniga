@@ -1,8 +1,4 @@
-.jfx-combo-box {
-	-fx-background-color:  transparent;
-}
 
-.jfx-combo-box .label {
-	-fx-background-color:  WHITE;
-	-fx-text-fill: RED;
+.combo-box .cell:selected {
+    -fx-text-fill: white;
 }

@@ -27,6 +27,7 @@ public class ErrorPopupController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        Label a = new Label();
     }
 
     public void setMensaje(String men) {

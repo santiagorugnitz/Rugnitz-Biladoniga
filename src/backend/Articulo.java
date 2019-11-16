@@ -19,7 +19,8 @@ public class Articulo {
     };
 
     public enum Categoria {
-        LIBRE_DE_AZUCAR, LIBRE_DE_GLUTEN, VEGANO, ORGANICO, BAJAS_CALORIAS
+        LIBRE_DE_AZUCAR, LIBRE_DE_GLUTEN, VEGANO, ORGANICO, BAJAS_CALORIAS;
+
     };
 
     private String nombre;
@@ -155,11 +156,11 @@ public class Articulo {
     public void aumentarUso(int n) {
         this.setVecesComprado(this.getVecesComprado() + n);
     }
-    
-    public void agregarValoracion(double valoracion){
-        this.setValoracion(this.getValoracion()/this.getVecesValorado()+valoracion);
-        this.setVecesValorado(vecesValorado+1);
-        this.setValoracion(this.getValoracion()/this.getVecesValorado());
+
+    public void agregarValoracion(double valoracion) {
+        this.setValoracion(this.getValoracion() * this.getVecesValorado() + valoracion);
+        this.setVecesValorado(vecesValorado + 1);
+        this.setValoracion(this.getValoracion() / this.getVecesValorado());
     }
 
 }
