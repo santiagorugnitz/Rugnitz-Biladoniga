@@ -96,7 +96,7 @@ public class Sistema {
      * @param tipo Tipo del articulo
      */
     public boolean agregarArticulo(String nombre, String origen, int precio,
-            String material, Articulo.Tipo tipo, File img, String[] categorias) throws IOException {
+            String material, Articulo.Tipo tipo, File img, Articulo.Categoria[] categorias) throws IOException {
         if (precio >= 0) {
             Image image = new Image(img.toURI().toURL().toExternalForm());
             Articulo a = new Articulo(nombre, origen, precio, material,
@@ -215,7 +215,7 @@ public class Sistema {
     }
 
     public List<Articulo> filtrarArticulos(int precioDesde, int precioHasta,
-            double minValoracion, String[] categorias,
+            double minValoracion, Articulo.Categoria[] categorias,
             String nombre) {
         List<Articulo> ret = new ArrayList();
         for (Articulo articulo : articulos) {
@@ -232,10 +232,10 @@ public class Sistema {
         return ret;
     }
 
-    private boolean unoEnComun(String[] a1, String[] a2) {
-        for (String a11 : a1) {
-            for (String a21 : a2) {
-                if (a11.equals(a21)) {
+    private boolean unoEnComun(Articulo.Categoria[] a1, Articulo.Categoria[] a2) {
+        for (Articulo.Categoria c1 : a1) {
+            for (Articulo.Categoria c2 : a2) {
+                if (c2.equals(c1)) {
                     return true;
                 }
             }
@@ -320,6 +320,28 @@ public class Sistema {
 
     public void removerPropuesta(Propuesta propuesta) {
         this.propuestasCliente.remove(propuesta);
+    }
+    
+    public int gananciasTotales(){
+        int ret = 0;
+        for (Venta venta : ventas) {
+            ret+=venta.getTotal();
+        }
+        return ret;
+    }
+    public int gananciaMes(int mes){
+        int ret=0;
+        for (Venta venta : ventas) {
+            if(venta.getFecha().getMonth().getValue()==mes)ret+=venta.getTotal();
+        }
+        return ret;
+    }
+    public int gananciaHoy(){
+        int ret=0;
+        for (Venta venta : ventas) {
+            if(venta.getFecha().equals(LocalDate.now()));
+        }
+        return ret;
     }
 
 }

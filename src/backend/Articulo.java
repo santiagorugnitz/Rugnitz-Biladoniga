@@ -18,16 +18,21 @@ public class Articulo {
         BEBIDA, SECO, HUMEDO
     };
 
+    public enum Categoria {
+        LIBRE_DE_AZUCAR, LIBRE_DE_GLUTEN, VEGANO, ORGANICO, BAJAS_CALORIAS
+    };
+
     private String nombre;
     private String origen;
     private int precio;
-    private String[] categorias;
+    private Categoria[] categorias;
     private int id;
     private boolean disponible;
     private Tipo tipo;
     private int vecesComprado;
     private Image imagen;
     private double valoracion;
+    private int vecesValorado;
 
     public String getNombre() {
         return nombre;
@@ -53,11 +58,11 @@ public class Articulo {
         this.precio = precio;
     }
 
-    public String[] getCategorias() {
+    public Categoria[] getCategorias() {
         return categorias;
     }
 
-    public void setCategorias(String[] categorias) {
+    public void setCategorias(Categoria[] categorias) {
         this.categorias = categorias;
     }
 
@@ -109,6 +114,14 @@ public class Articulo {
         this.valoracion = valoracion;
     }
 
+    private int getVecesValorado() {
+        return vecesValorado;
+    }
+
+    private void setVecesValorado(int vecesValorado) {
+        this.vecesValorado = vecesValorado;
+    }
+
     public Articulo() {
         this.setNombre("");
         this.setOrigen("");
@@ -119,11 +132,12 @@ public class Articulo {
         this.setVecesComprado(0);
         this.setImagen(null);
         this.setValoracion(0);
-        this.setCategorias(new String[0]);
+        this.setCategorias(new Categoria[0]);
+        this.setVecesValorado(0);
 
     }
 
-    public Articulo(String nombre, String origen, int precio, String material, int id, Tipo tipo, Image imagen, String[] categorias) {
+    public Articulo(String nombre, String origen, int precio, String material, int id, Tipo tipo, Image imagen, Categoria[] categorias) {
         this.setNombre(nombre);
         this.setOrigen(origen);
         this.setPrecio(precio);
@@ -134,10 +148,18 @@ public class Articulo {
         this.setImagen(imagen);
         this.setValoracion(0);
         this.setCategorias(categorias);
+        this.setVecesValorado(0);
+
     }
 
     public void aumentarUso(int n) {
         this.setVecesComprado(this.getVecesComprado() + n);
+    }
+    
+    public void agregarValoracion(double valoracion){
+        this.setValoracion(this.getValoracion()/this.getVecesValorado()+valoracion);
+        this.setVecesValorado(vecesValorado+1);
+        this.setValoracion(this.getValoracion()/this.getVecesValorado());
     }
 
 }
