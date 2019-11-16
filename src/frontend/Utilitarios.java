@@ -7,18 +7,14 @@ package frontend;
 
 import backend.Articulo;
 import backend.Sistema;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
@@ -199,4 +195,15 @@ public class Utilitarios {
         img.setY((img.getFitHeight() - h) / 2);
 
     }
+
+    public static void ir_estadisticas(Object win, Event event, Sistema sistema) {
+
+        FXMLLoader fxml = frontend.Utilitarios.
+                cambiarVentana(win, event, "/frontend/Estadisticas.fxml");
+
+        EstadisticasController controller = fxml.getController();
+        controller.inicializarDatos(sistema);
+
+    }
+
 }

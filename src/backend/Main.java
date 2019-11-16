@@ -42,25 +42,25 @@ public class Main extends Application {
         s.agregarEnvase("asdasdasd", new Articulo.Tipo[]{Articulo.Tipo.SECO}, 5);
 
         s.agregarArticulo("agua", "china", 34, "cs", Articulo.Tipo.SECO,
-                file, new String[]{"Vegano", "Libre de Gluten"});
+                file, new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
         s.agregarArticulo("agdgdfua", "china", 33, "cs", Articulo.Tipo.SECO, file,
-                new String[]{"Vegano", "Libre de Gluten"});
+                new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
         s.agregarArticulo("sddg", "add", 1111, "cs", Articulo.Tipo.BEBIDA, file,
-                new String[]{"Organico", "Libre de Azucar"});
+                new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
         s.agregarArticulo("dfg", "china", 3454, "cs", Articulo.Tipo.SECO, file,
-                new String[]{"Libre de Gluten"});
+                new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
         s.agregarArticulo("vbvc", "china", 566, "cs", Articulo.Tipo.SECO, file,
-                new String[]{"Libre de Gluten"});
+                new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
         s.agregarArticulo("tttt", "china", 3244, "cs", Articulo.Tipo.SECO, file,
-                new String[]{"Libre de Gluten", "Vegano"});
+                new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
         s.agregarArticulo("qwr", "china", 664, "cs", Articulo.Tipo.SECO, file,
-                new String[]{"Libre de Gluten"});
+                new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
         s.agregarArticulo("xcvxcv", "china", 77, "cs", Articulo.Tipo.SECO, file,
-                new String[]{"Libre de Gluten"});
+                new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
         s.agregarArticulo("awwf", "china", 5445, "cs", Articulo.Tipo.SECO, file,
-                new String[]{"Libre de Gluten"});
+                new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
         s.agregarArticulo("dffggf", "china", 455, "cs", Articulo.Tipo.SECO, file,
-                new String[]{"Libre de Gluten"});
+                new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
 
         s.agregarPropuesta("mejorrr", "aloaaa", 0, file);
         s.agregarPropuesta("sddd", "aloaaa", 0, file);
