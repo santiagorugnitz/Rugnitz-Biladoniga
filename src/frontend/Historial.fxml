@@ -45,11 +45,6 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" text="Calendario" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </JFXButton>
                </children>
             </VBox>
             <VBox layoutX="25.0" layoutY="79.0" prefHeight="149.0" prefWidth="225.0" spacing="15.0">

@@ -7,7 +7,7 @@ package frontend;
 
 import backend.Compra;
 import backend.Sistema;
-import backend.Venta;
+import static frontend.Utilitarios.centrarImagen;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -31,14 +32,14 @@ public class CarroItemController implements Initializable {
     private Label lbl_cantidad;
     @FXML
     private Label lbl_precio;
-
     @FXML
     private Button btn_sumar;
     @FXML
     private Button btn_restar;
+    @FXML
+    private ImageView image;
 
     private Compra compra;
-    private Label cantidad_carrito;
     private Label total;
     private Label subtotal;
     private CarroController carro_controlador;
@@ -46,7 +47,6 @@ public class CarroItemController implements Initializable {
     private Integer posicion;
 
     public void inicializarDatos(Sistema sistema,
-            Label cantidad_carrito,
             Label total,
             Label subtotal,
             CarroController carro_controlador,
@@ -62,10 +62,11 @@ public class CarroItemController implements Initializable {
                 compra.getArticulo().getValoracion()));
 
         //Se pasan los labels
-        this.cantidad_carrito = cantidad_carrito;
         this.total = total;
         this.subtotal = subtotal;
         this.posicion = posicion;
+        this.image.setImage(compra.getArticulo().getImagen());
+        centrarImagen(image);
 
         //Actualiza los datos
         actualizar();

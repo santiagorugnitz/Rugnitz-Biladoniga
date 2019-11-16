@@ -8,24 +8,31 @@ package frontend;
 import backend.Articulo;
 import backend.Propuesta;
 import backend.Sistema;
+import static frontend.Utilitarios.cambiarVentana;
 import static frontend.Utilitarios.ir_propuestas;
 import static frontend.Utilitarios.ir_puntosVenta;
 import static frontend.Utilitarios.ir_tienda;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -36,12 +43,19 @@ public class PropuestasController implements Initializable {
 
     @FXML
     private VBox lista_propuestas;
+    @FXML
+    private Button btn_propuesta;
 
     private Sistema sistema;
+    private boolean esAdmin;
 
     public void inicializarDatos(Sistema sistema) {
         this.sistema = sistema;
-        cargarArticulos(sistema.getPropuestasCliente());
+        this.esAdmin = esAdmin;
+        boolean esAdmin = sistema.getEsAdmin();
+        cargarArticulos(esAdmin
+                ? sistema.getPropuestas() : sistema.getPropuestasCliente());
+        btn_propuesta.setVisible(!esAdmin);
     }
 
     @Override
@@ -49,7 +63,7 @@ public class PropuestasController implements Initializable {
         // TODO
     }
 
-    public void cargarArticulos(ArrayList<Propuesta> listaProps) {
+    public void cargarArticulos(List<Propuesta> listaProps) {
         this.lista_propuestas.getChildren().clear();
 
         int maxFila = 0;
@@ -98,7 +112,7 @@ public class PropuestasController implements Initializable {
     private void buscar(ActionEvent evento) {
         TextField boton = (TextField) evento.getSource();
         String texto = boton.getText();
-        ArrayList<Propuesta> listaProps = this.sistema.filtrarPropuesta(texto);
+        List<Propuesta> listaProps = this.sistema.filtrarPropuesta(texto);
         cargarArticulos(listaProps);
     }
 
@@ -122,4 +136,36 @@ public class PropuestasController implements Initializable {
         ir_tienda(this, event, sistema);
     }
 
+    @FXML
+    private void agregarPropuesta(ActionEvent event) {
+
+        Stage newstage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader(this.getClass().
+                getResource("/frontend/AgregarPropuesta.fxml"));
+
+        try {
+
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            //Cargar Mensaje
+            AgregarPropuestaController controlador = loader.getController();
+            controlador.inicializarDatos(sistema);
+
+            newstage.initStyle(StageStyle.UNDECORATED);
+            newstage.setScene(scene);
+            newstage.initModality(Modality.APPLICATION_MODAL);
+            ((Stage) (newstage.getScene().getWindow())).centerOnScreen();
+
+            newstage.showAndWait();
+
+        } catch (IOException ex) {
+
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        cargarArticulos(esAdmin
+                ? sistema.getPropuestas() : sistema.getPropuestasCliente());
+    }
 }

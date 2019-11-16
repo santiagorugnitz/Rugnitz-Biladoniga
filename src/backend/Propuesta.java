@@ -5,7 +5,7 @@
  */
 package backend;
 
-import java.awt.Image;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -50,17 +50,16 @@ public class Propuesta {
         this.imagen = imagen;
     }
 
-    
-    
-    public Propuesta(){
+    public Propuesta() {
         this.setNombre("");
         this.setDescripcion("");
         this.setCantidadVotos(0);
         this.setImagen(null);
-    
+
     }
-    
-    public Propuesta(String nombre, String descripcion, int cantidadVotos, Image imagen, String[] categorias) {
+
+    public Propuesta(String nombre, String descripcion, int cantidadVotos,
+            Image imagen) {
         this.setNombre(nombre);
         this.setDescripcion(descripcion);
         this.setCantidadVotos(cantidadVotos);
@@ -68,7 +67,7 @@ public class Propuesta {
     }
 
     public void agregarVoto() {
-        this.setCantidadVotos(this.getCantidadVotos()+1);
+        this.setCantidadVotos(this.getCantidadVotos() + 1);
     }
 
 }
