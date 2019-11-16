@@ -6,6 +6,8 @@
 package backend;
 
 import frontend.InicioController;
+import java.io.File;
+import java.net.URL;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -30,27 +32,44 @@ public class Main extends Application {
         //Cargo el sistema
         Sistema s = new Sistema();
         //ARTICULOS POR DEFECTO
+        URL url = getClass().getResource("/frontend/img/logo.png");
+        File file = new File(url.getPath());
 
-        s.agregarArticulo("agua", "china", 34, "cs", Articulo.Tipo.SECO, null, 
-                new String[]{"Vegano","Libre de Gluten"});
-        s.agregarArticulo("agdgdfua", "china", 33, "cs", Articulo.Tipo.SECO, null, 
-                new String[]{"Vegano","Libre de Gluten"});
-        s.agregarArticulo("sddg", "add", 1111, "cs", Articulo.Tipo.SECO, null, 
-                new String[]{"Organico","Libre de Azucar"});
-        s.agregarArticulo("dfg", "china", 3454, "cs", Articulo.Tipo.SECO, null,
+        s.agregarEnvase("envase3", new Articulo.Tipo[]{Articulo.Tipo.SECO}, 5);
+        s.agregarEnvase("e122", new Articulo.Tipo[]{Articulo.Tipo.SECO}, 5);
+        s.agregarEnvase("santi", new Articulo.Tipo[]{Articulo.Tipo.SECO,
+            Articulo.Tipo.BEBIDA}, 5);
+        s.agregarEnvase("asdasdasd", new Articulo.Tipo[]{Articulo.Tipo.SECO}, 5);
+
+        s.agregarArticulo("agua", "china", 34, "cs", Articulo.Tipo.SECO,
+                file, new String[]{"Vegano", "Libre de Gluten"});
+        s.agregarArticulo("agdgdfua", "china", 33, "cs", Articulo.Tipo.SECO, file,
+                new String[]{"Vegano", "Libre de Gluten"});
+        s.agregarArticulo("sddg", "add", 1111, "cs", Articulo.Tipo.BEBIDA, file,
+                new String[]{"Organico", "Libre de Azucar"});
+        s.agregarArticulo("dfg", "china", 3454, "cs", Articulo.Tipo.SECO, file,
                 new String[]{"Libre de Gluten"});
-        s.agregarArticulo("vbvc", "china", 566, "cs", Articulo.Tipo.SECO, null, 
+        s.agregarArticulo("vbvc", "china", 566, "cs", Articulo.Tipo.SECO, file,
                 new String[]{"Libre de Gluten"});
-        s.agregarArticulo("tttt", "china", 3244, "cs", Articulo.Tipo.SECO, null, 
-                new String[]{"Libre de Gluten","Vegano"});
-        s.agregarArticulo("qwr", "china", 664, "cs", Articulo.Tipo.SECO, null, 
+        s.agregarArticulo("tttt", "china", 3244, "cs", Articulo.Tipo.SECO, file,
+                new String[]{"Libre de Gluten", "Vegano"});
+        s.agregarArticulo("qwr", "china", 664, "cs", Articulo.Tipo.SECO, file,
                 new String[]{"Libre de Gluten"});
-        s.agregarArticulo("xcvxcv", "china", 77, "cs", Articulo.Tipo.SECO, null, 
+        s.agregarArticulo("xcvxcv", "china", 77, "cs", Articulo.Tipo.SECO, file,
                 new String[]{"Libre de Gluten"});
-        s.agregarArticulo("awwf", "china", 5445, "cs", Articulo.Tipo.SECO, null, 
+        s.agregarArticulo("awwf", "china", 5445, "cs", Articulo.Tipo.SECO, file,
                 new String[]{"Libre de Gluten"});
-        s.agregarArticulo("dffggf", "china", 455, "cs", Articulo.Tipo.SECO, null, 
+        s.agregarArticulo("dffggf", "china", 455, "cs", Articulo.Tipo.SECO, file,
                 new String[]{"Libre de Gluten"});
+
+        s.agregarPropuesta("mejorrr", "aloaaa", 0, file);
+        s.agregarPropuesta("sddd", "aloaaa", 0, file);
+        s.agregarPropuesta("aasdcc", "aloaaa", 0, file);
+        s.agregarPropuesta("shola", "aloaaa", 0, file);
+        s.agregarPropuesta("xddd", "aloaaa", 0, file);
+        s.agregarPropuesta("loool", "aloaaa", 0, file);
+        s.agregarPropuesta("santi", "aloaaa", 0, file);
+        s.agregarPropuesta("mejorrr", "aloaaa", 0, file);
 
         //FIN ARTICULOS POR DEFECTO
         InicioController controlador = loader.getController();

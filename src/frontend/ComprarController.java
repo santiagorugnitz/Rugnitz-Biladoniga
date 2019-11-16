@@ -6,15 +6,19 @@
 package frontend;
 
 import backend.Articulo;
+import backend.Envase;
 import backend.Sistema;
 import backend.Venta;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -26,15 +30,17 @@ import javafx.stage.Stage;
 public class ComprarController implements Initializable {
 
     @FXML
-    protected Label lbl_cantidad;
+    private Label lbl_cantidad;
     @FXML
-    protected Button btn_menos;
+    private Button btn_menos;
     @FXML
-    protected Button btn_mas;
+    private Button btn_mas;
+    @FXML
+    private ComboBox listEnvases;
 
-    protected Sistema sistema;
-    protected Articulo articulo;
-    protected Label lbl_cantidadCarrito;
+    private Sistema sistema;
+    private Articulo articulo;
+    private Label lbl_cantidadCarrito;
 
     /**
      * Initializes the controller class.
@@ -50,6 +56,62 @@ public class ComprarController implements Initializable {
         this.sistema = s;
         this.articulo = a;
         this.lbl_cantidadCarrito = c;
+        ObservableList<Envase> items = FXCollections.
+                observableArrayList(s.envasesCompatibles(a));
+
+        /*
+        StringConverter<Envase> converter = new StringConverter<Envase>() {
+            @Override
+            public String toString(Envase object) {
+                return object.getNombre();
+            }
+
+            @Override
+            public Envase fromString(String string) {
+                return null;
+            }
+        };
+        this.listEnvases.setConverter(converter);
+         */
+        this.listEnvases.setItems(items);
+        this.listEnvases.getSelectionModel().selectFirst();
+
+        /*
+        this.listEnvases.setCellFactory((ListView<Envase> p) -> {
+            final ListCell<Envase> cell = new ListCell<Envase>() {
+                @Override
+                protected void updateItem(Envase t, boolean bln) {
+                    super.updateItem(t, bln);
+                    
+                    if (t != null) {
+                        setText(t.getNombre());
+                    } else {
+                        setText(null);
+                    }
+                }
+                
+            };
+            return cell;
+        });
+         */
+ /*
+        this.listEnvases.setConverter(new StringConverter<Envase>() {
+            @Override
+            public String toString(Envase envase) {
+                if (envase == null) {
+                    return null;
+                } else {
+                    return envase.getNombre();
+                }
+            }
+
+            @Override
+            public Envase fromString(String string) {
+                return null;
+            }
+
+        });
+         */
     }
 
     @FXML

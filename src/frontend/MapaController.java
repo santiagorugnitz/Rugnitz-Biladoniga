@@ -7,6 +7,8 @@ package frontend;
 
 import backend.Sistema;
 import com.jfoenix.controls.JFXButton;
+import static frontend.Utilitarios.ir_propuestas;
+import static frontend.Utilitarios.ir_tienda;
 import java.io.File;
 import javafx.fxml.Initializable;
 import java.net.URL;
@@ -25,9 +27,9 @@ public class MapaController implements Initializable {
 
     @FXML
     private WebView mapa;
-    
+
     private Sistema sistema;
-    
+
     /**
      * Initializes the controller class.
      */
@@ -35,35 +37,28 @@ public class MapaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //TODO
     }
-    
-    public void inicializarDatos(Sistema s){
-        this.sistema=s;
+
+    public void inicializarDatos(Sistema s) {
+        this.sistema = s;
         System.out.println(new File(".").getAbsolutePath());
         File f = new File("leaflet\\mapa.html");
         System.out.println(f.getAbsolutePath());
         mapa.getEngine().load(f.toURI().toString());
     }
 
-
     @FXML
-    void propuestas(ActionEvent event) {
-        //soon
-
+    private void tienda(ActionEvent event) {
+        ir_tienda(this, event, sistema);
     }
 
     @FXML
-    void tienda(ActionEvent event) {
-        FXMLLoader fxml =Utilitarios.cambiarVentana(this, event, "/frontend/Tienda.fxml");
-            
-        //Carga los datos
-        TiendaController controller = fxml.getController();
-        controller.inicializarDatos(sistema);
-        fxml.setController(controller);
+    private void propuestas(ActionEvent event) {
+        ir_propuestas(this, event, sistema);
     }
 
     @FXML
     private void cerrarSesion(ActionEvent event) {
         frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
     }
-    
+
 }

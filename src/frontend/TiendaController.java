@@ -7,23 +7,25 @@ package frontend;
 
 import backend.Articulo;
 import backend.Sistema;
-import static frontend.Utilitarios.crearError;
 import static frontend.Utilitarios.ir_carrito;
 import static frontend.Utilitarios.ir_historial;
-import static frontend.Utilitarios.ir_tienda;
+import static frontend.Utilitarios.ir_propuestas;
+import static frontend.Utilitarios.ir_puntosVenta;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -34,6 +36,9 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -55,15 +60,20 @@ public class TiendaController implements Initializable {
     private ToggleGroup g_precios;
     @FXML
     private RadioButton sinLimite;
+    @FXML
+    private Button btn_articulos;
+    @FXML
+    private Group gpr_cantidad;
 
     //Atributos
     private int desde;
     private int hasta;
     private double valoracion;
-    private ArrayList<String> categorias;
+    private List<String> categorias;
     private String nombreABuscar;
     //Sistema
     private Sistema sistema;
+    private boolean esAdmin;
 
     public void inicializarDatos(Sistema s) {
         this.sistema = s;
@@ -71,6 +81,11 @@ public class TiendaController implements Initializable {
         lbl_cantidad_carro.setText(String.valueOf(
                 sistema.cantCarrito()));
         eliminarFiltros(null);
+        this.esAdmin = s.getEsAdmin();
+
+        btn_articulos.setVisible(s.getEsAdmin());
+        gpr_cantidad.setVisible(!s.getEsAdmin());
+
     }
 
     @Override
@@ -111,30 +126,15 @@ public class TiendaController implements Initializable {
 
     }
 
-    @FXML
-    private void carrito(ActionEvent event) {
-        ir_carrito(this, event, sistema);
-    }
-
-    @FXML
-    private void historial(ActionEvent event) {
-        ir_historial(this, event, sistema);
-    }
-
-    @FXML
-    private void cerrarSesion(ActionEvent event) {
-        frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
-    }
-
     private void actualizarListaArticulos() {
-        ArrayList<Articulo> listaArt = this.sistema.
+        List<Articulo> listaArt = this.sistema.
                 filtrarArticulos(desde, hasta, valoracion,
                         categorias.toArray(new String[categorias.size()]),
                         nombreABuscar);
         cargarArticulos(listaArt);
     }
 
-    private void cargarArticulos(ArrayList<Articulo> listArt) {
+    private void cargarArticulos(List<Articulo> listArt) {
         this.vbox.getChildren().clear();
 
         int maxFila = 0;
@@ -169,7 +169,8 @@ public class TiendaController implements Initializable {
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(TiendaController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TiendaController.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -223,18 +224,60 @@ public class TiendaController implements Initializable {
     }
 
     @FXML
-    void puntosVenta(ActionEvent event) {
-        FXMLLoader fxml = Utilitarios.cambiarVentana(this, event, "/frontend/Mapa.fxml");
-        //Carga los datos
-        MapaController controller = fxml.getController();
-        controller.inicializarDatos(sistema);
-        fxml.setController(controller);
-
+    private void carrito(ActionEvent event) {
+        ir_carrito(this, event, sistema);
     }
 
     @FXML
-    void propuestas(ActionEvent event) {
-        //soon
+    private void historial(ActionEvent event) {
+        ir_historial(this, event, sistema);
+    }
+
+    @FXML
+    private void cerrarSesion(ActionEvent event) {
+        frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
+    }
+
+    @FXML
+    private void puntosVenta(ActionEvent event) {
+        ir_puntosVenta(this, event, sistema);
+    }
+
+    @FXML
+    private void propuestas(ActionEvent event) {
+        ir_propuestas(this, event, sistema);
+    }
+
+    @FXML
+    private void agregarArticulo(ActionEvent event) {
+
+        Stage newstage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader(this.getClass().
+                getResource("/frontend/AgregarProducto.fxml"));
+
+        try {
+
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            //Cargar Mensaje
+            AgregarProductoController controlador = loader.getController();
+            controlador.inicializarDatos(sistema);
+
+            newstage.initStyle(StageStyle.UNDECORATED);
+            newstage.setScene(scene);
+            newstage.initModality(Modality.APPLICATION_MODAL);
+            ((Stage) (newstage.getScene().getWindow())).centerOnScreen();
+
+            newstage.showAndWait();
+
+        } catch (IOException ex) {
+
+            Logger.getLogger(ProductoController.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+        this.cargarArticulos(this.sistema.getArticulos());
 
     }
 

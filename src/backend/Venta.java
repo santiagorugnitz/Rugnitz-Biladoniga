@@ -8,6 +8,7 @@ package backend;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,19 +16,11 @@ import java.util.ArrayList;
  */
 public class Venta {
 
-    private ArrayList<Compra> compras;
+    private List<Compra> compras;
     private LocalDate fecha;
 
-    public ArrayList<Compra> getCompras() {
+    public List<Compra> getCompras() {
         return compras;
-    }
-
-    public int getTotal() {
-        int total = 0;
-        for (int i = 0; i < compras.size(); i++) {
-            total += compras.get(i).getCantidad() * compras.get(i).getArticulo().getPrecio();
-        }
-        return total;
     }
 
     public LocalDate getFecha() {
@@ -39,8 +32,16 @@ public class Venta {
     }
 
     public Venta() {
-        this.compras = new ArrayList();
-        this.fecha = LocalDate.now();
+        this.compras=new ArrayList();
+        this.setFecha(LocalDate.now());
+    }
+    
+    public int getTotal() {
+        int total = 0;
+        for (int i = 0; i < compras.size(); i++) {
+            total += compras.get(i).getCantidad() * compras.get(i).getArticulo().getPrecio();
+        }
+        return total;
     }
 
     public boolean cambiarFecha(int anio, int mes, int dia) {
@@ -50,7 +51,7 @@ public class Venta {
         } catch (DateTimeException e) {
             return false;
         }
-        this.fecha = d;
+        this.setFecha(d);
         return true;
     }
 
@@ -205,7 +206,4 @@ public class Venta {
         return ret;
     }
 
-    public int cantidadCarrito() {
-        return this.compras.size();
-    }
 }

@@ -5,24 +5,23 @@
  */
 package frontend;
 
-import backend.Compra;
 import backend.Sistema;
 import backend.Venta;
 import static frontend.Utilitarios.ir_carrito;
+import static frontend.Utilitarios.ir_propuestas;
+import static frontend.Utilitarios.ir_puntosVenta;
 import static frontend.Utilitarios.ir_tienda;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -55,7 +54,9 @@ public class HistorialController implements Initializable {
     }
 
     public void cargarHistorial() {
-        ArrayList<Venta> listCompras = this.sistema.getVentas();
+        List<Venta> listCompras = sistema.getEsAdmin()?
+                this.sistema.getVentas():this.sistema.getVentasCliente();
+        
         this.lista_ordenes.getChildren().clear();
 
         for (int i = 0; i < listCompras.size(); i++) {
@@ -69,7 +70,7 @@ public class HistorialController implements Initializable {
                 //Carga los datos
                 HistorialOrdenController controller = fxml.getController();
 
-                controller.inicializarDatos(listCompras.get(i), i,lista_ventas);
+                controller.inicializarDatos(listCompras.get(i), i, lista_ventas);
 
                 //Cargo el nuevo objeto
                 this.lista_ordenes.getChildren().add(nodo);
@@ -80,7 +81,7 @@ public class HistorialController implements Initializable {
         }
 
     }
-    
+
     @FXML
     private void carrito(ActionEvent event) {
         ir_carrito(this, event, sistema);
@@ -94,5 +95,15 @@ public class HistorialController implements Initializable {
     @FXML
     private void cerrarSesion(ActionEvent event) {
         frontend.Utilitarios.cerrarSesion(this, event, this.sistema);
+    }
+
+    @FXML
+    private void puntosVenta(ActionEvent event) {
+        ir_puntosVenta(this, event, sistema);
+    }
+
+    @FXML
+    private void propuestas(ActionEvent event) {
+        ir_propuestas(this, event, sistema);
     }
 }

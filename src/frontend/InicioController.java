@@ -6,21 +6,14 @@
 package frontend;
 
 import backend.Sistema;
-import static frontend.Utilitarios.cambiarVentana;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -44,21 +37,24 @@ public class InicioController implements Initializable {
     }
 
     @FXML
-    public void admin() {
-
+    public void admin(ActionEvent event) {
+        sistema.setEsAdmin(true);
+        this.cargar(event);
     }
 
     @FXML
     public void consumidor(ActionEvent event) throws IOException {
+        sistema.setEsAdmin(false);
+        this.cargar(event);
+    }
 
+    private void cargar(ActionEvent event) {
         FXMLLoader fxml = Utilitarios.
                 cambiarVentana(this, event, "/frontend/Tienda.fxml");
-
         //Carga los datos
         TiendaController controller = fxml.getController();
         controller.inicializarDatos(sistema);
         fxml.setController(controller);
-
     }
 
     @FXML
