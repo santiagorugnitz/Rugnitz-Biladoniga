@@ -138,7 +138,7 @@ public class Articulo {
 
     }
 
-    public Articulo(String nombre, String origen, int precio, String material, int id, Tipo tipo, Image imagen, Categoria[] categorias) {
+    public Articulo(String nombre, String origen, int precio, int id, Tipo tipo, Image imagen, Categoria[] categorias) {
         this.setNombre(nombre);
         this.setOrigen(origen);
         this.setPrecio(precio);

@@ -44,17 +44,6 @@ public class Venta {
         return total;
     }
 
-    public boolean cambiarFecha(int anio, int mes, int dia) {
-        LocalDate d;
-        try {
-            d = LocalDate.of(anio, mes, dia);
-        } catch (DateTimeException e) {
-            return false;
-        }
-        this.setFecha(d);
-        return true;
-    }
-
     public void agregarArticulo(Articulo a, Envase e, int unidades) {
         this.compras.add(new Compra(a, e, unidades));
     }

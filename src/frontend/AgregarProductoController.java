@@ -113,7 +113,7 @@ public class AgregarProductoController implements Initializable {
             Articulo.Categoria[] cats = categorias.toArray(
                     new Articulo.Categoria[categorias.size()]);
 
-            sistema.agregarArticulo(nombre, origen, 0, precio,
+            sistema.agregarArticulo(nombre, origen, Integer.parseInt(precio),
                     tipo, imagen, cats);
 
             Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();
