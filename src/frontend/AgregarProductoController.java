@@ -94,7 +94,7 @@ public class AgregarProductoController implements Initializable {
     private void confirmar(ActionEvent evento) throws MalformedURLException, IOException {
         String nombre = this.txt_nombre.getText();
         String origen = this.txt_origen.getText();
-        String precio = this.txt_origen.getText();
+        String precio = this.txt_precio.getText();
         Articulo.Tipo tipo = (Articulo.Tipo) lst_tipo.getValue();
 
         if (nombre.trim().isEmpty() || origen.trim().isEmpty()
