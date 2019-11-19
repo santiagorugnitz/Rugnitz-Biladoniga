@@ -1,6 +1,6 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template img, choose Tools | Templates
  * and open the template in the editor.
  */
 package backend;
@@ -54,14 +54,14 @@ public class Main extends Application {
         s.agregarArticulo("comidonga", "china","", 5445, Articulo.Tipo.SECO, img, new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
         s.agregarArticulo("comidota", "china","", 455, Articulo.Tipo.SECO, img, new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
 
-        s.agregarPropuesta("Más jugos", "Agreguen más jugos por favor", 0, file);
-        s.agregarPropuesta("sddd", "aloaaa", 0, file);
-        s.agregarPropuesta("aasdcc", "aloaaa", 0, file);
-        s.agregarPropuesta("shola", "aloaaa", 0, file);
-        s.agregarPropuesta("xddd", "aloaaa", 0, file);
-        s.agregarPropuesta("loool", "aloaaa", 0, file);
-        s.agregarPropuesta("santi", "aloaaa", 0, file);
-        s.agregarPropuesta("mejorrr", "aloaaa", 0, file);
+        s.agregarPropuesta("Más jugos", "Agreguen más jugos por favor", 0, img);
+        s.agregarPropuesta("sddd", "aloaaa", 0, img);
+        s.agregarPropuesta("aasdcc", "aloaaa", 0, img);
+        s.agregarPropuesta("shola", "aloaaa", 0, img);
+        s.agregarPropuesta("xddd", "aloaaa", 0, img);
+        s.agregarPropuesta("loool", "aloaaa", 0, img);
+        s.agregarPropuesta("santi", "aloaaa", 0, img);
+        s.agregarPropuesta("mejorrr", "aloaaa", 0, img);
 
         //FIN ARTICULOS POR DEFECTO
         InicioController controlador = loader.getController();
