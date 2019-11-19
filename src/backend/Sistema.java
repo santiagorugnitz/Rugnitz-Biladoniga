@@ -18,7 +18,7 @@ import javafx.scene.image.Image;
  * @author Santiago
  */
 public class Sistema {
-
+    
     private List<Venta> ventas;
     private List<Envase> envases;
     private List<Articulo> articulos;
@@ -45,7 +45,8 @@ public class Sistema {
     }
 
     /**
-     * Resetea el historial y la lista de propuestas del cliente a los valores por defecto
+     * Resetea el historial y la lista de propuestas del cliente a los valores
+     * por defecto
      */
     public void cerrarSesion() {
         this.propuestasCliente = new ArrayList(propuestas);
@@ -90,6 +91,7 @@ public class Sistema {
 
     /**
      * Se crea el articulo con los parametros recibidos y se agrega al sistema
+     *
      * @param nombre Nombre del articulo
      * @param origen País de origen del articulo
      * @param descripcion Descripción del articulo
@@ -97,74 +99,63 @@ public class Sistema {
      * @param tipo Tipo del articulo
      * @param img Imagen del articulo, debe existir
      * @param categorias Categorias del articulo
-     * @throws IOException 
+     * @throws IOException
      */
     public void agregarArticulo(String nombre, String origen, String descripcion, int precio,
             Articulo.Tipo tipo, Image img, Articulo.Categoria[] categorias) throws IOException {
-            Image image = img;
-            Articulo a = new Articulo(nombre, origen, descripcion, precio, this.articulos.size() + 1, tipo, image, categorias);
-            this.articulos.add(a);
+        Image image = img;
+        Articulo a = new Articulo(nombre, origen, descripcion, precio, this.articulos.size(), tipo, image, categorias);
+        this.articulos.add(a);
     }
 
     /**
-     * 
-     * @param id
-     * @param origen
-     * @param precio
-     * @param tipo 
+     * Cambia los atributos del articulo elegido a los pasados por parametro
+     *
+     * @param id id del articulo
+     * @param origen Nuevo país de origen
+     * @param descripcion Nueva descripción
+     * @param precio Nuevo precio
+     * @param tipo Nuevo tipo
+     * @param disponibilidad Nueva disponibilidad
      */
-    public void actualizarArticulo(int id, String origen, int precio, Articulo.Tipo tipo) {
+    public void actualizarArticulo(int id, String origen, String descripcion, int precio, Articulo.Tipo tipo, boolean disponibilidad) {
         Articulo a = this.articulos.get(id);
         a.setOrigen(origen);
+        a.setDescripcion(descripcion);
         a.setPrecio(precio);
         a.setTipo(tipo);
+        a.setDisponible(disponibilidad);
     }
 
     /**
-     * PRE:- POS: Si costeProduccion>0 se agrega el envase y retorna true, de lo
-     * contrario retorna false
-     *
+     * Crea un envase con los parametros recibidos y lo agrega al sistema
      * @param nombre Nombre del envase
-     * @param tipos tipos de alimento/bebida aceptados por el envase
-     * @param costeProduccion coste ambiental de la produccion del envase debe
-     * ser positivo
+     * @param tipos Tipos de articulos con los que se podría usar el envase
+     * @param costeProduccion Coste ambiental de producción del envase
      */
-    public boolean agregarEnvase(String nombre, Articulo.Tipo[] tipos, int costeProduccion) {
-        if (costeProduccion > 0) {
-            Envase e = new Envase(nombre, this.envases.size() + 1, tipos, costeProduccion);
-            this.envases.add(e);
-            return true;
-        } else {
-            return false;
-        }
+    public void agregarEnvase(String nombre, Articulo.Tipo[] tipos, int costeProduccion) {
+        Envase e = new Envase(nombre, this.envases.size(), tipos, costeProduccion);
+        this.envases.add(e);
     }
 
     /**
-     * PRE:- POS: Se agrega la venta a la lista y se actualizan los usos de los
-     * elementos y el beneficio global
+     * Registra en el sistema la venta con los articulos del carrito, genera el ticket y reinicia el carrito
+     * @return Ticket electrónico de la compra 
      */
     public String registrarVenta() {
-        //TODO descomentar cuando las compras tengan envases no nulos
         ventas.add(carrito);
         ventasCliente.add(carrito);
-
-        /*
-        for (int i = 0; i < carrito.getCompras().size(); i++) {
-            Compra c = carrito.getCompras().get(i);
-            c.getArticulo().aumentarUso(c.getCantidad());
-            c.getEnvase().aumentarUso(c.getCantidad());
-            this.actualizarBeneficio(c.getEnvase(), c.getCantidad());
-        }
-         */
         String ret = carrito.generarTicketDGI();
+        for (Compra compra : carrito.getCompras()) {
+            this.actualizarBeneficio(compra.getEnvase(),compra.getCantidad());
+        }
         carrito = new Venta();
         actualizarListas();
         return ret;
     }
 
     /**
-     * PRE:- POS: Se ordenan las listas del sistema segun el ordenamiento
-     * predeterminado
+     * Reordena las listas según el orden predeterminado 
      */
     private void actualizarListas() {
         envases.sort((Envase t, Envase t1) -> t.getVecesUsado() - t1.getVecesUsado());
@@ -183,69 +174,78 @@ public class Sistema {
     }
 
     /**
-     * PRE: - POS: retorna una lista de ventas cuya fecha sea mayor a la fecha
-     * actual
-     *
+     * Agrega al beneficioAmbiental el coste de produccion de n envases
+     * @param e Envase utilizado
+     * @param n veces que se utilizó el envase
      */
-    public ArrayList<Venta> ventasPendientes() {
-        ArrayList<Venta> ret = new ArrayList();
-        for (int i = ventas.size() - 1; i > 0; i++) {
-            if (ventas.get(i).getFecha().compareTo(LocalDate.now()) > 0) {
-                ret.add(ventas.get(i));
-            } else {
-                return ret;
-            }
-
-        }
-        return ret;
-    }
-
-    /**
-     * PRE: - POS: Agrega el coste de produccion del envase recibido al
-     *
-     * @param e Envase reutilizado
-     */
-    public void actualizarBeneficio(Envase e, int n) {
+    private void actualizarBeneficio(Envase e, int n) {
         this.beneficioAmbiental += e.getCosteProduccion() * n;
     }
 
+    /**
+     * Filtra la lista de articulos según las condiciones pasadas por parámetro y disponiblidad
+     * @param precioDesde Precio mínimo
+     * @param precioHasta Precio máximo
+     * @param minValoracion Valoración mínima
+     * @param categorias Categorias elegidas (debe cumplir al menos una)
+     * @param nombre Nombre o parte del nombre del articulo
+     * @return Lista de articulos filtrada 
+     */
     public List<Articulo> filtrarArticulos(int precioDesde, int precioHasta,
             double minValoracion, Articulo.Categoria[] categorias,
             String nombre) {
         List<Articulo> ret = new ArrayList();
         for (Articulo articulo : articulos) {
             boolean categoriaCorrecta = categorias.length == 0
-                    ? true : unoEnComun(categorias, articulo.getCategorias());
+                    ? true : estanTodos(categorias, articulo.getCategorias());
             boolean nombreContenido = nombre.length() == 0
-                    ? true : articulo.getNombre().contains(nombre);
+                    ? true : articulo.getNombre().toLowerCase().contains(nombre.toLowerCase());
             if (articulo.getPrecio() <= precioHasta && articulo.getPrecio()
                     >= precioDesde && articulo.getValoracion() >= minValoracion
-                    && categoriaCorrecta && nombreContenido) {
+                    && categoriaCorrecta && nombreContenido && articulo.isDisponible()) {
                 ret.add(articulo);
             }
         }
         return ret;
     }
 
-    private boolean unoEnComun(Articulo.Categoria[] a1, Articulo.Categoria[] a2) {
-        for (Articulo.Categoria c1 : a1) {
-            for (Articulo.Categoria c2 : a2) {
-                if (c2.equals(c1)) {
-                    return true;
+    /**
+     * Método auxiliar que busca si todas las categorias del array de partida estan presentes en el de llegada
+     * @param partida Array de categorías de partida
+     * @param llegada Array de categorías de llegada
+     * @return false si un elemento de partida no se encuentra en llegada, true en caso contrario
+     */
+    private boolean estanTodos(Articulo.Categoria[] partida, Articulo.Categoria[] llegada) {
+        boolean encontre=false;
+        for (Articulo.Categoria c1 : partida) {
+            encontre=false;
+            for (int i=0;i<llegada.length&&!encontre;i++) {
+                if (llegada[i].equals(c1)) {
+                    encontre= true;
                 }
             }
+            if(!encontre)return false;
         }
-        return false;
+        return true;
     }
 
     public void agregarAlCarrito(Articulo a, Envase e, int unidades) {
         carrito.agregarArticulo(a, e, unidades);
     }
-
+    
+    /**
+     * Quita un articulo del carrito
+     * @param pos Posición del articulo a borrar
+     */
     public void quitarDelCarrito(int pos) {
         carrito.quitarArticulo(pos);
     }
 
+    /**
+     * Actualiza las unidades a comprar de un articulo del carrito
+     * @param pos Posición del articulo dentro del carrito
+     * @param cantNueva cantidad de unidades nueva
+     */
     public void editarCantCarrito(int pos, int cantNueva) {
         carrito.getCompras().get(pos).setCantidad(cantNueva);
     }
@@ -270,6 +270,11 @@ public class Sistema {
         return this.propuestasCliente;
     }
 
+    /**
+     * Filtra la lista de propuestas buscando propuestas cuyo nombre contenga el String pasado por parámetro
+     * @param nombre Nombre a buscar
+     * @return Lista de propuestas filtrada
+     */
     public List<Propuesta> filtrarPropuesta(String nombre) {
         List<Propuesta> ret = new ArrayList();
         for (Propuesta propuesta : propuestas) {
@@ -282,6 +287,11 @@ public class Sistema {
         return ret;
     }
 
+    /**
+     * Crea la lista de envases compatibles con el articulo dado
+     * @param a Articulo que se quiere comprar
+     * @return Lista de envases compatibles
+     */
     public List<Envase> envasesCompatibles(Articulo a) {
         List<Envase> ret = new ArrayList();
         for (Envase envase : this.envases) {
@@ -291,7 +301,14 @@ public class Sistema {
         }
         return ret;
     }
-
+    /**
+     * Crea la propuesta con los parámetros recibidos y la agrega al sistema
+     * @param nombre Nombre de la propuesta
+     * @param descripcion Descripción de la propuesta
+     * @param cantidadVotos Cantidad de votos inicial de la propuesta
+     * @param imagen Imagen de la propuesta, debe existir
+     * @throws MalformedURLException 
+     */
     public void agregarPropuesta(String nombre, String descripcion,
             int cantidadVotos,
             Image imagen) throws MalformedURLException {
@@ -304,6 +321,10 @@ public class Sistema {
         this.propuestasCliente.add(propuesta);
     }
 
+    /**
+     * Agrega un voto a la propuesta y la borra de la lista de propuestas
+     * @param propuesta Propuesta a votar
+     */
     public void agregarVotoPropuesta(Propuesta propuesta) {
         propuesta.agregarVoto();
         this.removerPropuesta(propuesta);
@@ -312,7 +333,11 @@ public class Sistema {
     public void removerPropuesta(Propuesta propuesta) {
         this.propuestasCliente.remove(propuesta);
     }
-
+    
+    /**
+     * Calcula la suma de todos los precios totales de cada venta
+     * @return suma de las ganancias de cada venta
+     */
     public int gananciasTotales() {
         int ret = 0;
         for (Venta venta : ventas) {
@@ -320,7 +345,12 @@ public class Sistema {
         }
         return ret;
     }
-
+    
+    /**
+     * Dado un mes da la ganancia de las ventas de ese mes
+     * @param mes Mes a calcular las ventas
+     * @return total de las ventas del mes
+     */
     public int gananciaMes(int mes) {
         int ret = 0;
         for (Venta venta : ventas) {
@@ -331,15 +361,7 @@ public class Sistema {
         return ret;
     }
 
-    public int gananciaHoy() {
-        int ret = 0;
-        for (Venta venta : ventas) {
-            if (venta.getFecha().equals(LocalDate.now())) {
-                ret += venta.getTotal();
-            }
-        }
-        return ret;
-    }
+  
 
     public int cantVentas() {
         return ventas.size();
@@ -356,12 +378,12 @@ public class Sistema {
     }
 
     /**
-     *
-     * @param f
-     * @return
+     * Verifica si la fecha no es anterior a la de hoy y no es más de 14 días después
+     * @param fecha Fecha a validar
+     * @return true si la fecha esta dentro del rango, false en caso contrario
      */
-    public boolean fechaPreVentaValida(LocalDate f) {
+    public boolean fechaPreVentaValida(LocalDate fecha) {
         LocalDate fechaLimite = LocalDate.now().plusDays(14);
-        return !f.isAfter(fechaLimite) && !f.isBefore(LocalDate.now());
+        return !fecha.isAfter(fechaLimite) && !fecha.isBefore(LocalDate.now());
     }
 }

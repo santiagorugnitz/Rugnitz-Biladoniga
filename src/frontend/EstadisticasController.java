@@ -40,7 +40,7 @@ public class EstadisticasController implements Initializable {
     @FXML
     private Label lbl_ganancias;
     @FXML
-    private Label lbl_ganancias_hoy;
+    private Label lbl_beneficio;
     @FXML
     private LineChart<Number, Number> grafica;
 
@@ -50,7 +50,7 @@ public class EstadisticasController implements Initializable {
         this.sistema = sistema;
         //Cargar Estadisticas
         this.lbl_ganancias.setText("$"+String.valueOf(sistema.gananciasTotales()));
-        this.lbl_ganancias_hoy.setText("$"+String.valueOf(sistema.gananciaHoy()));
+        this.lbl_beneficio.setText(String.valueOf(sistema.getBeneficioAmbiental()));
         this.lbl_ventas.setText(String.valueOf(sistema.cantVentas()));
         this.lbl_ventas_hoy.setText(String.valueOf(sistema.cantVentasHoy()));
 
@@ -73,7 +73,7 @@ public class EstadisticasController implements Initializable {
         final NumberAxis yAxis = new NumberAxis();
 
         XYChart.Series series = new XYChart.Series();
-        series.setName("Ganancias");
+        series.setName("Ganancias por mes");
 
         for (int i = 1; i <= 12; i++) {
             series.getData().add(new XYChart.Data(i, sistema.gananciaMes(i)));

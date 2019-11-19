@@ -8,6 +8,7 @@ package backend;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -199,5 +200,40 @@ public class Venta {
                 + "</html>";
         return ret;
     }
+
+    @Override
+    public String toString() {
+        return "Venta{" + "compras=" + compras + ", fecha=" + fecha + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Venta other = (Venta) obj;
+        if (!Objects.equals(this.compras, other.compras)) {
+            return false;
+        }
+        if (!Objects.equals(this.fecha, other.fecha)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
 
 }

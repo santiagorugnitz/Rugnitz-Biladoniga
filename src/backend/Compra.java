@@ -5,6 +5,8 @@
  */
 package backend;
 
+import java.util.Objects;
+
 /**
  *
  * @author Santiago
@@ -57,5 +59,35 @@ public class Compra {
     public int total(){
         return articulo.getPrecio()*cantidad;
     }
+
+    @Override
+    public String toString() {
+        return "Compra{" + "articulo=" + articulo + ", envase=" + envase + ", cantidad=" + cantidad + '}';
+    }    
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Compra other = (Compra) obj;
+        if (this.cantidad != other.cantidad) {
+            return false;
+        }
+        if (!Objects.equals(this.articulo, other.articulo)) {
+            return false;
+        }
+        if (!Objects.equals(this.envase, other.envase)) {
+            return false;
+        }
+        return true;
+    }
+    
     
 }

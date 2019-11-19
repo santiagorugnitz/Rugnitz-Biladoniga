@@ -104,7 +104,7 @@ public class Articulo {
         return vecesComprado;
     }
 
-    public void setVecesComprado(int vecesComprado) {
+    private void setVecesComprado(int vecesComprado) {
         this.vecesComprado = vecesComprado;
     }
 
@@ -120,7 +120,7 @@ public class Articulo {
         return valoracion;
     }
 
-    public void setValoracion(double valoracion) {
+    private void setValoracion(double valoracion) {
         this.valoracion = valoracion;
     }
 
@@ -179,5 +179,30 @@ public class Articulo {
         this.setVecesValorado(this.getVecesValorado() + 1);
         this.setValoracion(this.getValoracion() / this.getVecesValorado());
     }
+
+    @Override
+    public String toString() {
+        return "Articulo{" + "nombre=" + nombre + ", precio=" + precio + '}';
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Articulo other = (Articulo) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }
