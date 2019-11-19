@@ -99,10 +99,9 @@ public class Sistema {
      * @param tipo Tipo del articulo
      * @param img Imagen del articulo, debe existir
      * @param categorias Categorias del articulo
-     * @throws IOException
      */
     public void agregarArticulo(String nombre, String origen, String descripcion, int precio,
-            Articulo.Tipo tipo, Image img, Articulo.Categoria[] categorias) throws IOException {
+            Articulo.Tipo tipo, Image img, Articulo.Categoria[] categorias){
         Image image = img;
         Articulo a = new Articulo(nombre, origen, descripcion, precio, this.articulos.size(), tipo, image, categorias);
         this.articulos.add(a);
@@ -112,14 +111,16 @@ public class Sistema {
      * Cambia los atributos del articulo elegido a los pasados por parametro
      *
      * @param id id del articulo
+     * @param nombre Nuevo nombre
      * @param origen Nuevo país de origen
      * @param descripcion Nueva descripción
      * @param precio Nuevo precio
      * @param tipo Nuevo tipo
      * @param disponibilidad Nueva disponibilidad
      */
-    public void actualizarArticulo(int id, String origen, String descripcion, int precio, Articulo.Tipo tipo, boolean disponibilidad) {
+    public void actualizarArticulo(int id, String nombre,String origen, String descripcion, int precio, Articulo.Tipo tipo, boolean disponibilidad) {
         Articulo a = this.articulos.get(id);
+        a.setNombre(nombre);
         a.setOrigen(origen);
         a.setDescripcion(descripcion);
         a.setPrecio(precio);
@@ -307,11 +308,10 @@ public class Sistema {
      * @param descripcion Descripción de la propuesta
      * @param cantidadVotos Cantidad de votos inicial de la propuesta
      * @param imagen Imagen de la propuesta, debe existir
-     * @throws MalformedURLException 
      */
     public void agregarPropuesta(String nombre, String descripcion,
             int cantidadVotos,
-            Image imagen) throws MalformedURLException {
+            Image imagen){
 
         Image image = imagen;
 

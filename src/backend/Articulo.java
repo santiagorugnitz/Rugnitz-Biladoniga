@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
  */
 public class Articulo {
 
-    //TODO: agregar mas supongo
     public enum Tipo {
         BEBIDA, SECO, HUMEDO
     };
