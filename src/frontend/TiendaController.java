@@ -21,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -142,7 +141,7 @@ public class TiendaController implements Initializable {
         cargarArticulos(listaArt);
     }
 
-    private void cargarArticulos(List<Articulo> listArt) {
+    public void cargarArticulos(List<Articulo> listArt) {
         this.vbox.getChildren().clear();
 
         int maxFila = 0;
@@ -160,7 +159,7 @@ public class TiendaController implements Initializable {
 
                 //Carga los datos
                 ProductoController controller = fxml.getController();
-                controller.inicializarDatos(art, sistema, lbl_cantidad_carro);
+                controller.inicializarDatos(art, sistema, lbl_cantidad_carro, this);
                 fxml.setController(controller);
 
                 //Cargo el nuevo objeto
@@ -298,7 +297,7 @@ public class TiendaController implements Initializable {
 
             //Cargar Mensaje
             AgregarProductoController controlador = loader.getController();
-            controlador.inicializarDatos(sistema);
+            controlador.inicializarDatos(sistema, null);
 
             newstage.initStyle(StageStyle.UNDECORATED);
             newstage.setScene(scene);

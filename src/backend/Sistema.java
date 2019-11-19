@@ -298,9 +298,9 @@ public class Sistema {
 
     public void agregarPropuesta(String nombre, String descripcion,
             int cantidadVotos,
-            File imagen) throws MalformedURLException {
+            Image imagen) throws MalformedURLException {
 
-        Image image = new Image(imagen.toURI().toURL().toExternalForm());
+        Image image = imagen;
 
         Propuesta propuesta = new Propuesta(nombre, descripcion, cantidadVotos,
                 image);
