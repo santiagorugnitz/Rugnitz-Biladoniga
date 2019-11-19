@@ -65,7 +65,7 @@
             <JFXTextArea fx:id="txt_categorias" editable="false" focusColor="WHITE" prefHeight="137.0" prefWidth="281.0" style="-fx-text-fill: white;" text="No tiene categorias&#10;" unFocusColor="WHITE" />
          </children>
       </VBox>
-      <Label layoutX="20.0" layoutY="288.0" text="Valorar" textAlignment="RIGHT" textFill="WHITE">
+      <Label fx:id="lbl_valorar" layoutX="20.0" layoutY="288.0" text="Valorar" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -76,7 +76,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="42.0" layoutY="387.0" onAction="#votar" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #6F64F8;" text="Votar!" textFill="WHITE">
+      <JFXButton fx:id="btn_votar" layoutX="42.0" layoutY="387.0" onAction="#votar" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #6F64F8;" text="Votar!" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

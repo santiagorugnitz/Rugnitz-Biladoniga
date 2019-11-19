@@ -26,11 +26,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -65,7 +67,30 @@ public class CarroController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        restringirFecha(fechaEntrega, LocalDate.now(), 
+                LocalDate.now().plusDays(14));
+    }
 
+    public void restringirFecha(DatePicker datePicker, LocalDate minDate, LocalDate maxDate) {
+        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(final DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item.isBefore(minDate)) {
+                            setDisable(true);
+                            setStyle("-fx-background-color: #ffc0cb;");
+                        } else if (item.isAfter(maxDate)) {
+                            setDisable(true);
+                            setStyle("-fx-background-color: #ffc0cb;");
+                        }
+                    }
+                };
+            }
+        };
+        datePicker.setDayCellFactory(dayCellFactory);
     }
 
     @FXML
@@ -77,8 +102,8 @@ public class CarroController implements Initializable {
     private void comprar(ActionEvent event) {
         if (sistema.cantCarrito() > 0) {
             LocalDate fecha = this.fechaEntrega.getValue();
-            this.sistema.getCarrito().setFecha(fecha==null?
-                    LocalDate.now():fecha);
+            this.sistema.getCarrito().setFecha(fecha == null
+                    ? LocalDate.now() : fecha);
             String html = this.sistema.registrarVenta();
             mostrarFactura(html);
             productos.fire();

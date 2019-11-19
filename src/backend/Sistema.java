@@ -96,9 +96,9 @@ public class Sistema {
      * @param tipo Tipo del articulo
      */
     public boolean agregarArticulo(String nombre, String origen, int precio,
-            Articulo.Tipo tipo, File img, Articulo.Categoria[] categorias) throws IOException {
+            Articulo.Tipo tipo, Image img, Articulo.Categoria[] categorias) throws IOException {
         if (precio >= 0) {
-            Image image = new Image(img.toURI().toURL().toExternalForm());
+            Image image = img;
             Articulo a = new Articulo(nombre, origen, precio,
                     this.articulos.size() + 1, tipo, image, categorias);
             this.articulos.add(a);
@@ -299,9 +299,9 @@ public class Sistema {
 
     public void agregarPropuesta(String nombre, String descripcion,
             int cantidadVotos,
-            File imagen) throws MalformedURLException {
+            Image imagen) throws MalformedURLException {
 
-        Image image = new Image(imagen.toURI().toURL().toExternalForm());
+        Image image = imagen;
 
         Propuesta propuesta = new Propuesta(nombre, descripcion, cantidadVotos,
                 image);
@@ -354,14 +354,15 @@ public class Sistema {
         int ret = 0;
         for (Venta venta : ventas) {
             if (venta.getFecha().equals(LocalDate.now())) {
-                ret ++;
+                ret++;
             }
         }
         return ret;
     }
+
     //perdon por el nombre
-    public boolean fechaPreVentaValida(LocalDate f){
+    public boolean fechaPreVentaValida(LocalDate f) {
         LocalDate fechaLimite = LocalDate.now().plusDays(14);
-        return !f.isAfter(fechaLimite)&&!f.isBefore(LocalDate.now());
+        return !f.isAfter(fechaLimite) && !f.isBefore(LocalDate.now());
     }
 }
