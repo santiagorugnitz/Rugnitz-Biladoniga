@@ -96,9 +96,9 @@ public class Sistema {
      * @param tipo Tipo del articulo
      */
     public boolean agregarArticulo(String nombre, String origen, String descripcion, int precio,
-            Articulo.Tipo tipo, File img, Articulo.Categoria[] categorias) throws IOException {
+            Articulo.Tipo tipo, Image img, Articulo.Categoria[] categorias) throws IOException {
         if (precio >= 0) {
-            Image image = new Image(img.toURI().toURL().toExternalForm());
+            Image image = img;
             Articulo a = new Articulo(nombre, origen, descripcion, precio, this.articulos.size() + 1, tipo, image, categorias);
             this.articulos.add(a);
             return true;
