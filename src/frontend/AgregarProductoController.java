@@ -138,7 +138,8 @@ public class AgregarProductoController implements Initializable {
 
             } else {
                 img = new Image(imagen.toURI().toURL().toExternalForm());
-                sistema.agregarArticulo(nombre, origen, Integer.parseInt(precio),
+                //TODO: hacer en la interfaz un campo para descripcion
+                sistema.agregarArticulo(nombre, origen,"descripcion", Integer.parseInt(precio),
                         tipo, img, cats);
             }
 

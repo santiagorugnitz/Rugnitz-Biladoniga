@@ -77,6 +77,11 @@ public class Envase {
         this.setVecesUsado(this.getVecesUsado() + n);
     }
 
+    /**
+     * Busca si el tipo recibido pertenece al array de tipos
+     * @param t tipo de articulo que se quiere comprobar
+     * @return true si el envase admite el tipo, de lo contrario false
+     */
     public boolean admiteElTipo(Articulo.Tipo t) {
         for (Articulo.Tipo tipo : tipos) {
             if (t == tipo) {

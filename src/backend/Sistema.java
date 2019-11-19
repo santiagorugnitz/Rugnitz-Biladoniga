@@ -44,6 +44,9 @@ public class Sistema {
         this.esAdmin = true;
     }
 
+    /**
+     * Resetea el historial y la lista de propuestas del cliente a los valores por defecto
+     */
     public void cerrarSesion() {
         this.propuestasCliente = new ArrayList(propuestas);
         this.ventasCliente = new ArrayList();
@@ -86,36 +89,29 @@ public class Sistema {
     }
 
     /**
-     * PRE: La lista de articulos no debe contener el articulo a ingresar POS:
-     * Si el precio es mayor o igual a 0 se agrega el articulo y retorna true,
-     * de lo contrario retorna false
-     *
-     * @param origen Origen del articulo
-     * @param precio Precio del articulo, debe ser mayor o igual a 0
-     * @param material Material del articulo
+     * Se crea el articulo con los parametros recibidos y se agrega al sistema
+     * @param nombre Nombre del articulo
+     * @param origen País de origen del articulo
+     * @param descripcion Descripción del articulo
+     * @param precio Precio del articulo, debe ser positivo
      * @param tipo Tipo del articulo
+     * @param img Imagen del articulo, debe existir
+     * @param categorias Categorias del articulo
+     * @throws IOException 
      */
-    public boolean agregarArticulo(String nombre, String origen, String descripcion, int precio,
+    public void agregarArticulo(String nombre, String origen, String descripcion, int precio,
             Articulo.Tipo tipo, Image img, Articulo.Categoria[] categorias) throws IOException {
-        if (precio >= 0) {
             Image image = img;
             Articulo a = new Articulo(nombre, origen, descripcion, precio, this.articulos.size() + 1, tipo, image, categorias);
             this.articulos.add(a);
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
-     * PRE: la lista de articulos debe tener al menos id-1 elementos POS: Se
-     * editan los atributos del articulo
-     *
-     * @param id Identificador del articulo
-     * @param origen Origen del articulo
-     * @param precio Precio del articulo, debe ser mayor o igual a 0
-     * @param material Material del articulo
-     * @param tipo Tipo del articulo
+     * 
+     * @param id
+     * @param origen
+     * @param precio
+     * @param tipo 
      */
     public void actualizarArticulo(int id, String origen, int precio, Articulo.Tipo tipo) {
         Articulo a = this.articulos.get(id);

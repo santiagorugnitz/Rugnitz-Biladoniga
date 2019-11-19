@@ -50,6 +50,10 @@ public class Compra {
         this.setCantidad(cantidad);
     }
     
+    /**
+     * Retorna el precio total de la compra
+     * @return precio del articulo multiplicado por la cantidad de articulos
+     */
     public int total(){
         return articulo.getPrecio()*cantidad;
     }

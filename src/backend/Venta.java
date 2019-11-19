@@ -5,7 +5,6 @@
  */
 package backend;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +35,14 @@ public class Venta {
         this.setFecha(LocalDate.now());
     }
     
+    /**
+     * Calcula el precio total de la venta sumando el precio total de cada compra
+     * @return precio total de la venta 
+     */
     public int getTotal() {
         int total = 0;
         for (int i = 0; i < compras.size(); i++) {
-            total += compras.get(i).getCantidad() * compras.get(i).getArticulo().getPrecio();
+            total += compras.get(i).total();
         }
         return total;
     }
@@ -51,7 +54,10 @@ public class Venta {
     public void quitarArticulo(int pos) {
         compras.remove(pos);
     }
-
+    /**
+     * Genera un html con el ticket electrónico de la venta siguiendo las normas de la DGI 
+     * @return codigo html del ticket de la venta
+     */
     public String generarTicketDGI() {
         String ret = "<!DOCTYPE html>\n"
                 + "<html>\n"
@@ -166,7 +172,6 @@ public class Venta {
                 + "  <td>" + this.getTotal() + "</td>\n"
                 + "  </tr>\n"
                 + "</table>\n"
-                + "<img src=\"D:\\Admin\\Google Drive\\Java\\Es el mapa es el mapa\\QRCode.png\" width=\"128\" height=\"128\" style=\"margin-left:2%\">\n"
                 + "\n"
                 + "<p></p>\n"
                 + "\n"

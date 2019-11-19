@@ -58,8 +58,7 @@ public class Propuesta {
 
     }
 
-    public Propuesta(String nombre, String descripcion, int cantidadVotos,
-            Image imagen) {
+    public Propuesta(String nombre, String descripcion, int cantidadVotos, Image imagen) {
         this.setNombre(nombre);
         this.setDescripcion(descripcion);
         this.setCantidadVotos(cantidadVotos);

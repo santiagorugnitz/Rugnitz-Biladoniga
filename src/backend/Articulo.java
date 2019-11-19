@@ -80,7 +80,7 @@ public class Articulo {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
@@ -167,10 +167,16 @@ public class Articulo {
     public void aumentarUso(int n) {
         this.setVecesComprado(this.getVecesComprado() + n);
     }
-
+    /**
+    * Actualiza la valoracion y la cantidad de valoraciones según la valoracion recibida. 
+    * valoracion es un promedio de todas las valoraciones realizadas
+    * 1- Se divide entre la cantidad de valoraciones para obtener la sumatoria de valoraciones
+    * 2- Se agrega la valoracion nueva y se divide entre la nueva cant de valoraciones
+    * @param valoracion valoracion nueva a agregar 
+    */
     public void agregarValoracion(double valoracion) {
         this.setValoracion(this.getValoracion() * this.getVecesValorado() + valoracion);
-        this.setVecesValorado(vecesValorado + 1);
+        this.setVecesValorado(this.getVecesValorado() + 1);
         this.setValoracion(this.getValoracion() / this.getVecesValorado());
     }
 
