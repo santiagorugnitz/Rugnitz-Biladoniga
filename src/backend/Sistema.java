@@ -95,12 +95,11 @@ public class Sistema {
      * @param material Material del articulo
      * @param tipo Tipo del articulo
      */
-    public boolean agregarArticulo(String nombre, String origen, int precio,
+    public boolean agregarArticulo(String nombre, String origen, String descripcion, int precio,
             Articulo.Tipo tipo, File img, Articulo.Categoria[] categorias) throws IOException {
         if (precio >= 0) {
             Image image = new Image(img.toURI().toURL().toExternalForm());
-            Articulo a = new Articulo(nombre, origen, precio,
-                    this.articulos.size() + 1, tipo, image, categorias);
+            Articulo a = new Articulo(nombre, origen, descripcion, precio, this.articulos.size() + 1, tipo, image, categorias);
             this.articulos.add(a);
             return true;
         } else {
@@ -354,14 +353,19 @@ public class Sistema {
         int ret = 0;
         for (Venta venta : ventas) {
             if (venta.getFecha().equals(LocalDate.now())) {
-                ret ++;
+                ret++;
             }
         }
         return ret;
     }
-    //perdon por el nombre
-    public boolean fechaPreVentaValida(LocalDate f){
+
+    /**
+     *
+     * @param f
+     * @return
+     */
+    public boolean fechaPreVentaValida(LocalDate f) {
         LocalDate fechaLimite = LocalDate.now().plusDays(14);
-        return !f.isAfter(fechaLimite)&&!f.isBefore(LocalDate.now());
+        return !f.isAfter(fechaLimite) && !f.isBefore(LocalDate.now());
     }
 }

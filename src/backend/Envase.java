@@ -29,7 +29,7 @@ public class Envase {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
@@ -58,12 +58,16 @@ public class Envase {
     }
 
     public Envase() {
-
+        this.setNombre("");
+        this.setId(-1);
+        this.setTipos(new Articulo.Tipo[0]);
+        this.setCosteProduccion(0);
+        this.setVecesUsado(0);
     }
 
-    public Envase(String nombre, int vecesUsado, Articulo.Tipo[] tipos, int costeProduccion) {
+    public Envase(String nombre,int id, Articulo.Tipo[] tipos, int costeProduccion) {
         this.setNombre(nombre);
-        this.setId(-1);
+        this.setId(id);
         this.setVecesUsado(0);
         this.setTipos(tipos);
         this.setCosteProduccion(costeProduccion);

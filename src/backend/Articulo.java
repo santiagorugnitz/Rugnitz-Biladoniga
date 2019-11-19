@@ -26,6 +26,7 @@ public class Articulo {
     private String nombre;
     private String origen;
     private int precio;
+    private String descripcion;
     private Categoria[] categorias;
     private int id;
     private boolean disponible;
@@ -57,6 +58,14 @@ public class Articulo {
 
     public void setPrecio(int precio) {
         this.precio = precio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Categoria[] getCategorias() {
@@ -126,6 +135,7 @@ public class Articulo {
     public Articulo() {
         this.setNombre("");
         this.setOrigen("");
+        this.setDescripcion("");
         this.setPrecio(0);
         this.setId(-1);
         this.setDisponible(false);
@@ -138,9 +148,10 @@ public class Articulo {
 
     }
 
-    public Articulo(String nombre, String origen, int precio, int id, Tipo tipo, Image imagen, Categoria[] categorias) {
+    public Articulo(String nombre, String origen,String descripcion, int precio, int id, Tipo tipo, Image imagen, Categoria[] categorias) {
         this.setNombre(nombre);
         this.setOrigen(origen);
+        this.setDescripcion(descripcion);
         this.setPrecio(precio);
         this.setId(id);
         this.setDisponible(true);

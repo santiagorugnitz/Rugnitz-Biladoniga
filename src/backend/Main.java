@@ -42,16 +42,16 @@ public class Main extends Application {
         s.agregarEnvase("Botella de plástico", new Articulo.Tipo[]{Articulo.Tipo.BEBIDA}, 50);
         s.agregarEnvase("Cantimplora", new Articulo.Tipo[]{Articulo.Tipo.BEBIDA}, 28);
 
-        s.agregarArticulo("Jugo de Maracuya", "Brasil", 32, Articulo.Tipo.BEBIDA, new File("src/frontend/img/jugo.jpg"), new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN, Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO});
-        s.agregarArticulo("Cerveza Artesanal", "Alemania", 150, Articulo.Tipo.BEBIDA, new File("src/frontend/img/cerveza.jpg"), new Articulo.Categoria[]{Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO});
-        s.agregarArticulo("Arroz con leche", "Uruguay", 60, Articulo.Tipo.HUMEDO, file, new Articulo.Categoria[]{Articulo.Categoria.ORGANICO});
-        s.agregarArticulo("Hamburguesa completa", "Uruguay", 330, Articulo.Tipo.SECO, new File("src/frontend/img/burgerComun.jpg"), new Articulo.Categoria[]{});
-        s.agregarArticulo("Hamburguesa vegana", "Uruguay", 360, Articulo.Tipo.SECO, new File("src/frontend/img/burgerVegana.jpg"), new Articulo.Categoria[]{Articulo.Categoria.VEGANO});
-        s.agregarArticulo("Ensalada de frutas", "Brasil", 30, Articulo.Tipo.HUMEDO, file, new Articulo.Categoria[]{Articulo.Categoria.ORGANICO,Articulo.Categoria.VEGANO,Articulo.Categoria.LIBRE_DE_GLUTEN});
-        s.agregarArticulo("CocaCola", "Uruguay", 32, Articulo.Tipo.BEBIDA, file, new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN});
-        s.agregarArticulo("comidita", "china", 77, Articulo.Tipo.SECO, file, new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
-        s.agregarArticulo("comidonga", "china", 5445, Articulo.Tipo.SECO, file, new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
-        s.agregarArticulo("comidota", "china", 455, Articulo.Tipo.SECO, file, new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
+        s.agregarArticulo("Jugo de Maracuya", "Brasil","Jugo natural de maracuya", 32, Articulo.Tipo.BEBIDA, new File("src/frontend/img/jugo.jpg"), new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN, Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO});
+        s.agregarArticulo("Cerveza Artesanal", "Alemania","Cerveza artesanal importada de un pequeño pueblo aleman", 150, Articulo.Tipo.BEBIDA, new File("src/frontend/img/cerveza.jpg"), new Articulo.Categoria[]{Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO});
+        s.agregarArticulo("Arroz con leche", "Uruguay","", 60, Articulo.Tipo.HUMEDO, file, new Articulo.Categoria[]{Articulo.Categoria.ORGANICO});
+        s.agregarArticulo("Hamburguesa completa", "Uruguay","", 330, Articulo.Tipo.SECO, new File("src/frontend/img/burgerComun.jpg"), new Articulo.Categoria[]{});
+        s.agregarArticulo("Hamburguesa vegana", "Uruguay","", 360, Articulo.Tipo.SECO, new File("src/frontend/img/burgerVegana.jpg"), new Articulo.Categoria[]{Articulo.Categoria.VEGANO});
+        s.agregarArticulo("Ensalada de frutas", "Brasil","", 30, Articulo.Tipo.HUMEDO, file, new Articulo.Categoria[]{Articulo.Categoria.ORGANICO,Articulo.Categoria.VEGANO,Articulo.Categoria.LIBRE_DE_GLUTEN});
+        s.agregarArticulo("CocaCola", "Uruguay","", 32, Articulo.Tipo.BEBIDA, file, new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN});
+        s.agregarArticulo("comidita", "china","", 77, Articulo.Tipo.SECO, file, new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
+        s.agregarArticulo("comidonga", "china","", 5445, Articulo.Tipo.SECO, file, new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
+        s.agregarArticulo("comidota", "china","", 455, Articulo.Tipo.SECO, file, new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS});
 
         s.agregarPropuesta("Más jugos", "Agreguen más jugos por favor", 0, file);
         s.agregarPropuesta("sddd", "aloaaa", 0, file);
