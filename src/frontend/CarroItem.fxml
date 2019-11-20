@@ -18,7 +18,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Group layoutX="364.0" layoutY="28.0">
+      <Group layoutX="170.0" layoutY="67.0">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#6f64f8" height="24.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
             <ImageView fitHeight="14.0" fitWidth="14.0" layoutX="35.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
@@ -33,30 +33,12 @@
             </Label>
          </children>
       </Group>
-      <Label fx:id="lbl_nombre" layoutX="170.0" layoutY="28.0" prefHeight="30.0" prefWidth="141.0" text="Parlante JBL" textAlignment="RIGHT" textFill="WHITE">
+      <Label fx:id="lbl_nombre" layoutX="170.0" layoutY="28.0" prefHeight="30.0" prefWidth="396.0" text="Parlante JBL" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <HBox layoutX="169.0" layoutY="79.0">
-         <children>
-            <Label prefHeight="36.0" prefWidth="81.0" text="Envase" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label prefHeight="36.0" prefWidth="81.0" text="Atributo2" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label prefHeight="36.0" prefWidth="81.0" text="Categoria" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
+      <HBox layoutX="169.0" layoutY="79.0" />
       <Label fx:id="lbl_cantidad" alignment="CENTER" layoutX="609.0" layoutY="15.0" prefHeight="27.0" prefWidth="90.0" text="12" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />

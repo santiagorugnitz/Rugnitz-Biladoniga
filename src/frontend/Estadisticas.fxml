@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
@@ -164,12 +163,12 @@
       <Group layoutX="954.0" layoutY="100.0" AnchorPane.topAnchor="100.0">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#0f1642" height="79.0" stroke="BLACK" strokeDashOffset="55.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="0.0" width="213.0" />
-            <Label alignment="CENTER" layoutX="11.0" layoutY="55.0" prefHeight="20.0" prefWidth="183.0" text="Total Ganancias Hoy" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="11.0" layoutY="55.0" prefHeight="20.0" prefWidth="183.0" text="Beneficio del impacto ambiental" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="lbl_ganancias_hoy" alignment="CENTER" layoutX="28.0" layoutY="10.0" prefHeight="18.0" prefWidth="154.0" text="789" textFill="#d46b35">
+            <Label fx:id="lbl_beneficio" alignment="CENTER" layoutX="28.0" layoutY="10.0" prefHeight="18.0" prefWidth="154.0" text="789" textFill="#d46b35">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

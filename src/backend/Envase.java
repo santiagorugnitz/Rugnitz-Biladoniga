@@ -29,7 +29,7 @@ public class Envase {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
@@ -58,12 +58,16 @@ public class Envase {
     }
 
     public Envase() {
-
+        this.setNombre("");
+        this.setId(-1);
+        this.setTipos(new Articulo.Tipo[0]);
+        this.setCosteProduccion(0);
+        this.setVecesUsado(0);
     }
 
-    public Envase(String nombre, int vecesUsado, Articulo.Tipo[] tipos, int costeProduccion) {
+    public Envase(String nombre,int id, Articulo.Tipo[] tipos, int costeProduccion) {
         this.setNombre(nombre);
-        this.setId(-1);
+        this.setId(id);
         this.setVecesUsado(0);
         this.setTipos(tipos);
         this.setCosteProduccion(costeProduccion);
@@ -73,6 +77,11 @@ public class Envase {
         this.setVecesUsado(this.getVecesUsado() + n);
     }
 
+    /**
+     * Busca si el tipo recibido pertenece al array de tipos
+     * @param t tipo de articulo que se quiere comprobar
+     * @return true si el envase admite el tipo, de lo contrario false
+     */
     public boolean admiteElTipo(Articulo.Tipo t) {
         for (Articulo.Tipo tipo : tipos) {
             if (t == tipo) {
@@ -104,5 +113,8 @@ public class Envase {
     public String toString() {
         return this.getNombre();
     }
+    
+    
+    
 
 }

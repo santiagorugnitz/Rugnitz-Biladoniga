@@ -36,7 +36,7 @@ import javafx.stage.StageStyle;
  * @author Nahuel
  */
 public class ProductoController implements Initializable {
-
+    
     @FXML
     private VBox vbox;
     @FXML
@@ -51,47 +51,49 @@ public class ProductoController implements Initializable {
     private ImageView image;
     @FXML
     private Button btn_comprar;
-
+    
     private Sistema sistema;
     private Articulo articulo;
     private Label lbl_cantidadCarrito;
-
+    private TiendaController controlador;
+    
     public void inicializarDatos(Articulo articulo, Sistema sistema,
-            Label cantidad) {
+            Label cantidad, TiendaController controlador) {
         lbl_precio.setText("$" + String.valueOf(articulo.getPrecio()));
         lbl_nombre.setText(articulo.getNombre());
         lbl_nota.setText(String.valueOf(articulo.getValoracion()));
         image.setImage(articulo.getImagen());
-
+        this.controlador = controlador;
+        
         centrarImagen(image);
-
+        
         this.sistema = sistema;
         this.articulo = articulo;
         this.lbl_cantidadCarrito = cantidad;
-
+        
         this.btn_comprar.setVisible(!sistema.getEsAdmin());
     }
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
-
+    
     @FXML
     private void comprar(ActionEvent evento) {
         Stage newstage = new Stage();
-
+        
         FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/frontend/Comprar.fxml"));
         Parent root;
-
+        
         try {
             root = loader.load();
             Scene scene = new Scene(root);
-
+            
             ComprarController controlador = loader.getController();
             controlador.inicializarDatos(sistema, articulo, lbl_cantidadCarrito);
             loader.setController(controlador);
-
+            
             newstage.initStyle(StageStyle.UNDECORATED);
             newstage.setScene(scene);
             newstage.initModality(Modality.APPLICATION_MODAL);
@@ -100,12 +102,12 @@ public class ProductoController implements Initializable {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
     }
-
+    
     @FXML
     private void descripcion(MouseEvent evento) {
         productoDescripcion(this, evento, sistema, articulo);
+        controlador.cargarArticulos(sistema.getArticulos());
     }
-
+    
 }

@@ -21,11 +21,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -46,9 +47,14 @@ public class AgregarProductoController implements Initializable {
     private ComboBox lst_tipo;
     @FXML
     private ListView lst_categorias;
+    @FXML
+    private Button btn_eliminar;
 
     private Sistema sistema;
+    private Articulo articulo;
+
     private File imagen;
+    private boolean esEditar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,12 +65,10 @@ public class AgregarProductoController implements Initializable {
 
         lst_tipo.getItems().setAll((Object[]) Articulo.Tipo.values());
 
-        //lst_tipo.setValue(Articulo.Tipo.values()[0]);
         txt_precio.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable,
-                    String oldValue,
-                    String newValue) {
+                    String oldValue, String newValue) {
                 if (!newValue.matches("\\d*")) {
                     txt_precio.setText(newValue.replaceAll("[^\\d]", ""));
                 }
@@ -73,9 +77,17 @@ public class AgregarProductoController implements Initializable {
 
     }
 
-    public void inicializarDatos(Sistema sistema) {
+    public void inicializarDatos(Sistema sistema, Articulo art) {
+        this.esEditar = art != null;
         this.sistema = sistema;
-
+        this.articulo = art;
+        this.btn_eliminar.setVisible(esEditar);
+        if (esEditar) {
+            this.txt_nombre.setText(art.getNombre());
+            this.txt_origen.setText(art.getOrigen());
+            this.txt_precio.setText(String.valueOf(art.getPrecio()));
+            this.lst_tipo.setValue(art.getTipo());
+        }
     }
 
     @FXML
@@ -94,11 +106,12 @@ public class AgregarProductoController implements Initializable {
     private void confirmar(ActionEvent evento) throws MalformedURLException, IOException {
         String nombre = this.txt_nombre.getText();
         String origen = this.txt_origen.getText();
-        String precio = this.txt_origen.getText();
+        String precio = this.txt_precio.getText();
         Articulo.Tipo tipo = (Articulo.Tipo) lst_tipo.getValue();
 
         if (nombre.trim().isEmpty() || origen.trim().isEmpty()
-                || precio.trim().isEmpty() || imagen == null || tipo == null) {
+                || precio.trim().isEmpty() || (imagen == null && !this.esEditar)
+                || tipo == null) {
             crearError(this, "Datos Incorrectos");
         } else {
             ObservableList selectedIndices = lst_categorias.
@@ -112,9 +125,26 @@ public class AgregarProductoController implements Initializable {
 
             Articulo.Categoria[] cats = categorias.toArray(
                     new Articulo.Categoria[categorias.size()]);
+            Image img;
+            if (this.esEditar) {
+                img = this.imagen == null ? articulo.getImagen()
+                        : new Image(imagen.toURI().toURL().toExternalForm());
+                articulo.setImagen(img);
+                articulo.setNombre(nombre);
+                articulo.setOrigen(origen);
+                articulo.setPrecio(Integer.parseInt(precio));
+                articulo.setTipo(tipo);
+                articulo.setCategorias(cats);
+                boolean disponibilidad = true;
+                //TODO cambiar eso por un checklist o algo de eso
+                //sistema.actualizarArticulo(articulo.getId(), nombre, origen, precio, 0, tipo, disponibilidad);
 
-            sistema.agregarArticulo(nombre, origen, 0, precio,
-                    tipo, imagen, cats);
+            } else {
+                img = new Image(imagen.toURI().toURL().toExternalForm());
+                //TODO: hacer en la interfaz un campo para descripcion
+                sistema.agregarArticulo(nombre, origen,"descripcion", Integer.parseInt(precio),
+                        tipo, img, cats);
+            }
 
             Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();
             window.close();
@@ -127,7 +157,13 @@ public class AgregarProductoController implements Initializable {
     private void volver(ActionEvent evento) {
         Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();
         window.close();
-
     }
 
+    @FXML
+    private void eliminar(ActionEvent evento) {
+        sistema.getArticulos().remove(this.articulo);
+        Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();
+        window.close();
+
+    }
 }

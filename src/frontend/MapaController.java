@@ -40,9 +40,7 @@ public class MapaController implements Initializable {
 
     public void inicializarDatos(Sistema s) {
         this.sistema = s;
-        System.out.println(new File(".").getAbsolutePath());
         File f = new File("leaflet\\mapa.html");
-        System.out.println(f.getAbsolutePath());
         mapa.getEngine().load(f.toURI().toString());
     }
 

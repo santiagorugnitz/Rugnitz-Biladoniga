@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
  */
 public class Articulo {
 
-    //TODO: agregar mas supongo
     public enum Tipo {
         BEBIDA, SECO, HUMEDO
     };
@@ -26,6 +25,7 @@ public class Articulo {
     private String nombre;
     private String origen;
     private int precio;
+    private String descripcion;
     private Categoria[] categorias;
     private int id;
     private boolean disponible;
@@ -59,6 +59,14 @@ public class Articulo {
         this.precio = precio;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public Categoria[] getCategorias() {
         return categorias;
     }
@@ -71,7 +79,7 @@ public class Articulo {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
@@ -95,7 +103,7 @@ public class Articulo {
         return vecesComprado;
     }
 
-    public void setVecesComprado(int vecesComprado) {
+    private void setVecesComprado(int vecesComprado) {
         this.vecesComprado = vecesComprado;
     }
 
@@ -111,7 +119,7 @@ public class Articulo {
         return valoracion;
     }
 
-    public void setValoracion(double valoracion) {
+    private void setValoracion(double valoracion) {
         this.valoracion = valoracion;
     }
 
@@ -126,6 +134,7 @@ public class Articulo {
     public Articulo() {
         this.setNombre("");
         this.setOrigen("");
+        this.setDescripcion("");
         this.setPrecio(0);
         this.setId(-1);
         this.setDisponible(false);
@@ -138,9 +147,10 @@ public class Articulo {
 
     }
 
-    public Articulo(String nombre, String origen, int precio, String material, int id, Tipo tipo, Image imagen, Categoria[] categorias) {
+    public Articulo(String nombre, String origen,String descripcion, int precio, int id, Tipo tipo, Image imagen, Categoria[] categorias) {
         this.setNombre(nombre);
         this.setOrigen(origen);
+        this.setDescripcion(descripcion);
         this.setPrecio(precio);
         this.setId(id);
         this.setDisponible(true);
@@ -156,11 +166,42 @@ public class Articulo {
     public void aumentarUso(int n) {
         this.setVecesComprado(this.getVecesComprado() + n);
     }
-
+    /**
+    * Actualiza la valoracion y la cantidad de valoraciones según la valoracion recibida. 
+    * valoracion es un promedio de todas las valoraciones realizadas
+    * 1- Se divide entre la cantidad de valoraciones para obtener la sumatoria de valoraciones
+    * 2- Se agrega la valoracion nueva y se divide entre la nueva cant de valoraciones
+    * @param valoracion valoracion nueva a agregar 
+    */
     public void agregarValoracion(double valoracion) {
         this.setValoracion(this.getValoracion() * this.getVecesValorado() + valoracion);
-        this.setVecesValorado(vecesValorado + 1);
+        this.setVecesValorado(this.getVecesValorado() + 1);
         this.setValoracion(this.getValoracion() / this.getVecesValorado());
     }
+
+    @Override
+    public String toString() {
+        return "Articulo{" + "nombre=" + nombre + ", precio=" + precio + '}';
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Articulo other = (Articulo) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

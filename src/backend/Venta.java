@@ -5,10 +5,10 @@
  */
 package backend;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -36,33 +36,36 @@ public class Venta {
         this.setFecha(LocalDate.now());
     }
     
+    /**
+     * Calcula el precio total de la venta sumando el precio total de cada compra
+     * @return precio total de la venta 
+     */
     public int getTotal() {
         int total = 0;
         for (int i = 0; i < compras.size(); i++) {
-            total += compras.get(i).getCantidad() * compras.get(i).getArticulo().getPrecio();
+            total += compras.get(i).total();
         }
         return total;
     }
 
-    public boolean cambiarFecha(int anio, int mes, int dia) {
-        LocalDate d;
-        try {
-            d = LocalDate.of(anio, mes, dia);
-        } catch (DateTimeException e) {
-            return false;
-        }
-        this.setFecha(d);
-        return true;
-    }
-
     public void agregarArticulo(Articulo a, Envase e, int unidades) {
+        /*
+        for (int i = 0; i < this.compras.size(); i++) {
+            if(compras.get(i).getArticulo().equals(a)&&compras.get(i).getEnvase().equals(e)){
+                compras.get(i).setCantidad(unidades+compras.get(i).getCantidad());
+                return;
+            }   
+        }*/
         this.compras.add(new Compra(a, e, unidades));
     }
 
     public void quitarArticulo(int pos) {
         compras.remove(pos);
     }
-
+    /**
+     * Genera un html con el ticket electrónico de la venta siguiendo las normas de la DGI 
+     * @return codigo html del ticket de la venta
+     */
     public String generarTicketDGI() {
         String ret = "<!DOCTYPE html>\n"
                 + "<html>\n"
@@ -177,7 +180,6 @@ public class Venta {
                 + "  <td>" + this.getTotal() + "</td>\n"
                 + "  </tr>\n"
                 + "</table>\n"
-                + "<img src=\"D:\\Admin\\Google Drive\\Java\\Es el mapa es el mapa\\QRCode.png\" width=\"128\" height=\"128\" style=\"margin-left:2%\">\n"
                 + "\n"
                 + "<p></p>\n"
                 + "\n"
@@ -205,5 +207,40 @@ public class Venta {
                 + "</html>";
         return ret;
     }
+
+    @Override
+    public String toString() {
+        return "Venta{" + "compras=" + compras + ", fecha=" + fecha + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Venta other = (Venta) obj;
+        if (!Objects.equals(this.compras, other.compras)) {
+            return false;
+        }
+        if (!Objects.equals(this.fecha, other.fecha)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
 
 }
