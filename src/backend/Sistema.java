@@ -5,9 +5,6 @@
  */
 package backend;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +27,8 @@ public class Sistema {
     private List<Propuesta> propuestasCliente;
     private Venta carrito;
     private boolean esAdmin;
-
+    private int ultimoId;
+    
     public Sistema() {
         this.ventas = new ArrayList();
         this.envases = new ArrayList();
@@ -38,6 +36,7 @@ public class Sistema {
         this.propuestas = new ArrayList();
         this.propuestasCliente = new ArrayList();
         this.ventasCliente = new ArrayList();
+        this.ultimoId=0;
 
         this.beneficioAmbiental = 0;
         this.carrito = new Venta();
@@ -81,22 +80,20 @@ public class Sistema {
         return articulos;
     }
 
-    public List<Articulo> getArticulosDisponibles() {
-        List<Articulo> lista = this.getArticulos();
-        for(Articulo art:lista){
-            if(!art.isDisponible()){
-                lista.remove(art);
-            }
-        }
-        return lista;
-    }
-
     public int getBeneficioAmbiental() {
         return beneficioAmbiental;
     }
 
     public void setBeneficioAmbiental(int beneficioAmbiental) {
         this.beneficioAmbiental = beneficioAmbiental;
+    }
+    
+    private int getUltimoId(){
+        return this.ultimoId;
+    }
+    
+    private void setUltimoId(int ultimoId){
+        this.ultimoId=ultimoId;
     }
 
     /**
@@ -113,30 +110,11 @@ public class Sistema {
     public void agregarArticulo(String nombre, String origen, String descripcion, int precio,
             Articulo.Tipo tipo, Image img, Articulo.Categoria[] categorias) {
         Image image = img;
-        Articulo a = new Articulo(nombre, origen, descripcion, precio, this.articulos.size(), tipo, image, categorias);
+        Articulo a = new Articulo(nombre, origen, descripcion, precio, this.getUltimoId(), tipo, image, categorias);
         this.articulos.add(a);
+        this.setUltimoId(this.getUltimoId()+1);
     }
 
-    /**
-     * Cambia los atributos del articulo elegido a los pasados por parametro
-     *
-     * @param id id del articulo
-     * @param nombre Nuevo nombre
-     * @param origen Nuevo país de origen
-     * @param descripcion Nueva descripción
-     * @param precio Nuevo precio
-     * @param tipo Nuevo tipo
-     * @param disponibilidad Nueva disponibilidad
-     */
-    public void actualizarArticulo(int id, String nombre, String origen, String descripcion, int precio, Articulo.Tipo tipo, boolean disponibilidad) {
-        Articulo a = this.articulos.get(id);
-        a.setNombre(nombre);
-        a.setOrigen(origen);
-        a.setDescripcion(descripcion);
-        a.setPrecio(precio);
-        a.setTipo(tipo);
-        a.setDisponible(disponibilidad);
-    }
 
     /**
      * Crea un envase con los parametros recibidos y lo agrega al sistema
@@ -182,7 +160,7 @@ public class Sistema {
     public void borrarArticulo(Articulo art) {
         for (int i = 0; i < articulos.size(); i++) {
             if (articulos.get(i).equals(art)) {
-                this.articulos.get(i).setDisponible(false);
+                this.articulos.remove(i);
             }
         }
     }
@@ -223,7 +201,7 @@ public class Sistema {
                     ? true : articulo.getNombre().toLowerCase().contains(nombre.toLowerCase());
             if (articulo.getPrecio() <= precioHasta && articulo.getPrecio()
                     >= precioDesde && articulo.getValoracion() >= minValoracion
-                    && categoriaCorrecta && nombreContenido && articulo.isDisponible()) {
+                    && categoriaCorrecta && nombreContenido) {
                 ret.add(articulo);
             }
         }

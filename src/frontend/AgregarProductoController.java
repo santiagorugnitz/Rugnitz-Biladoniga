@@ -140,13 +140,9 @@ public class AgregarProductoController implements Initializable {
                     articulo.setPrecio(Integer.parseInt(precio));
                     articulo.setTipo(tipo);
                     articulo.setCategorias(cats);
-                    boolean disponibilidad = true;
-                    //TODO cambiar eso por un checklist o algo de eso
-                    //sistema.actualizarArticulo(articulo.getId(), nombre, origen, precio, 0, tipo, disponibilidad);
 
                 } else {
                     img = new Image(imagen.toURI().toURL().toExternalForm());
-                    //TODO: hacer en la interfaz un campo para descripcion
                     sistema.agregarArticulo(nombre, origen, "descripcion",
                             Integer.parseInt(precio),
                             tipo, img, cats);
