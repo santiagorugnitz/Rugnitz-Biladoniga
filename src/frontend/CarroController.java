@@ -7,6 +7,7 @@ package frontend;
 
 import backend.Compra;
 import backend.Sistema;
+import static frontend.Utilitarios.confirmarPopup;
 import static frontend.Utilitarios.crearError;
 import static frontend.Utilitarios.ir_historial;
 import static frontend.Utilitarios.ir_propuestas;
@@ -67,7 +68,7 @@ public class CarroController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        restringirFecha(fechaEntrega, LocalDate.now(), 
+        restringirFecha(fechaEntrega, LocalDate.now(),
                 LocalDate.now().plusDays(14));
     }
 
@@ -100,16 +101,19 @@ public class CarroController implements Initializable {
 
     @FXML
     private void comprar(ActionEvent event) {
-        if (sistema.cantCarrito() > 0) {
-            LocalDate fecha = this.fechaEntrega.getValue();
-            this.sistema.getCarrito().setFecha(fecha == null
-                    ? LocalDate.now() : fecha);
-            String html = this.sistema.registrarVenta();
-            mostrarFactura(html);
-            productos.fire();
+        if (confirmarPopup(this)) {
 
-        } else {
-            Utilitarios.crearError(this, "Carrito Vacío");
+            if (sistema.cantCarrito() > 0) {
+                LocalDate fecha = this.fechaEntrega.getValue();
+                this.sistema.getCarrito().setFecha(fecha == null
+                        ? LocalDate.now() : fecha);
+                String html = this.sistema.registrarVenta();
+                mostrarFactura(html);
+                productos.fire();
+
+            } else {
+                Utilitarios.crearError(this, "Carrito Vacío");
+            }
         }
     }
 

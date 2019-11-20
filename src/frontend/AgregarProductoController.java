@@ -7,6 +7,7 @@ package frontend;
 
 import backend.Articulo;
 import backend.Sistema;
+import static frontend.Utilitarios.confirmarPopup;
 import static frontend.Utilitarios.crearError;
 import java.io.File;
 import java.io.IOException;
@@ -104,66 +105,76 @@ public class AgregarProductoController implements Initializable {
 
     @FXML
     private void confirmar(ActionEvent evento) throws MalformedURLException, IOException {
-        String nombre = this.txt_nombre.getText();
-        String origen = this.txt_origen.getText();
-        String precio = this.txt_precio.getText();
-        Articulo.Tipo tipo = (Articulo.Tipo) lst_tipo.getValue();
+        if (confirmarPopup(this)) {
 
-        if (nombre.trim().isEmpty() || origen.trim().isEmpty()
-                || precio.trim().isEmpty() || (imagen == null && !this.esEditar)
-                || tipo == null) {
-            crearError(this, "Datos Incorrectos");
-        } else {
-            ObservableList selectedIndices = lst_categorias.
-                    getSelectionModel().getSelectedIndices();
-            ArrayList<Articulo.Categoria> categorias = new ArrayList<>();
+            String nombre = this.txt_nombre.getText();
+            String origen = this.txt_origen.getText();
+            String precio = this.txt_precio.getText();
+            Articulo.Tipo tipo = (Articulo.Tipo) lst_tipo.getValue();
 
-            for (Object o : selectedIndices) {
-                Articulo.Categoria cat = Articulo.Categoria.values()[(Integer) o];
-                categorias.add(cat);
-            }
-
-            Articulo.Categoria[] cats = categorias.toArray(
-                    new Articulo.Categoria[categorias.size()]);
-            Image img;
-            if (this.esEditar) {
-                img = this.imagen == null ? articulo.getImagen()
-                        : new Image(imagen.toURI().toURL().toExternalForm());
-                articulo.setImagen(img);
-                articulo.setNombre(nombre);
-                articulo.setOrigen(origen);
-                articulo.setPrecio(Integer.parseInt(precio));
-                articulo.setTipo(tipo);
-                articulo.setCategorias(cats);
-                boolean disponibilidad = true;
-                //TODO cambiar eso por un checklist o algo de eso
-                //sistema.actualizarArticulo(articulo.getId(), nombre, origen, precio, 0, tipo, disponibilidad);
-
+            if (nombre.trim().isEmpty() || origen.trim().isEmpty()
+                    || precio.trim().isEmpty() || (imagen == null
+                    && !this.esEditar)
+                    || tipo == null) {
+                crearError(this, "Datos Incorrectos");
             } else {
-                img = new Image(imagen.toURI().toURL().toExternalForm());
-                //TODO: hacer en la interfaz un campo para descripcion
-                sistema.agregarArticulo(nombre, origen,"descripcion", Integer.parseInt(precio),
-                        tipo, img, cats);
+                ObservableList selectedIndices = lst_categorias.
+                        getSelectionModel().getSelectedIndices();
+                ArrayList<Articulo.Categoria> categorias = new ArrayList<>();
+
+                for (Object o : selectedIndices) {
+                    Articulo.Categoria cat = Articulo.Categoria.values()[(Integer) o];
+                    categorias.add(cat);
+                }
+
+                Articulo.Categoria[] cats = categorias.toArray(
+                        new Articulo.Categoria[categorias.size()]);
+                Image img;
+                if (this.esEditar) {
+                    img = this.imagen == null ? articulo.getImagen()
+                            : new Image(imagen.toURI().toURL().
+                                    toExternalForm());
+                    articulo.setImagen(img);
+                    articulo.setNombre(nombre);
+                    articulo.setOrigen(origen);
+                    articulo.setPrecio(Integer.parseInt(precio));
+                    articulo.setTipo(tipo);
+                    articulo.setCategorias(cats);
+                    boolean disponibilidad = true;
+                    //TODO cambiar eso por un checklist o algo de eso
+                    //sistema.actualizarArticulo(articulo.getId(), nombre, origen, precio, 0, tipo, disponibilidad);
+
+                } else {
+                    img = new Image(imagen.toURI().toURL().toExternalForm());
+                    //TODO: hacer en la interfaz un campo para descripcion
+                    sistema.agregarArticulo(nombre, origen, "descripcion",
+                            Integer.parseInt(precio),
+                            tipo, img, cats);
+                }
+
+                Stage window = (Stage) ((Node) evento.getSource()).
+                        getScene().getWindow();
+                window.close();
+
             }
-
-            Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();
-            window.close();
-
         }
-
     }
 
     @FXML
     private void volver(ActionEvent evento) {
-        Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();
-        window.close();
+        if (confirmarPopup(this)) {
+
+            Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();
+            window.close();
+        }
     }
 
     @FXML
     private void eliminar(ActionEvent evento) {
-        sistema.getArticulos().remove(this.articulo);
-        Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();
-        window.close();
-
+        if (confirmarPopup(this)) {
+            sistema.borrarArticulo(articulo);
+            Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();
+            window.close();
+        }
     }
 }

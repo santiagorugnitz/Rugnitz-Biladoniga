@@ -7,6 +7,7 @@ package frontend;
 
 import backend.Articulo;
 import backend.Sistema;
+import com.jfoenix.controls.JFXCheckBox;
 import static frontend.Utilitarios.ir_carrito;
 import static frontend.Utilitarios.ir_estadisticas;
 import static frontend.Utilitarios.ir_historial;
@@ -67,7 +68,20 @@ public class TiendaController implements Initializable {
     private Button btn_carro;
     @FXML
     private Group gpr_cantidad;
+    @FXML
+    private CheckBox vegano;
 
+    @FXML
+    private CheckBox gluten;
+
+    @FXML
+    private CheckBox calorias;
+
+    @FXML
+    private CheckBox organico;
+
+    @FXML
+    private CheckBox azucar;
     //Atributos
     private int desde;
     private int hasta;
@@ -249,7 +263,13 @@ public class TiendaController implements Initializable {
         this.nombreABuscar = "";
 
         //Restablecer Labels
-        //this.sinLimite.setSelected(true);
+        this.sinLimite.setSelected(true);
+        this.azucar.setSelected(false);
+        this.gluten.setSelected(false);
+        this.calorias.setSelected(false);
+        this.organico.setSelected(false);
+        this.vegano.setSelected(false);
+
         actualizarListaArticulos();
     }
 
