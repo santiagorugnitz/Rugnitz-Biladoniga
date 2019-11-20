@@ -20,7 +20,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Group layoutX="346.0" layoutY="28.0">
+      <Group layoutX="170.0" layoutY="76.0">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#6f64f8" height="24.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
             <ImageView fitHeight="14.0" fitWidth="14.0" layoutX="35.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
@@ -35,7 +35,7 @@
             </Label>
          </children>
       </Group>
-      <Label fx:id="lbl_nombre" layoutX="170.0" layoutY="28.0" prefHeight="30.0" prefWidth="141.0" text="Parlante JBL" textAlignment="RIGHT" textFill="WHITE">
+      <Label fx:id="lbl_nombre" layoutX="170.0" layoutY="28.0" prefHeight="30.0" prefWidth="471.0" text="Parlante JBL" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

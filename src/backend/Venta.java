@@ -49,6 +49,13 @@ public class Venta {
     }
 
     public void agregarArticulo(Articulo a, Envase e, int unidades) {
+        /*
+        for (int i = 0; i < this.compras.size(); i++) {
+            if(compras.get(i).getArticulo().equals(a)&&compras.get(i).getEnvase().equals(e)){
+                compras.get(i).setCantidad(unidades+compras.get(i).getCantidad());
+                return;
+            }   
+        }*/
         this.compras.add(new Compra(a, e, unidades));
     }
 
