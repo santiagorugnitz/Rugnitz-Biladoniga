@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="574.0" prefWidth="422.0" style="-fx-background-color: #0f1642;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.AgregarProductoController">
+   <children>
+      <Label layoutX="28.0" layoutY="14.0" prefHeight="35.0" prefWidth="258.0" text="Producto" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="20.0" layoutY="513.0" onAction="#volver" prefHeight="27.0" prefWidth="183.0" style="-fx-background-color: #6F64F8;" text="Volver" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="219.0" layoutY="513.0" onAction="#confirmar" prefHeight="27.0" prefWidth="183.0" style="-fx-background-color: #6F64F8;" text="Confirmar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="txt_nombre" alignment="CENTER" focusColor="#6f64f8" labelFloat="true" layoutX="89.0" layoutY="78.0" prefHeight="31.0" prefWidth="262.0" promptText="Nombre" style="-fx-prompt-text-fill: #FFFFFF; -fx-text-fill: #FFFFFF;" unFocusColor="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton layoutX="129.0" layoutY="245.0" onAction="#elegirImagen" prefHeight="39.0" prefWidth="183.0" text="Elegir Imagen" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="txt_origen" alignment="CENTER" focusColor="#6f64f8" labelFloat="true" layoutX="89.0" layoutY="132.0" prefHeight="31.0" prefWidth="262.0" promptText="Origen" style="-fx-prompt-text-fill: #FFFFFF; -fx-text-fill: #FFFFFF;" unFocusColor="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXComboBox fx:id="lst_tipo" focusColor="#6f64f8" layoutX="204.0" layoutY="294.0" prefHeight="31.0" prefWidth="148.0" stylesheets="@css/comboBox.css" unFocusColor="WHITE" />
+      <Label layoutX="89.0" layoutY="292.0" prefHeight="35.0" prefWidth="103.0" text="Tipo" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txt_precio" alignment="CENTER" focusColor="#6f64f8" labelFloat="true" layoutX="90.0" layoutY="188.0" prefHeight="31.0" prefWidth="262.0" promptText="Precio" style="-fx-prompt-text-fill: #FFFFFF; -fx-text-fill: #FFFFFF;" unFocusColor="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="170.0" layoutY="337.0" prefHeight="35.0" text="Categoria" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="79.0" layoutY="380.0" prefHeight="109.0" prefWidth="277.0" style="-fx-background-color: transparent; -fx-background: #0f1642;">
+         <content>
+            <JFXListView fx:id="lst_categorias" prefHeight="107.0" prefWidth="267.0" style="-fx-background-color: #0f1642;" />
+         </content>
+      </ScrollPane>
+      <JFXButton fx:id="btn_eliminar" layoutX="269.0" layoutY="11.0" onAction="#eliminar" prefHeight="42.0" prefWidth="148.0" text="Eliminar" textFill="RED">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/red%20cross.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -10,6 +10,7 @@ package backend;
  * @author Santiago
  */
 public class Envase {
+
     private String nombre;
     private int id;
     private int vecesUsado;
@@ -28,8 +29,16 @@ public class Envase {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
+    }
+
+    public int getVecesUsado() {
+        return vecesUsado;
+    }
+
+    private void setVecesUsado(int vecesUsado) {
+        this.vecesUsado = vecesUsado;
     }
 
     public Articulo.Tipo[] getTipos() {
@@ -47,21 +56,39 @@ public class Envase {
     public void setCosteProduccion(int costeProduccion) {
         this.costeProduccion = costeProduccion;
     }
-    
 
-    public int getVecesUsado() {
-        return this.vecesUsado;
+    public Envase() {
+        this.setNombre("");
+        this.setId(-1);
+        this.setTipos(new Articulo.Tipo[0]);
+        this.setCosteProduccion(0);
+        this.setVecesUsado(0);
     }
 
-    public void aumentarUso() {
-        this.vecesUsado++;
+    public Envase(String nombre,int id, Articulo.Tipo[] tipos, int costeProduccion) {
+        this.setNombre(nombre);
+        this.setId(id);
+        this.setVecesUsado(0);
+        this.setTipos(tipos);
+        this.setCosteProduccion(costeProduccion);
     }
 
-    public Envase(String nombre, int vecesUsado, Articulo.Tipo[] tipos,int costeProduccion) {
-        this.nombre = nombre;
-        this.vecesUsado = vecesUsado;
-        this.tipos = tipos;
-        this.costeProduccion=costeProduccion;
+    public void aumentarUso(int n) {
+        this.setVecesUsado(this.getVecesUsado() + n);
+    }
+
+    /**
+     * Busca si el tipo recibido pertenece al array de tipos
+     * @param t tipo de articulo que se quiere comprobar
+     * @return true si el envase admite el tipo, de lo contrario false
+     */
+    public boolean admiteElTipo(Articulo.Tipo t) {
+        for (Articulo.Tipo tipo : tipos) {
+            if (t == tipo) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -81,6 +108,13 @@ public class Envase {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return this.getNombre();
+    }
     
     
+    
+
 }

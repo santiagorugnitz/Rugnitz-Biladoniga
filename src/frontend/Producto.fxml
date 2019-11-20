@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
@@ -61,3 +62,55 @@
       </Label>
    </children>
 </AnchorPane>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" minHeight="-Infinity" prefHeight="320.0" prefWidth="320.0" style="-fx-background-color: #0f1642;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.ProductoController">
+   <children>
+      <ImageView fx:id="image" fitHeight="177.0" fitWidth="300.0" layoutX="10.0" layoutY="12.0" onMouseClicked="#descripcion" pickOnBounds="true" preserveRatio="true" />
+      <JFXButton fx:id="btn_comprar" layoutX="6.0" layoutY="264.0" onAction="#comprar" prefHeight="40.0" prefWidth="307.0" style="-fx-background-color: #6F64F8;" text=" " textFill="WHITE" AnchorPane.topAnchor="264.0">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/cart_buy.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <Label fx:id="lbl_nombre" accessibleHelp="sadasdads" alignment="CENTER" layoutX="75.0" layoutY="218.0" prefHeight="30.0" prefWidth="185.0" text="Parlante JBL" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_precio" alignment="CENTER_RIGHT" layoutX="236.0" layoutY="217.0" prefHeight="30.0" prefWidth="78.0" text="\$234" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Group layoutX="7.0" layoutY="218.0">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#6f64f8" height="24.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <ImageView fitHeight="14.0" fitWidth="14.0" layoutX="35.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/star.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbl_nota" layoutX="9.0" prefHeight="30.0" prefWidth="35.0" text="2.3" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+   </children>
+</AnchorPane>
+>>>>>>> develop

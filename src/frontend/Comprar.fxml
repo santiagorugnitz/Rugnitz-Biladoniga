@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="155.0" prefWidth="454.0" style="-fx-background-color: #2B3253;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.ComprarController">
+   <children>
+      <Label fx:id="lbl_cantidad" alignment="CENTER" layoutX="64.0" layoutY="35.0" prefHeight="27.0" prefWidth="78.0" text="12" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="239.0" layoutY="29.0" onAction="#confirmar" text="Agregar al carrito" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="287.0" layoutY="94.0" onAction="#volver" text="Volver" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btn_mas" alignment="CENTER" layoutX="137.0" layoutY="33.0" onAction="#agregar" prefHeight="30.0" prefWidth="28.0" style="-fx-padding: 0;" text=" " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/mas.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btn_menos" alignment="CENTER" layoutX="44.0" layoutY="33.0" onAction="#quitar" prefHeight="30.0" prefWidth="32.0" style="-fx-padding: 0;" text=" " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/menos.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <ListView fx:id="listEnvases" layoutX="14.0" layoutY="68.0" prefHeight="67.0" prefWidth="217.0" style="-fx-background-color: #2B3253;" />
+   </children>
+</AnchorPane>

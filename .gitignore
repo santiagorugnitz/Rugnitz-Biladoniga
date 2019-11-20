@@ -1,7 +1,8 @@
-test
-nbproject
+/nbproject
+/test
+/build
+/dist
 build.xml
 manifest.mf
-/build/
-/dist/
+
 
