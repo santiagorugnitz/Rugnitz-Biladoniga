@@ -69,7 +69,7 @@ public class Sistema {
     }
 
     public List<Venta> getVentasCliente() {
-        return ventas;
+        return ventasCliente;
     }
 
     public List<Envase> getEnvases() {
@@ -398,5 +398,16 @@ public class Sistema {
     public boolean fechaPreVentaValida(LocalDate fecha) {
         LocalDate fechaLimite = LocalDate.now().plusDays(14);
         return !fecha.isAfter(fechaLimite) && !fecha.isBefore(LocalDate.now());
+    }
+    /**
+     * Agrega la venta directamente al sistema sin pasar por ningún tipo de control.
+     * Usado para agregar ventas artificialmente o cargar ventas iniciales
+     * @param v Venta a agregar 
+     */
+    public void agregarVenta(Venta v){
+        this.ventas.add(v);
+        for (Compra compra : v.getCompras()) {
+            this.actualizarBeneficio(compra.getEnvase(), compra.getCantidad());
+        }
     }
 }
