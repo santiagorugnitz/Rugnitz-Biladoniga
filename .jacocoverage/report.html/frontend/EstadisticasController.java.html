@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>EstadisticasController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Rugnitz-Biladoniga&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">frontend</a> &gt; <span class="el_source">EstadisticasController.java</span></div><h1>EstadisticasController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package frontend;
+
+import backend.Articulo;
+import backend.Sistema;
+import static frontend.Utilitarios.ir_historial;
+import static frontend.Utilitarios.ir_propuestas;
+import static frontend.Utilitarios.ir_puntosVenta;
+import static frontend.Utilitarios.ir_tienda;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+/**
+ * FXML Controller class
+ *
+ * @author Nahuel
+ */
+<span class="nc" id="L32">public class EstadisticasController implements Initializable {</span>
+
+    @FXML
+    private Label lbl_ventas;
+    @FXML
+    private TableView valoraciones;
+    @FXML
+    private Label lbl_ventas_hoy;
+    @FXML
+    private Label lbl_ganancias;
+    @FXML
+    private Label lbl_beneficio;
+    @FXML
+    private LineChart&lt;Number, Number&gt; grafica;
+
+    private Sistema sistema;
+
+    public void inicializarDatos(Sistema sistema) {
+<span class="nc" id="L50">        this.sistema = sistema;</span>
+        //Cargar Estadisticas
+<span class="nc" id="L52">        this.lbl_ganancias.setText(&quot;$&quot;+String.valueOf(sistema.gananciasTotales()));</span>
+<span class="nc" id="L53">        this.lbl_beneficio.setText(String.valueOf(sistema.getBeneficioAmbiental()));</span>
+<span class="nc" id="L54">        this.lbl_ventas.setText(String.valueOf(sistema.cantVentas()));</span>
+<span class="nc" id="L55">        this.lbl_ventas_hoy.setText(String.valueOf(sistema.cantVentasHoy()));</span>
+
+        //Cargar Tabla
+<span class="nc" id="L58">        TableColumn&lt;String, Articulo&gt; column1 = new TableColumn&lt;&gt;(&quot;Nombre&quot;);</span>
+<span class="nc" id="L59">        column1.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;nombre&quot;));</span>
+
+<span class="nc" id="L61">        TableColumn&lt;String, Articulo&gt; column2 = new TableColumn&lt;&gt;(&quot;Valoracion&quot;);</span>
+<span class="nc" id="L62">        column2.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;valoracion&quot;));</span>
+
+<span class="nc" id="L64">        valoraciones.getColumns().add(column1);</span>
+<span class="nc" id="L65">        valoraciones.getColumns().add(column2);</span>
+
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        for (Articulo art : sistema.getArticulos()) {</span>
+<span class="nc" id="L68">            valoraciones.getItems().add(art);</span>
+<span class="nc" id="L69">        }</span>
+
+        //Cargar grafica
+<span class="nc" id="L72">        final NumberAxis xAxis = new NumberAxis();</span>
+<span class="nc" id="L73">        final NumberAxis yAxis = new NumberAxis();</span>
+
+<span class="nc" id="L75">        XYChart.Series series = new XYChart.Series();</span>
+<span class="nc" id="L76">        series.setName(&quot;Ganancias por mes&quot;);</span>
+
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        for (int i = 1; i &lt;= 12; i++) {</span>
+<span class="nc" id="L79">            series.getData().add(new XYChart.Data(i, sistema.gananciaMes(i)));</span>
+        }
+
+<span class="nc" id="L82">        grafica.getData().add(series);</span>
+
+<span class="nc" id="L84">    }</span>
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+<span class="nc" id="L89">    }</span>
+
+    @FXML
+    void cerrarSesion(ActionEvent event) {
+<span class="nc" id="L93">        frontend.Utilitarios.cerrarSesion(this, event, sistema);</span>
+<span class="nc" id="L94">    }</span>
+
+    @FXML
+    void historial(ActionEvent event) {
+<span class="nc" id="L98">        ir_historial(this, event, sistema);</span>
+
+<span class="nc" id="L100">    }</span>
+
+    @FXML
+    void productos(ActionEvent event) {
+<span class="nc" id="L104">        ir_tienda(this, event, sistema);</span>
+
+<span class="nc" id="L106">    }</span>
+
+    @FXML
+    void propuestas(ActionEvent event) {
+<span class="nc" id="L110">        ir_propuestas(this, event, sistema);</span>
+<span class="nc" id="L111">    }</span>
+
+    @FXML
+    void puntosVenta(ActionEvent event) {
+<span class="nc" id="L115">        ir_puntosVenta(this, event, sistema);</span>
+<span class="nc" id="L116">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

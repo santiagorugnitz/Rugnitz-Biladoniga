@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Articulo.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Rugnitz-Biladoniga&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">backend</a> &gt; <span class="el_source">Articulo.java</span></div><h1>Articulo.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package backend;
+
+import javafx.scene.image.Image;
+
+/**
+ *
+ * @author Santiago
+ */
+public class Articulo {
+
+<span class="pc" id="L16">    public enum Tipo {</span>
+<span class="fc" id="L17">        BEBIDA, SECO, HUMEDO</span>
+    };
+
+<span class="pc" id="L20">    public enum Categoria {</span>
+<span class="fc" id="L21">        LIBRE_DE_AZUCAR, LIBRE_DE_GLUTEN, VEGANO, ORGANICO, BAJAS_CALORIAS;</span>
+
+    };
+
+    private String nombre;
+    private String origen;
+    private int precio;
+    private Categoria[] categorias;
+    private int id;
+    private Tipo tipo;
+    private int vecesComprado;
+    private Image imagen;
+    private double valoracion;
+    private int vecesValorado;
+
+    public String getNombre() {
+<span class="fc" id="L37">        return nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="fc" id="L41">        this.nombre = nombre;</span>
+<span class="fc" id="L42">    }</span>
+
+    public String getOrigen() {
+<span class="nc" id="L45">        return origen;</span>
+    }
+
+    public void setOrigen(String origen) {
+<span class="fc" id="L49">        this.origen = origen;</span>
+<span class="fc" id="L50">    }</span>
+
+    public int getPrecio() {
+<span class="fc" id="L53">        return precio;</span>
+    }
+
+    public void setPrecio(int precio) {
+<span class="fc" id="L57">        this.precio = precio;</span>
+<span class="fc" id="L58">    }</span>
+
+    public Categoria[] getCategorias() {
+<span class="nc" id="L61">        return categorias;</span>
+    }
+
+    public void setCategorias(Categoria[] categorias) {
+<span class="fc" id="L65">        this.categorias = categorias;</span>
+<span class="fc" id="L66">    }</span>
+
+    public int getId() {
+<span class="nc" id="L69">        return id;</span>
+    }
+
+    private void setId(int id) {
+<span class="fc" id="L73">        this.id = id;</span>
+<span class="fc" id="L74">    }</span>
+
+    public Tipo getTipo() {
+<span class="fc" id="L77">        return tipo;</span>
+    }
+
+    public void setTipo(Tipo tipo) {
+<span class="fc" id="L81">        this.tipo = tipo;</span>
+<span class="fc" id="L82">    }</span>
+
+    public int getVecesComprado() {
+<span class="fc" id="L85">        return vecesComprado;</span>
+    }
+
+    private void setVecesComprado(int vecesComprado) {
+<span class="fc" id="L89">        this.vecesComprado = vecesComprado;</span>
+<span class="fc" id="L90">    }</span>
+
+    public Image getImagen() {
+<span class="nc" id="L93">        return imagen;</span>
+    }
+
+    public void setImagen(Image imagen) {
+<span class="fc" id="L97">        this.imagen = imagen;</span>
+<span class="fc" id="L98">    }</span>
+
+    public double getValoracion() {
+<span class="fc" id="L101">        return valoracion;</span>
+    }
+
+    private void setValoracion(double valoracion) {
+<span class="fc" id="L105">        this.valoracion = valoracion;</span>
+<span class="fc" id="L106">    }</span>
+
+    private int getVecesValorado() {
+<span class="fc" id="L109">        return vecesValorado;</span>
+    }
+
+    private void setVecesValorado(int vecesValorado) {
+<span class="fc" id="L113">        this.vecesValorado = vecesValorado;</span>
+<span class="fc" id="L114">    }</span>
+
+<span class="nc" id="L116">    public Articulo() {</span>
+<span class="nc" id="L117">        this.setNombre(&quot;&quot;);</span>
+<span class="nc" id="L118">        this.setOrigen(&quot;&quot;);</span>
+<span class="nc" id="L119">        this.setPrecio(10);</span>
+<span class="nc" id="L120">        this.setId(-1);</span>
+<span class="nc" id="L121">        this.setTipo(Tipo.SECO);</span>
+<span class="nc" id="L122">        this.setVecesComprado(0);</span>
+<span class="nc" id="L123">        this.setImagen(null);</span>
+<span class="nc" id="L124">        this.setValoracion(0);</span>
+<span class="nc" id="L125">        this.setCategorias(new Categoria[0]);</span>
+<span class="nc" id="L126">        this.setVecesValorado(0);</span>
+
+<span class="nc" id="L128">    }</span>
+
+<span class="fc" id="L130">    public Articulo(String nombre, String origen, int precio, int id, Tipo tipo, Image imagen, Categoria[] categorias) {</span>
+<span class="fc" id="L131">        this.setNombre(nombre);</span>
+<span class="fc" id="L132">        this.setOrigen(origen);</span>
+<span class="fc" id="L133">        this.setPrecio(precio);</span>
+<span class="fc" id="L134">        this.setId(id);</span>
+<span class="fc" id="L135">        this.setTipo(tipo);</span>
+<span class="fc" id="L136">        this.setVecesComprado(0);</span>
+<span class="fc" id="L137">        this.setImagen(imagen);</span>
+<span class="fc" id="L138">        this.setValoracion(0);</span>
+<span class="fc" id="L139">        this.setCategorias(categorias);</span>
+<span class="fc" id="L140">        this.setVecesValorado(0);</span>
+
+<span class="fc" id="L142">    }</span>
+
+    public void aumentarUso(int n) {
+<span class="fc" id="L145">        this.setVecesComprado(this.getVecesComprado() + n);</span>
+<span class="fc" id="L146">    }</span>
+    /**
+    * Actualiza la valoracion y la cantidad de valoraciones según la valoracion recibida. 
+    * valoracion es un promedio de todas las valoraciones realizadas
+    * 1- Se divide entre la cantidad de valoraciones para obtener la sumatoria de valoraciones
+    * 2- Se agrega la valoracion nueva y se divide entre la nueva cant de valoraciones
+    * @param valoracion valoracion nueva a agregar 
+    */
+    public void agregarValoracion(double valoracion) {
+<span class="fc" id="L155">        this.setValoracion(this.getValoracion() * this.getVecesValorado() + valoracion);</span>
+<span class="fc" id="L156">        this.setVecesValorado(this.getVecesValorado() + 1);</span>
+<span class="fc" id="L157">        this.setValoracion(this.getValoracion() / this.getVecesValorado());</span>
+<span class="fc" id="L158">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L162">        return &quot;Articulo{&quot; + &quot;nombre=&quot; + nombre + &quot;, precio=&quot; + precio + '}';</span>
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L168">            return true;</span>
+        }
+<span class="nc bnc" id="L170" title="All 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L171">            return false;</span>
+        }
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
+<span class="nc" id="L174">            return false;</span>
+        }
+<span class="nc" id="L176">        final Articulo other = (Articulo) obj;</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">        if (this.id != other.id) {</span>
+<span class="nc" id="L178">            return false;</span>
+        }
+<span class="nc" id="L180">        return true;</span>
+    }
+    
+    
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

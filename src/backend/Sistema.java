@@ -59,7 +59,11 @@ public class Sistema {
     public boolean getEsAdmin() {
         return this.esAdmin;
     }
-
+    
+    public void setCarrito(Venta v) {
+        this.carrito=v;
+    }
+    
     public Venta getCarrito() {
         return carrito;
     }
@@ -101,16 +105,15 @@ public class Sistema {
      *
      * @param nombre Nombre del articulo
      * @param origen País de origen del articulo
-     * @param descripcion Descripción del articulo
      * @param precio Precio del articulo, debe ser positivo
      * @param tipo Tipo del articulo
      * @param img Imagen del articulo, debe existir
      * @param categorias Categorias del articulo
      */
-    public void agregarArticulo(String nombre, String origen, String descripcion, int precio,
+    public void agregarArticulo(String nombre, String origen, int precio,
             Articulo.Tipo tipo, Image img, Articulo.Categoria[] categorias) {
         Image image = img;
-        Articulo a = new Articulo(nombre, origen, descripcion, precio, this.getUltimoId(), tipo, image, categorias);
+        Articulo a = new Articulo(nombre, origen, precio, this.getUltimoId(), tipo, image, categorias);
         this.articulos.add(a);
         this.setUltimoId(this.getUltimoId()+1);
     }
@@ -140,6 +143,8 @@ public class Sistema {
         String ret = carrito.generarTicketDGI();
         for (Compra compra : carrito.getCompras()) {
             this.actualizarBeneficio(compra.getEnvase(), compra.getCantidad());
+            compra.getArticulo().aumentarUso(compra.getCantidad());
+            compra.getEnvase().aumentarUso(compra.getCantidad());
         }
         carrito = new Venta();
         actualizarListas();
@@ -163,10 +168,6 @@ public class Sistema {
                 this.articulos.remove(i);
             }
         }
-    }
-
-    public void borrarEnvase(Envase e) {
-        envases.remove(e);
     }
 
     /**
@@ -399,15 +400,5 @@ public class Sistema {
         LocalDate fechaLimite = LocalDate.now().plusDays(14);
         return !fecha.isAfter(fechaLimite) && !fecha.isBefore(LocalDate.now());
     }
-    /**
-     * Agrega la venta directamente al sistema sin pasar por ningún tipo de control.
-     * Usado para agregar ventas artificialmente o cargar ventas iniciales
-     * @param v Venta a agregar 
-     */
-    public void agregarVenta(Venta v){
-        this.ventas.add(v);
-        for (Compra compra : v.getCompras()) {
-            this.actualizarBeneficio(compra.getEnvase(), compra.getCantidad());
-        }
-    }
+
 }

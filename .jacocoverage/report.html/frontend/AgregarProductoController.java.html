@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AgregarProductoController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Rugnitz-Biladoniga&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">frontend</a> &gt; <span class="el_source">AgregarProductoController.java</span></div><h1>AgregarProductoController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package frontend;
+
+import backend.Articulo;
+import backend.Sistema;
+import static frontend.Utilitarios.confirmarPopup;
+import static frontend.Utilitarios.crearError;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author Nahuel
+ */
+<span class="nc" id="L39">public class AgregarProductoController implements Initializable {</span>
+
+    @FXML
+    private TextField txt_nombre;
+    @FXML
+    private TextField txt_origen;
+    @FXML
+    private TextField txt_precio;
+    @FXML
+    private ComboBox lst_tipo;
+    @FXML
+    private ListView lst_categorias;
+    @FXML
+    private Button btn_eliminar;
+
+    private Sistema sistema;
+    private Articulo articulo;
+
+    private File imagen;
+    private boolean esEditar;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+<span class="nc" id="L63">        lst_categorias.getItems().addAll(</span>
+<span class="nc" id="L64">                (Object[]) Articulo.Categoria.values());</span>
+<span class="nc" id="L65">        lst_categorias.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);</span>
+
+<span class="nc" id="L67">        lst_tipo.getItems().setAll((Object[]) Articulo.Tipo.values());</span>
+
+<span class="nc" id="L69">        txt_precio.textProperty().addListener(new ChangeListener&lt;String&gt;() {</span>
+            @Override
+            public void changed(ObservableValue&lt;? extends String&gt; observable,
+                    String oldValue, String newValue) {
+<span class="nc bnc" id="L73" title="All 2 branches missed.">                if (!newValue.matches(&quot;\\d*&quot;)) {</span>
+<span class="nc" id="L74">                    txt_precio.setText(newValue.replaceAll(&quot;[^\\d]&quot;, &quot;&quot;));</span>
+                }
+<span class="nc" id="L76">            }</span>
+        });
+
+<span class="nc" id="L79">    }</span>
+
+    public void inicializarDatos(Sistema sistema, Articulo art) {
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        this.esEditar = art != null;</span>
+<span class="nc" id="L83">        this.sistema = sistema;</span>
+<span class="nc" id="L84">        this.articulo = art;</span>
+<span class="nc" id="L85">        this.btn_eliminar.setVisible(esEditar);</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (esEditar) {</span>
+<span class="nc" id="L87">            this.txt_nombre.setText(art.getNombre());</span>
+<span class="nc" id="L88">            this.txt_origen.setText(art.getOrigen());</span>
+<span class="nc" id="L89">            this.txt_precio.setText(String.valueOf(art.getPrecio()));</span>
+<span class="nc" id="L90">            this.lst_tipo.setValue(art.getTipo());</span>
+        }
+<span class="nc" id="L92">    }</span>
+
+    @FXML
+    private void elegirImagen(ActionEvent evento) {
+<span class="nc" id="L96">        FileChooser fileChooser = new FileChooser();</span>
+
+<span class="nc" id="L98">        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(&quot;Imagenes (*.png,*.jpg)&quot;, &quot;*.png&quot;, &quot;*.jpg&quot;);</span>
+<span class="nc" id="L99">        fileChooser.getExtensionFilters().add(extFilter);</span>
+
+<span class="nc" id="L101">        imagen = fileChooser.showOpenDialog(</span>
+<span class="nc" id="L102">                ((Node) evento.getTarget()).getScene().getWindow());</span>
+
+<span class="nc" id="L104">    }</span>
+
+    @FXML
+    private void confirmar(ActionEvent evento) throws MalformedURLException, IOException {
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        if (confirmarPopup(this)) {</span>
+
+<span class="nc" id="L110">            String nombre = this.txt_nombre.getText();</span>
+<span class="nc" id="L111">            String origen = this.txt_origen.getText();</span>
+<span class="nc" id="L112">            String precio = this.txt_precio.getText();</span>
+<span class="nc" id="L113">            Articulo.Tipo tipo = (Articulo.Tipo) lst_tipo.getValue();</span>
+
+<span class="nc bnc" id="L115" title="All 4 branches missed.">            if (nombre.trim().isEmpty() || origen.trim().isEmpty()</span>
+<span class="nc bnc" id="L116" title="All 10 branches missed.">                    || precio.trim().isEmpty() ||Integer.parseInt(precio)&lt;=0|| (imagen == null</span>
+                    &amp;&amp; !this.esEditar)
+                    || tipo == null) {
+<span class="nc" id="L119">                crearError(this, &quot;Datos Incorrectos&quot;);</span>
+            } else {
+<span class="nc" id="L121">                ObservableList selectedIndices = lst_categorias.</span>
+<span class="nc" id="L122">                        getSelectionModel().getSelectedIndices();</span>
+<span class="nc" id="L123">                ArrayList&lt;Articulo.Categoria&gt; categorias = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L125" title="All 2 branches missed.">                for (Object o : selectedIndices) {</span>
+<span class="nc" id="L126">                    Articulo.Categoria cat = Articulo.Categoria.values()[(Integer) o];</span>
+<span class="nc" id="L127">                    categorias.add(cat);</span>
+<span class="nc" id="L128">                }</span>
+
+<span class="nc" id="L130">                Articulo.Categoria[] cats = categorias.toArray(</span>
+<span class="nc" id="L131">                        new Articulo.Categoria[categorias.size()]);</span>
+                Image img;
+<span class="nc bnc" id="L133" title="All 2 branches missed.">                if (this.esEditar) {</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">                    img = this.imagen == null ? articulo.getImagen()</span>
+<span class="nc" id="L135">                            : new Image(imagen.toURI().toURL().</span>
+<span class="nc" id="L136">                                    toExternalForm());</span>
+<span class="nc" id="L137">                    articulo.setImagen(img);</span>
+<span class="nc" id="L138">                    articulo.setNombre(nombre);</span>
+<span class="nc" id="L139">                    articulo.setOrigen(origen);</span>
+<span class="nc" id="L140">                    articulo.setPrecio(Integer.parseInt(precio));</span>
+<span class="nc" id="L141">                    articulo.setTipo(tipo);</span>
+<span class="nc" id="L142">                    articulo.setCategorias(cats);</span>
+
+                } else {
+<span class="nc" id="L145">                    img = new Image(imagen.toURI().toURL().toExternalForm());</span>
+<span class="nc" id="L146">                    sistema.agregarArticulo(nombre, origen,</span>
+<span class="nc" id="L147">                            Integer.parseInt(precio),</span>
+                            tipo, img, cats);
+                }
+
+<span class="nc" id="L151">                Stage window = (Stage) ((Node) evento.getSource()).</span>
+<span class="nc" id="L152">                        getScene().getWindow();</span>
+<span class="nc" id="L153">                window.close();</span>
+
+            }
+        }
+<span class="nc" id="L157">    }</span>
+
+    @FXML
+    private void volver(ActionEvent evento) {
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        if (confirmarPopup(this)) {</span>
+
+<span class="nc" id="L163">            Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();</span>
+<span class="nc" id="L164">            window.close();</span>
+        }
+<span class="nc" id="L166">    }</span>
+
+    @FXML
+    private void eliminar(ActionEvent evento) {
+<span class="nc bnc" id="L170" title="All 2 branches missed.">        if (confirmarPopup(this)) {</span>
+<span class="nc" id="L171">            sistema.borrarArticulo(articulo);</span>
+<span class="nc" id="L172">            Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();</span>
+<span class="nc" id="L173">            window.close();</span>
+        }
+<span class="nc" id="L175">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

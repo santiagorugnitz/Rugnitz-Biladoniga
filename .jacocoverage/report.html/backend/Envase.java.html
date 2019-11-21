@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Envase.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Rugnitz-Biladoniga&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">backend</a> &gt; <span class="el_source">Envase.java</span></div><h1>Envase.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package backend;
+
+/**
+ *
+ * @author Santiago
+ */
+public class Envase {
+
+    private String nombre;
+    private int id;
+    private int vecesUsado;
+    private Articulo.Tipo[] tipos;
+    private int costeProduccion;
+
+    public String getNombre() {
+<span class="nc" id="L21">        return nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="fc" id="L25">        this.nombre = nombre;</span>
+<span class="fc" id="L26">    }</span>
+
+    public int getId() {
+<span class="nc" id="L29">        return id;</span>
+    }
+
+    private void setId(int id) {
+<span class="fc" id="L33">        this.id = id;</span>
+<span class="fc" id="L34">    }</span>
+
+    public int getVecesUsado() {
+<span class="fc" id="L37">        return vecesUsado;</span>
+    }
+
+    private void setVecesUsado(int vecesUsado) {
+<span class="fc" id="L41">        this.vecesUsado = vecesUsado;</span>
+<span class="fc" id="L42">    }</span>
+
+    public Articulo.Tipo[] getTipos() {
+<span class="nc" id="L45">        return tipos;</span>
+    }
+
+    public void setTipos(Articulo.Tipo[] tipos) {
+<span class="fc" id="L49">        this.tipos = tipos;</span>
+<span class="fc" id="L50">    }</span>
+
+    public int getCosteProduccion() {
+<span class="fc" id="L53">        return costeProduccion;</span>
+    }
+
+    public void setCosteProduccion(int costeProduccion) {
+<span class="fc" id="L57">        this.costeProduccion = costeProduccion;</span>
+<span class="fc" id="L58">    }</span>
+
+<span class="nc" id="L60">    public Envase() {</span>
+<span class="nc" id="L61">        this.setNombre(&quot;&quot;);</span>
+<span class="nc" id="L62">        this.setId(0);</span>
+<span class="nc" id="L63">        this.setTipos(new Articulo.Tipo[0]);</span>
+<span class="nc" id="L64">        this.setCosteProduccion(0);</span>
+<span class="nc" id="L65">        this.setVecesUsado(0);</span>
+<span class="nc" id="L66">    }</span>
+
+<span class="fc" id="L68">    public Envase(String nombre,int id, Articulo.Tipo[] tipos, int costeProduccion) {</span>
+<span class="fc" id="L69">        this.setNombre(nombre);</span>
+<span class="fc" id="L70">        this.setId(id);</span>
+<span class="fc" id="L71">        this.setVecesUsado(0);</span>
+<span class="fc" id="L72">        this.setTipos(tipos);</span>
+<span class="fc" id="L73">        this.setCosteProduccion(costeProduccion);</span>
+<span class="fc" id="L74">    }</span>
+
+    public void aumentarUso(int n) {
+<span class="fc" id="L77">        this.setVecesUsado(this.getVecesUsado() + n);</span>
+<span class="fc" id="L78">    }</span>
+
+    /**
+     * Busca si el tipo recibido pertenece al array de tipos
+     * @param t tipo de articulo que se quiere comprobar
+     * @return true si el envase admite el tipo, de lo contrario false
+     */
+    public boolean admiteElTipo(Articulo.Tipo t) {
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        for (Articulo.Tipo tipo : tipos) {</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            if (t == tipo) {</span>
+<span class="fc" id="L88">                return true;</span>
+            }
+        }
+<span class="fc" id="L91">        return false;</span>
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L97">            return true;</span>
+        }
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L100">            return false;</span>
+        }
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
+<span class="nc" id="L103">            return false;</span>
+        }
+<span class="nc" id="L105">        final Envase other = (Envase) obj;</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (this.id != other.id) {</span>
+<span class="nc" id="L107">            return false;</span>
+        }
+<span class="nc" id="L109">        return true;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L114">        return this.getNombre();</span>
+    }
+    
+    
+    
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

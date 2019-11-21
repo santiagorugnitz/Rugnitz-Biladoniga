@@ -59,7 +59,7 @@ public class Envase {
 
     public Envase() {
         this.setNombre("");
-        this.setId(-1);
+        this.setId(0);
         this.setTipos(new Articulo.Tipo[0]);
         this.setCosteProduccion(0);
         this.setVecesUsado(0);

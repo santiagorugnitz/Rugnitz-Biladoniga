@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>TiendaController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Rugnitz-Biladoniga&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">frontend</a> &gt; <span class="el_source">TiendaController.java</span></div><h1>TiendaController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package frontend;
+
+import backend.Articulo;
+import backend.Sistema;
+import com.jfoenix.controls.JFXCheckBox;
+import static frontend.Utilitarios.ir_carrito;
+import static frontend.Utilitarios.ir_estadisticas;
+import static frontend.Utilitarios.ir_historial;
+import static frontend.Utilitarios.ir_propuestas;
+import static frontend.Utilitarios.ir_puntosVenta;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+/**
+ * FXML Controller class
+ *
+ * @author Nahuel
+ */
+<span class="nc" id="L50">public class TiendaController implements Initializable {</span>
+
+    /**
+     * Initializes the controller class.
+     */
+    @FXML
+    private VBox vbox;
+    @FXML
+    private AnchorPane pane;
+    @FXML
+    private Label lbl_cantidad_carro;
+    @FXML
+    private ToggleGroup g_precios;
+    @FXML
+    private RadioButton sinLimite;
+    @FXML
+    private Button btn_articulos;
+    @FXML
+    private Button btn_carro;
+    @FXML
+    private Group gpr_cantidad;
+    @FXML
+    private CheckBox vegano;
+
+    @FXML
+    private CheckBox gluten;
+
+    @FXML
+    private CheckBox calorias;
+
+    @FXML
+    private CheckBox organico;
+
+    @FXML
+    private CheckBox azucar;
+    //Atributos
+    private int desde;
+    private int hasta;
+    private double valoracion;
+    private List&lt;Articulo.Categoria&gt; categorias;
+    private String nombreABuscar;
+    //Sistema
+    private Sistema sistema;
+    private boolean esAdmin;
+
+    public void inicializarDatos(Sistema s) {
+<span class="nc" id="L96">        this.sistema = s;</span>
+<span class="nc" id="L97">        this.cargarArticulos(s.getArticulos());</span>
+<span class="nc" id="L98">        lbl_cantidad_carro.setText(String.valueOf(</span>
+<span class="nc" id="L99">                sistema.cantCarrito()));</span>
+<span class="nc" id="L100">        eliminarFiltros(null);</span>
+<span class="nc" id="L101">        this.esAdmin = s.getEsAdmin();</span>
+
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if (esAdmin) {</span>
+<span class="nc" id="L104">            btn_carro.setText(&quot;Estadisticas&quot;);</span>
+        }
+
+<span class="nc" id="L107">        btn_articulos.setVisible(s.getEsAdmin());</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        gpr_cantidad.setVisible(!s.getEsAdmin());</span>
+
+<span class="nc" id="L110">    }</span>
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+<span class="nc" id="L115">        g_precios.selectedToggleProperty().addListener((ObservableValue&lt;? extends Toggle&gt; ob, Toggle o, Toggle n) -&gt; {</span>
+<span class="nc" id="L116">            RadioButton rb1 = (RadioButton) g_precios.getSelectedToggle();</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (rb1 != null) {</span>
+<span class="nc" id="L118">                String rango = rb1.getText();</span>
+<span class="nc bnc" id="L119" title="All 22 branches missed.">                switch (rango) {</span>
+                    case &quot;Sin Limite&quot;:
+<span class="nc" id="L121">                        this.desde = 0;</span>
+<span class="nc" id="L122">                        this.hasta = Integer.MAX_VALUE;</span>
+<span class="nc" id="L123">                        break;</span>
+                    case &quot;$ 0 a $ 100&quot;:
+<span class="nc" id="L125">                        this.desde = 0;</span>
+<span class="nc" id="L126">                        this.hasta = 100;</span>
+
+<span class="nc" id="L128">                        break;</span>
+                    case &quot;$ 100 a $ 300&quot;:
+<span class="nc" id="L130">                        this.desde = 100;</span>
+<span class="nc" id="L131">                        this.hasta = 300;</span>
+
+<span class="nc" id="L133">                        break;</span>
+                    case &quot;$ 300 a $ 500&quot;:
+<span class="nc" id="L135">                        this.desde = 300;</span>
+<span class="nc" id="L136">                        this.hasta = 500;</span>
+
+<span class="nc" id="L138">                        break;</span>
+                    case &quot;$ 500 o mas&quot;:
+<span class="nc" id="L140">                        this.desde = 500;</span>
+<span class="nc" id="L141">                        this.hasta = Integer.MAX_VALUE;</span>
+                        break;
+                }
+<span class="nc" id="L144">                actualizarListaArticulos();</span>
+            }
+<span class="nc" id="L146">        });</span>
+
+<span class="nc" id="L148">    }</span>
+
+    private void actualizarListaArticulos() {
+<span class="nc" id="L151">        List&lt;Articulo&gt; listaArt = this.sistema.</span>
+<span class="nc" id="L152">                filtrarArticulos(desde, hasta, valoracion,</span>
+<span class="nc" id="L153">                        categorias.toArray(new Articulo.Categoria[categorias.size()]),</span>
+                        nombreABuscar);
+<span class="nc" id="L155">        cargarArticulos(listaArt);</span>
+<span class="nc" id="L156">    }</span>
+
+    public void cargarArticulos(List&lt;Articulo&gt; listArt) {
+<span class="nc" id="L159">        this.vbox.getChildren().clear();</span>
+
+<span class="nc" id="L161">        int maxFila = 0;</span>
+<span class="nc" id="L162">        HBox filas = new HBox();</span>
+<span class="nc" id="L163">        filas.setSpacing(20);</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">        for (int i = 0; i &lt; listArt.size(); i++) {</span>
+            try {
+
+<span class="nc" id="L167">                Articulo art = listArt.get(i);</span>
+                //Cargarart el objeto
+
+<span class="nc" id="L170">                FXMLLoader fxml = new FXMLLoader(</span>
+<span class="nc" id="L171">                        getClass().getResource(&quot;/frontend/Producto.fxml&quot;));</span>
+<span class="nc" id="L172">                Parent nodo = fxml.load();</span>
+
+                //Carga los datos
+<span class="nc" id="L175">                ProductoController controller = fxml.getController();</span>
+<span class="nc" id="L176">                controller.inicializarDatos(art, sistema, lbl_cantidad_carro, this);</span>
+<span class="nc" id="L177">                fxml.setController(controller);</span>
+
+                //Cargo el nuevo objeto
+<span class="nc" id="L180">                filas.getChildren().add(nodo);</span>
+<span class="nc" id="L181">                maxFila++;</span>
+
+                //Cargar Filas
+<span class="nc bnc" id="L184" title="All 2 branches missed.">                if (maxFila == 3) {</span>
+<span class="nc" id="L185">                    this.vbox.getChildren().add(filas);</span>
+<span class="nc" id="L186">                    filas = new HBox();</span>
+<span class="nc" id="L187">                    filas.setSpacing(20);</span>
+
+<span class="nc" id="L189">                    maxFila = 0;</span>
+                }
+
+<span class="nc" id="L192">            } catch (IOException ex) {</span>
+<span class="nc" id="L193">                Logger.getLogger(TiendaController.class</span>
+<span class="nc" id="L194">                        .getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L195">            }</span>
+
+        }
+<span class="nc bnc" id="L198" title="All 2 branches missed.">        if (maxFila != 0) {</span>
+<span class="nc" id="L199">            this.vbox.getChildren().add(filas);</span>
+        }
+
+<span class="nc" id="L202">    }</span>
+
+    @FXML
+    private void busquedaNombre(ActionEvent event) {
+<span class="nc" id="L206">        TextField field = (TextField) event.getSource();</span>
+<span class="nc" id="L207">        this.nombreABuscar = field.getText();</span>
+<span class="nc" id="L208">        this.actualizarListaArticulos();</span>
+<span class="nc" id="L209">    }</span>
+
+    @FXML
+    private void busquedaCategoria(ActionEvent event) {
+<span class="nc" id="L213">        CheckBox field = (CheckBox) event.getSource();</span>
+<span class="nc" id="L214">        String nombre = field.getText();</span>
+<span class="nc" id="L215">        Articulo.Categoria cat = Articulo.Categoria.BAJAS_CALORIAS;</span>
+
+<span class="nc bnc" id="L217" title="All 22 branches missed.">        switch (nombre) {</span>
+            case &quot;Vegano&quot;:
+<span class="nc" id="L219">                cat = Articulo.Categoria.VEGANO;</span>
+<span class="nc" id="L220">                break;</span>
+            case &quot;Libre de Gluten&quot;:
+<span class="nc" id="L222">                cat = Articulo.Categoria.LIBRE_DE_GLUTEN;</span>
+
+<span class="nc" id="L224">                break;</span>
+            case &quot;Bajas Calorias&quot;:
+<span class="nc" id="L226">                cat = Articulo.Categoria.BAJAS_CALORIAS;</span>
+
+<span class="nc" id="L228">                break;</span>
+            case &quot;Organico&quot;:
+<span class="nc" id="L230">                cat = Articulo.Categoria.ORGANICO;</span>
+
+<span class="nc" id="L232">                break;</span>
+            case &quot;Libre de Azucar&quot;:
+<span class="nc" id="L234">                cat = Articulo.Categoria.LIBRE_DE_AZUCAR;</span>
+                break;
+        }
+
+<span class="nc bnc" id="L238" title="All 2 branches missed.">        if (field.isSelected()) {</span>
+<span class="nc" id="L239">            categorias.add(cat);</span>
+        } else {
+<span class="nc" id="L241">            categorias.remove(cat);</span>
+        }
+
+<span class="nc" id="L244">        this.actualizarListaArticulos();</span>
+<span class="nc" id="L245">    }</span>
+
+    @FXML
+    private void busquedaValoracion(ActionEvent event) {
+<span class="nc" id="L249">        Button field = (Button) event.getSource();</span>
+<span class="nc" id="L250">        String nombre = field.getText();</span>
+
+<span class="nc" id="L252">        this.valoracion = Double.parseDouble(nombre);</span>
+<span class="nc" id="L253">        this.actualizarListaArticulos();</span>
+<span class="nc" id="L254">    }</span>
+
+    @FXML
+    private void eliminarFiltros(ActionEvent event) {
+        //Atributos
+<span class="nc" id="L259">        this.desde = 0;</span>
+<span class="nc" id="L260">        this.hasta = Integer.MAX_VALUE;</span>
+<span class="nc" id="L261">        this.valoracion = 0.0;</span>
+<span class="nc" id="L262">        this.categorias = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L263">        this.nombreABuscar = &quot;&quot;;</span>
+
+        //Restablecer Labels
+<span class="nc" id="L266">        this.sinLimite.setSelected(true);</span>
+<span class="nc" id="L267">        this.azucar.setSelected(false);</span>
+<span class="nc" id="L268">        this.gluten.setSelected(false);</span>
+<span class="nc" id="L269">        this.calorias.setSelected(false);</span>
+<span class="nc" id="L270">        this.organico.setSelected(false);</span>
+<span class="nc" id="L271">        this.vegano.setSelected(false);</span>
+
+<span class="nc" id="L273">        actualizarListaArticulos();</span>
+<span class="nc" id="L274">    }</span>
+
+    @FXML
+    private void carrito(ActionEvent event) {
+<span class="nc bnc" id="L278" title="All 2 branches missed.">        if (esAdmin) {</span>
+<span class="nc" id="L279">            ir_estadisticas(this, event, sistema);</span>
+        } else {
+<span class="nc" id="L281">            ir_carrito(this, event, sistema);</span>
+        }
+<span class="nc" id="L283">    }</span>
+
+    @FXML
+    private void historial(ActionEvent event) {
+<span class="nc" id="L287">        ir_historial(this, event, sistema);</span>
+<span class="nc" id="L288">    }</span>
+
+    @FXML
+    private void cerrarSesion(ActionEvent event) {
+<span class="nc" id="L292">        frontend.Utilitarios.cerrarSesion(this, event, this.sistema);</span>
+<span class="nc" id="L293">    }</span>
+
+    @FXML
+    private void puntosVenta(ActionEvent event) {
+<span class="nc" id="L297">        ir_puntosVenta(this, event, sistema);</span>
+<span class="nc" id="L298">    }</span>
+
+    @FXML
+    private void propuestas(ActionEvent event) {
+<span class="nc" id="L302">        ir_propuestas(this, event, sistema);</span>
+<span class="nc" id="L303">    }</span>
+
+    @FXML
+    private void agregarArticulo(ActionEvent event) {
+
+<span class="nc" id="L308">        Stage newstage = new Stage();</span>
+
+<span class="nc" id="L310">        FXMLLoader loader = new FXMLLoader(this.getClass().</span>
+<span class="nc" id="L311">                getResource(&quot;/frontend/AgregarProducto.fxml&quot;));</span>
+
+        try {
+
+<span class="nc" id="L315">            Parent root = loader.load();</span>
+<span class="nc" id="L316">            Scene scene = new Scene(root);</span>
+
+            //Cargar Mensaje
+<span class="nc" id="L319">            AgregarProductoController controlador = loader.getController();</span>
+<span class="nc" id="L320">            controlador.inicializarDatos(sistema, null);</span>
+
+<span class="nc" id="L322">            newstage.initStyle(StageStyle.UNDECORATED);</span>
+<span class="nc" id="L323">            newstage.setScene(scene);</span>
+<span class="nc" id="L324">            newstage.initModality(Modality.APPLICATION_MODAL);</span>
+<span class="nc" id="L325">            ((Stage) (newstage.getScene().getWindow())).centerOnScreen();</span>
+
+<span class="nc" id="L327">            newstage.showAndWait();</span>
+
+<span class="nc" id="L329">        } catch (IOException ex) {</span>
+
+<span class="nc" id="L331">            Logger.getLogger(ProductoController.class.getName()).</span>
+<span class="nc" id="L332">                    log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L333">        }</span>
+<span class="nc" id="L334">        this.cargarArticulos(this.sistema.getArticulos());</span>
+
+<span class="nc" id="L336">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

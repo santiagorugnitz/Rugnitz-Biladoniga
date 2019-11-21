@@ -113,7 +113,7 @@ public class AgregarProductoController implements Initializable {
             Articulo.Tipo tipo = (Articulo.Tipo) lst_tipo.getValue();
 
             if (nombre.trim().isEmpty() || origen.trim().isEmpty()
-                    || precio.trim().isEmpty() || (imagen == null
+                    || precio.trim().isEmpty() ||Integer.parseInt(precio)<=0|| (imagen == null
                     && !this.esEditar)
                     || tipo == null) {
                 crearError(this, "Datos Incorrectos");
@@ -143,7 +143,7 @@ public class AgregarProductoController implements Initializable {
 
                 } else {
                     img = new Image(imagen.toURI().toURL().toExternalForm());
-                    sistema.agregarArticulo(nombre, origen, "descripcion",
+                    sistema.agregarArticulo(nombre, origen,
                             Integer.parseInt(precio),
                             tipo, img, cats);
                 }

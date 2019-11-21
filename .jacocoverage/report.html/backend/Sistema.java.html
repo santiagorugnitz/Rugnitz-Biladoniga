@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Sistema.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Rugnitz-Biladoniga&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">backend</a> &gt; <span class="el_source">Sistema.java</span></div><h1>Sistema.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package backend;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.scene.image.Image;
+
+/**
+ *
+ * @author Santiago
+ */
+public class Sistema {
+
+    private List&lt;Venta&gt; ventas;
+    private List&lt;Envase&gt; envases;
+    private List&lt;Articulo&gt; articulos;
+    private List&lt;Propuesta&gt; propuestas;
+
+    private int beneficioAmbiental;
+
+    private List&lt;Venta&gt; ventasCliente;
+    private List&lt;Propuesta&gt; propuestasCliente;
+    private Venta carrito;
+    private boolean esAdmin;
+    private int ultimoId;
+    
+<span class="fc" id="L32">    public Sistema() {</span>
+<span class="fc" id="L33">        this.ventas = new ArrayList();</span>
+<span class="fc" id="L34">        this.envases = new ArrayList();</span>
+<span class="fc" id="L35">        this.articulos = new ArrayList();</span>
+<span class="fc" id="L36">        this.propuestas = new ArrayList();</span>
+<span class="fc" id="L37">        this.propuestasCliente = new ArrayList();</span>
+<span class="fc" id="L38">        this.ventasCliente = new ArrayList();</span>
+<span class="fc" id="L39">        this.ultimoId=0;</span>
+
+<span class="fc" id="L41">        this.beneficioAmbiental = 0;</span>
+<span class="fc" id="L42">        this.carrito = new Venta();</span>
+<span class="fc" id="L43">        this.esAdmin = true;</span>
+<span class="fc" id="L44">    }</span>
+
+    /**
+     * Resetea el historial y la lista de propuestas del cliente a los valores
+     * por defecto
+     */
+    public void cerrarSesion() {
+<span class="nc" id="L51">        this.propuestasCliente = new ArrayList(propuestas);</span>
+<span class="nc" id="L52">        this.ventasCliente = new ArrayList();</span>
+<span class="nc" id="L53">    }</span>
+
+    public void setEsAdmin(boolean esAdmin) {
+<span class="nc" id="L56">        this.esAdmin = esAdmin;</span>
+<span class="nc" id="L57">    }</span>
+
+    public boolean getEsAdmin() {
+<span class="nc" id="L60">        return this.esAdmin;</span>
+    }
+    
+    public void setCarrito(Venta v) {
+<span class="fc" id="L64">        this.carrito=v;</span>
+<span class="fc" id="L65">    }</span>
+    
+    public Venta getCarrito() {
+<span class="nc" id="L68">        return carrito;</span>
+    }
+
+    public List&lt;Venta&gt; getVentas() {
+<span class="nc" id="L72">        return ventas;</span>
+    }
+
+    public List&lt;Venta&gt; getVentasCliente() {
+<span class="nc" id="L76">        return ventasCliente;</span>
+    }
+
+    public List&lt;Envase&gt; getEnvases() {
+<span class="nc" id="L80">        return envases;</span>
+    }
+
+    public List&lt;Articulo&gt; getArticulos() {
+<span class="fc" id="L84">        return articulos;</span>
+    }
+
+    public int getBeneficioAmbiental() {
+<span class="nc" id="L88">        return beneficioAmbiental;</span>
+    }
+
+    public void setBeneficioAmbiental(int beneficioAmbiental) {
+<span class="nc" id="L92">        this.beneficioAmbiental = beneficioAmbiental;</span>
+<span class="nc" id="L93">    }</span>
+    
+    private int getUltimoId(){
+<span class="fc" id="L96">        return this.ultimoId;</span>
+    }
+    
+    private void setUltimoId(int ultimoId){
+<span class="fc" id="L100">        this.ultimoId=ultimoId;</span>
+<span class="fc" id="L101">    }</span>
+
+    /**
+     * Se crea el articulo con los parametros recibidos y se agrega al sistema
+     *
+     * @param nombre Nombre del articulo
+     * @param origen País de origen del articulo
+     * @param precio Precio del articulo, debe ser positivo
+     * @param tipo Tipo del articulo
+     * @param img Imagen del articulo, debe existir
+     * @param categorias Categorias del articulo
+     */
+    public void agregarArticulo(String nombre, String origen, int precio,
+            Articulo.Tipo tipo, Image img, Articulo.Categoria[] categorias) {
+<span class="fc" id="L115">        Image image = img;</span>
+<span class="fc" id="L116">        Articulo a = new Articulo(nombre, origen, precio, this.getUltimoId(), tipo, image, categorias);</span>
+<span class="fc" id="L117">        this.articulos.add(a);</span>
+<span class="fc" id="L118">        this.setUltimoId(this.getUltimoId()+1);</span>
+<span class="fc" id="L119">    }</span>
+
+
+    /**
+     * Crea un envase con los parametros recibidos y lo agrega al sistema
+     *
+     * @param nombre Nombre del envase
+     * @param tipos Tipos de articulos con los que se podría usar el envase
+     * @param costeProduccion Coste ambiental de producción del envase
+     */
+    public void agregarEnvase(String nombre, Articulo.Tipo[] tipos, int costeProduccion) {
+<span class="fc" id="L130">        Envase e = new Envase(nombre, this.envases.size(), tipos, costeProduccion);</span>
+<span class="fc" id="L131">        this.envases.add(e);</span>
+<span class="fc" id="L132">    }</span>
+
+    /**
+     * Registra en el sistema la venta con los articulos del carrito, genera el
+     * ticket y reinicia el carrito
+     *
+     * @return Ticket electrónico de la compra
+     */
+    public String registrarVenta() {
+<span class="fc" id="L141">        ventas.add(carrito);</span>
+<span class="fc" id="L142">        ventasCliente.add(carrito);</span>
+<span class="fc" id="L143">        String ret = carrito.generarTicketDGI();</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        for (Compra compra : carrito.getCompras()) {</span>
+<span class="fc" id="L145">            this.actualizarBeneficio(compra.getEnvase(), compra.getCantidad());</span>
+<span class="fc" id="L146">            compra.getArticulo().aumentarUso(compra.getCantidad());</span>
+<span class="fc" id="L147">            compra.getEnvase().aumentarUso(compra.getCantidad());</span>
+<span class="fc" id="L148">        }</span>
+<span class="fc" id="L149">        carrito = new Venta();</span>
+<span class="fc" id="L150">        actualizarListas();</span>
+<span class="fc" id="L151">        return ret;</span>
+    }
+
+    /**
+     * Reordena las listas según el orden predeterminado
+     */
+    private void actualizarListas() {
+<span class="fc" id="L158">        envases.sort((Envase t, Envase t1) -&gt; t.getVecesUsado() - t1.getVecesUsado());</span>
+<span class="fc" id="L159">        articulos.sort((Articulo a, Articulo a1) -&gt; a.getVecesComprado() - a1.getVecesComprado());</span>
+<span class="fc" id="L160">        ventas.sort((Venta v, Venta v1) -&gt; v.getFecha().compareTo(v1.getFecha()));</span>
+<span class="fc" id="L161">        ventasCliente.sort((Venta v, Venta v1) -&gt; v.getFecha().compareTo(v1.getFecha()));</span>
+
+<span class="fc" id="L163">    }</span>
+
+    public void borrarArticulo(Articulo art) {
+<span class="nc bnc" id="L166" title="All 2 branches missed.">        for (int i = 0; i &lt; articulos.size(); i++) {</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (articulos.get(i).equals(art)) {</span>
+<span class="nc" id="L168">                this.articulos.remove(i);</span>
+            }
+        }
+<span class="nc" id="L171">    }</span>
+
+    /**
+     * Agrega al beneficioAmbiental el coste de produccion de n envases
+     *
+     * @param e Envase utilizado
+     * @param n veces que se utilizó el envase
+     */
+    private void actualizarBeneficio(Envase e, int n) {
+<span class="fc" id="L180">        this.beneficioAmbiental += e.getCosteProduccion() * n;</span>
+<span class="fc" id="L181">    }</span>
+
+    /**
+     * Filtra la lista de articulos según las condiciones pasadas por parámetro
+     * y disponiblidad
+     *
+     * @param precioDesde Precio mínimo
+     * @param precioHasta Precio máximo
+     * @param minValoracion Valoración mínima
+     * @param categorias Categorias elegidas (debe cumplir al menos una)
+     * @param nombre Nombre o parte del nombre del articulo
+     * @return Lista de articulos filtrada
+     */
+    public List&lt;Articulo&gt; filtrarArticulos(int precioDesde, int precioHasta,
+            double minValoracion, Articulo.Categoria[] categorias,
+            String nombre) {
+<span class="nc" id="L197">        List&lt;Articulo&gt; ret = new ArrayList();</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">        for (Articulo articulo : articulos) {</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            boolean categoriaCorrecta = categorias.length == 0</span>
+<span class="nc" id="L200">                    ? true : estanTodos(categorias, articulo.getCategorias());</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            boolean nombreContenido = nombre.length() == 0</span>
+<span class="nc" id="L202">                    ? true : articulo.getNombre().toLowerCase().contains(nombre.toLowerCase());</span>
+<span class="nc bnc" id="L203" title="All 4 branches missed.">            if (articulo.getPrecio() &lt;= precioHasta &amp;&amp; articulo.getPrecio()</span>
+<span class="nc bnc" id="L204" title="All 6 branches missed.">                    &gt;= precioDesde &amp;&amp; articulo.getValoracion() &gt;= minValoracion</span>
+                    &amp;&amp; categoriaCorrecta &amp;&amp; nombreContenido) {
+<span class="nc" id="L206">                ret.add(articulo);</span>
+            }
+<span class="nc" id="L208">        }</span>
+<span class="nc" id="L209">        return ret;</span>
+    }
+
+    /**
+     * Método auxiliar que busca si todas las categorias del array de partida
+     * estan presentes en el de llegada
+     *
+     * @param partida Array de categorías de partida
+     * @param llegada Array de categorías de llegada
+     * @return false si un elemento de partida no se encuentra en llegada, true
+     * en caso contrario
+     */
+    private boolean estanTodos(Articulo.Categoria[] partida, Articulo.Categoria[] llegada) {
+<span class="nc" id="L222">        boolean encontre = false;</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">        for (Articulo.Categoria c1 : partida) {</span>
+<span class="nc" id="L224">            encontre = false;</span>
+<span class="nc bnc" id="L225" title="All 4 branches missed.">            for (int i = 0; i &lt; llegada.length &amp;&amp; !encontre; i++) {</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">                if (llegada[i].equals(c1)) {</span>
+<span class="nc" id="L227">                    encontre = true;</span>
+                }
+            }
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            if (!encontre) {</span>
+<span class="nc" id="L231">                return false;</span>
+            }
+        }
+<span class="nc" id="L234">        return true;</span>
+    }
+
+    public void agregarAlCarrito(Articulo a, Envase e, int unidades) {
+<span class="nc" id="L238">        carrito.agregarArticulo(a, e, unidades);</span>
+<span class="nc" id="L239">    }</span>
+
+    /**
+     * Quita un articulo del carrito
+     *
+     * @param pos Posición del articulo a borrar
+     */
+    public void quitarDelCarrito(int pos) {
+<span class="nc" id="L247">        carrito.quitarArticulo(pos);</span>
+<span class="nc" id="L248">    }</span>
+
+    /**
+     * Actualiza las unidades a comprar de un articulo del carrito
+     *
+     * @param pos Posición del articulo dentro del carrito
+     * @param cantNueva cantidad de unidades nueva
+     */
+    public void editarCantCarrito(int pos, int cantNueva) {
+<span class="nc" id="L257">        carrito.getCompras().get(pos).setCantidad(cantNueva);</span>
+<span class="nc" id="L258">    }</span>
+
+    public void borrarCarrito() {
+<span class="nc" id="L261">        carrito = new Venta();</span>
+<span class="nc" id="L262">    }</span>
+
+    public int cantCarrito() {
+<span class="nc" id="L265">        return carrito.getCompras().size();</span>
+    }
+
+    public int cantVentasCliente() {
+<span class="nc" id="L269">        return ventasCliente.size();</span>
+    }
+
+    public List&lt;Propuesta&gt; getPropuestas() {
+<span class="nc" id="L273">        return propuestas;</span>
+    }
+
+    public List&lt;Propuesta&gt; getPropuestasCliente() {
+<span class="nc" id="L277">        return this.propuestasCliente;</span>
+    }
+
+    /**
+     * Filtra la lista de propuestas buscando propuestas cuyo nombre contenga el
+     * String pasado por parámetro
+     *
+     * @param nombre Nombre a buscar
+     * @return Lista de propuestas filtrada
+     */
+    public List&lt;Propuesta&gt; filtrarPropuesta(String nombre) {
+<span class="nc" id="L288">        List&lt;Propuesta&gt; ret = new ArrayList();</span>
+<span class="nc bnc" id="L289" title="All 2 branches missed.">        for (Propuesta propuesta : propuestas) {</span>
+<span class="nc bnc" id="L290" title="All 2 branches missed.">            boolean nombreContenido = nombre.length() == 0</span>
+<span class="nc" id="L291">                    ? true : propuesta.getNombre().contains(nombre);</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">            if (nombreContenido) {</span>
+<span class="nc" id="L293">                ret.add(propuesta);</span>
+            }
+<span class="nc" id="L295">        }</span>
+<span class="nc" id="L296">        return ret;</span>
+    }
+
+    /**
+     * Crea la lista de envases compatibles con el articulo dado
+     *
+     * @param a Articulo que se quiere comprar
+     * @return Lista de envases compatibles
+     */
+    public List&lt;Envase&gt; envasesCompatibles(Articulo a) {
+<span class="fc" id="L306">        List&lt;Envase&gt; ret = new ArrayList();</span>
+<span class="fc bfc" id="L307" title="All 2 branches covered.">        for (Envase envase : this.envases) {</span>
+<span class="fc bfc" id="L308" title="All 2 branches covered.">            if (envase.admiteElTipo(a.getTipo())) {</span>
+<span class="fc" id="L309">                ret.add(envase);</span>
+            }
+<span class="fc" id="L311">        }</span>
+<span class="fc" id="L312">        return ret;</span>
+    }
+
+    /**
+     * Crea la propuesta con los parámetros recibidos y la agrega al sistema
+     *
+     * @param nombre Nombre de la propuesta
+     * @param descripcion Descripción de la propuesta
+     * @param cantidadVotos Cantidad de votos inicial de la propuesta
+     * @param imagen Imagen de la propuesta, debe existir
+     */
+    public void agregarPropuesta(String nombre, String descripcion,
+            int cantidadVotos,
+            Image imagen) {
+
+<span class="fc" id="L327">        Image image = imagen;</span>
+
+<span class="fc" id="L329">        Propuesta propuesta = new Propuesta(nombre, descripcion, cantidadVotos,</span>
+                image);
+<span class="fc" id="L331">        this.propuestas.add(propuesta);</span>
+<span class="fc" id="L332">        this.propuestasCliente.add(propuesta);</span>
+<span class="fc" id="L333">    }</span>
+
+    /**
+     * Agrega un voto a la propuesta y la borra de la lista de propuestas
+     *
+     * @param propuesta Propuesta a votar
+     */
+    public void agregarVotoPropuesta(Propuesta propuesta) {
+<span class="nc" id="L341">        propuesta.agregarVoto();</span>
+<span class="nc" id="L342">        this.removerPropuesta(propuesta);</span>
+<span class="nc" id="L343">    }</span>
+
+    public void removerPropuesta(Propuesta propuesta) {
+<span class="nc" id="L346">        this.propuestasCliente.remove(propuesta);</span>
+<span class="nc" id="L347">    }</span>
+
+    /**
+     * Calcula la suma de todos los precios totales de cada venta
+     *
+     * @return suma de las ganancias de cada venta
+     */
+    public int gananciasTotales() {
+<span class="nc" id="L355">        int ret = 0;</span>
+<span class="nc bnc" id="L356" title="All 2 branches missed.">        for (Venta venta : ventas) {</span>
+<span class="nc" id="L357">            ret += venta.getTotal();</span>
+<span class="nc" id="L358">        }</span>
+<span class="nc" id="L359">        return ret;</span>
+    }
+
+    /**
+     * Dado un mes da la ganancia de las ventas de ese mes
+     *
+     * @param mes Mes a calcular las ventas
+     * @return total de las ventas del mes
+     */
+    public int gananciaMes(int mes) {
+<span class="nc" id="L369">        int ret = 0;</span>
+<span class="nc bnc" id="L370" title="All 2 branches missed.">        for (Venta venta : ventas) {</span>
+<span class="nc bnc" id="L371" title="All 2 branches missed.">            if (venta.getFecha().getMonth().getValue() == mes) {</span>
+<span class="nc" id="L372">                ret += venta.getTotal();</span>
+            }
+<span class="nc" id="L374">        }</span>
+<span class="nc" id="L375">        return ret;</span>
+    }
+
+    public int cantVentas() {
+<span class="nc" id="L379">        return ventas.size();</span>
+    }
+
+    public int cantVentasHoy() {
+<span class="nc" id="L383">        int ret = 0;</span>
+<span class="nc bnc" id="L384" title="All 2 branches missed.">        for (Venta venta : ventas) {</span>
+<span class="nc bnc" id="L385" title="All 2 branches missed.">            if (venta.getFecha().equals(LocalDate.now())) {</span>
+<span class="nc" id="L386">                ret++;</span>
+            }
+<span class="nc" id="L388">        }</span>
+<span class="nc" id="L389">        return ret;</span>
+    }
+
+    /**
+     * Verifica si la fecha no es anterior a la de hoy y no es más de 14 días
+     * después
+     *
+     * @param fecha Fecha a validar
+     * @return true si la fecha esta dentro del rango, false en caso contrario
+     */
+    public boolean fechaPreVentaValida(LocalDate fecha) {
+<span class="nc" id="L400">        LocalDate fechaLimite = LocalDate.now().plusDays(14);</span>
+<span class="nc bnc" id="L401" title="All 4 branches missed.">        return !fecha.isAfter(fechaLimite) &amp;&amp; !fecha.isBefore(LocalDate.now());</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
