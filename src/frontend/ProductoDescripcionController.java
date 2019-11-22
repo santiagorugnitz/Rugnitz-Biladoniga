@@ -86,7 +86,7 @@ public class ProductoDescripcionController implements Initializable {
         lbl_tipo.setText("Tipo: " + String.valueOf(art.getTipo()));
         lbl_origen.setText("Origen: " + String.valueOf(art.getOrigen()));
         lbl_precio.setText("Precio: $" + String.valueOf(art.getPrecio()));
-        lbl_veces.setText("Veces: " + String.valueOf(art.getVecesComprado()));
+        lbl_veces.setText("Veces comprado: " + String.valueOf(art.getVecesComprado()));
         lbl_nota.setText(String.valueOf(art.getValoracion()));
         Articulo.Categoria[] categorias = art.getCategorias();
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="172.0" prefWidth="227.0" style="-fx-background-color: #0f1642;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="imagen" fitHeight="93.0" fitWidth="43.0" layoutX="96.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/jbl-speaker.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lbl_precio" alignment="CENTER_RIGHT" layoutX="158.0" layoutY="128.0" prefHeight="21.0" prefWidth="61.0" text="\$234" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Group layoutX="4.0" layoutY="124.0">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#6f64f8" height="22.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="46.0" />
+            <ImageView fitHeight="14.0" fitWidth="14.0" layoutX="30.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/star.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbl_nota" layoutX="6.0" prefHeight="30.0" prefWidth="29.0" text="2.3" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Label fx:id="lbl_nombre" alignment="CENTER" layoutX="61.0" layoutY="124.0" prefHeight="30.0" prefWidth="109.0" text="Parlante JBL" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

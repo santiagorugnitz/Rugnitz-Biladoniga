@@ -48,12 +48,14 @@ public class Utilitarios {
     }
 
     public static void cerrarSesion(Object win, Event event, Sistema sistema) {
-        sistema.cerrarSesion();
+        if (confirmarPopup(win)) {
 
-        FXMLLoader loader = cambiarVentana(win, event, "/frontend/Inicio.fxml");
-        InicioController controlador = loader.getController();
-        controlador.setSistema(sistema);
+            sistema.cerrarSesion();
 
+            FXMLLoader loader = cambiarVentana(win, event, "/frontend/Inicio.fxml");
+            InicioController controlador = loader.getController();
+            controlador.setSistema(sistema);
+        }
     }
 
     public static void crearError(Object win, String mensaje) {
@@ -82,6 +84,35 @@ public class Utilitarios {
 
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public static boolean confirmarPopup(Object win) {
+
+        Stage newstage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader(win.getClass().
+                getResource("/frontend/ConfirmacionPopup.fxml"));
+        boolean confirmo = true;
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            //Cargar Mensaje
+            ConfirmacionPopupController errorControlador = loader.getController();
+
+            newstage.initStyle(StageStyle.UNDECORATED);
+            newstage.setScene(scene);
+            newstage.initModality(Modality.APPLICATION_MODAL);
+            ((Stage) (newstage.getScene().getWindow())).centerOnScreen();
+
+            newstage.showAndWait();
+            confirmo = errorControlador.isContinuar();
+
+        } catch (IOException ex) {
+
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmo;
     }
 
     public static void productoDescripcion(Object win, Event event,

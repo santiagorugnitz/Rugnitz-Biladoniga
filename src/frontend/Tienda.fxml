@@ -227,33 +227,27 @@
       </Text>
       <VBox layoutX="322.0" layoutY="409.0" prefHeight="136.0" prefWidth="245.0" spacing="9.0">
          <children>
-<<<<<<< HEAD
-            <JFXCheckBox style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" textFill="WHITE" />
-            <JFXCheckBox style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" textFill="WHITE" />
-            <JFXCheckBox style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" textFill="WHITE" />
-            <JFXCheckBox style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" textFill="WHITE" />
-=======
-            <JFXCheckBox onAction="#busquedaCategoria" style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" text="Vegano" textFill="WHITE">
+            <JFXCheckBox fx:id="vegano" onAction="#busquedaCategoria" style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" text="Vegano" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox onAction="#busquedaCategoria" style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" text="Libre de Gluten" textFill="WHITE">
+            <JFXCheckBox fx:id="gluten" onAction="#busquedaCategoria" style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" text="Libre de Gluten" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox onAction="#busquedaCategoria" style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" text="Bajas Calorias" textFill="WHITE">
+            <JFXCheckBox fx:id="calorias" onAction="#busquedaCategoria" style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" text="Bajas Calorias" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox onAction="#busquedaCategoria" style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" text="Organico" textFill="WHITE">
+            <JFXCheckBox fx:id="organico" onAction="#busquedaCategoria" style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" text="Organico" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox onAction="#busquedaCategoria" style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" text="Libre de azucar" textFill="WHITE">
+            <JFXCheckBox fx:id="azucar" onAction="#busquedaCategoria" style="-jfx-checked-color: #6F64F8; -jfx-unchecked-color: #FFFFFF;" text="Libre de azucar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

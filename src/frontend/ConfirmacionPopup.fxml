@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="170.0" prefWidth="386.0" style="-fx-border-color: white; -fx-background-color: #2B3253;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="frontend.ConfirmacionPopupController">
+   <children>
+      <Label alignment="CENTER" layoutX="41.0" layoutY="32.0" prefHeight="53.0" prefWidth="309.0" text="Esta seguro?" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="240.0" layoutY="110.0" onAction="#confirmar" text="Confirmar" textFill="GREEN">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="53.0" layoutY="110.0" onAction="#volver" text="Volver" textFill="RED">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

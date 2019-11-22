@@ -37,7 +37,6 @@ public class ErrorPopupController implements Initializable {
     public void volver(ActionEvent evento) {
         Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();
         window.close();
-
     }
 
 }

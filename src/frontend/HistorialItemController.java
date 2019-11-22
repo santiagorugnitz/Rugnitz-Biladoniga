@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -29,8 +30,9 @@ public class HistorialItemController implements Initializable {
     private Label lbl_precio;
     @FXML
     private Label lbl_nota;
-
     @FXML
+    private ImageView imagen;
+
     private Compra venta;
 
     @Override
@@ -45,9 +47,9 @@ public class HistorialItemController implements Initializable {
         this.lbl_nombre.setText(venta.getArticulo().getNombre());
         this.lbl_nota.setText(String.valueOf(
                 venta.getArticulo().getValoracion()));
-        this.lbl_precio.setText("$"+String.valueOf(venta.total()));
+        this.lbl_precio.setText("$" + String.valueOf(venta.total()));
         this.lbl_cantidad.setText(String.valueOf(venta.getCantidad()));
-
+        this.imagen.setImage(venta.getArticulo().getImagen());
     }
 
 }

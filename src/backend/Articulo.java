@@ -25,10 +25,8 @@ public class Articulo {
     private String nombre;
     private String origen;
     private int precio;
-    private String descripcion;
     private Categoria[] categorias;
     private int id;
-    private boolean disponible;
     private Tipo tipo;
     private int vecesComprado;
     private Image imagen;
@@ -59,14 +57,6 @@ public class Articulo {
         this.precio = precio;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public Categoria[] getCategorias() {
         return categorias;
     }
@@ -81,14 +71,6 @@ public class Articulo {
 
     private void setId(int id) {
         this.id = id;
-    }
-
-    public boolean isDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
     }
 
     public Tipo getTipo() {
@@ -134,10 +116,8 @@ public class Articulo {
     public Articulo() {
         this.setNombre("");
         this.setOrigen("");
-        this.setDescripcion("");
-        this.setPrecio(0);
+        this.setPrecio(10);
         this.setId(-1);
-        this.setDisponible(false);
         this.setTipo(Tipo.SECO);
         this.setVecesComprado(0);
         this.setImagen(null);
@@ -147,13 +127,11 @@ public class Articulo {
 
     }
 
-    public Articulo(String nombre, String origen,String descripcion, int precio, int id, Tipo tipo, Image imagen, Categoria[] categorias) {
+    public Articulo(String nombre, String origen, int precio, int id, Tipo tipo, Image imagen, Categoria[] categorias) {
         this.setNombre(nombre);
         this.setOrigen(origen);
-        this.setDescripcion(descripcion);
         this.setPrecio(precio);
         this.setId(id);
-        this.setDisponible(true);
         this.setTipo(tipo);
         this.setVecesComprado(0);
         this.setImagen(imagen);

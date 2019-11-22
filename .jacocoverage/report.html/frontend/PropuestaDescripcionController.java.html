@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>PropuestaDescripcionController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Rugnitz-Biladoniga&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">frontend</a> &gt; <span class="el_source">PropuestaDescripcionController.java</span></div><h1>PropuestaDescripcionController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package frontend;
+
+import backend.Articulo;
+import backend.Propuesta;
+import backend.Sistema;
+import static frontend.Utilitarios.centrarImagen;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author Nahuel
+ */
+<span class="nc" id="L29">public class PropuestaDescripcionController implements Initializable {</span>
+
+    @FXML
+    private Label lbl_nombre;
+    @FXML
+    private Label lbl_votos;
+    @FXML
+    private TextArea txt_desc;
+    @FXML
+    private ImageView image;
+
+    private Propuesta prop;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+<span class="nc" id="L44">    }</span>
+
+    public void inicializarDatos(Propuesta prop) {
+<span class="nc" id="L47">        this.prop = prop;</span>
+
+        //Cargar Ventana
+<span class="nc" id="L50">        lbl_nombre.setText(String.valueOf(prop.getNombre()));</span>
+<span class="nc" id="L51">        lbl_votos.setText(&quot;Votos &quot; + String.valueOf(prop.getCantidadVotos()));</span>
+<span class="nc" id="L52">        txt_desc.setText(String.valueOf(prop.getDescripcion()));</span>
+<span class="nc" id="L53">        image.setImage(prop.getImagen());</span>
+<span class="nc" id="L54">        centrarImagen(image);</span>
+<span class="nc" id="L55">    }</span>
+
+    @FXML
+    public void volver(ActionEvent evento) {
+<span class="nc" id="L59">        Stage window = (Stage) ((Node) evento.getSource()).getScene().getWindow();</span>
+<span class="nc" id="L60">        window.close();</span>
+<span class="nc" id="L61">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -97,6 +97,12 @@ public class CarroItemController implements Initializable {
         this.lbl_precio.setText("$" + String.valueOf(compra.total()));
         this.lbl_cantidad.setText(String.valueOf(compra.getCantidad()));
 
+        if (compra.getCantidad() == 1) {
+            btn_restar.setDisable(true);
+        }
+        if (compra.getCantidad() == 10) {
+            this.btn_sumar.setDisable(true);
+        }
         //Cargo el total y subtotal
         String precioTotal = "$" + String.valueOf(sistema.getCarrito().getTotal());
         this.total.setText(precioTotal);

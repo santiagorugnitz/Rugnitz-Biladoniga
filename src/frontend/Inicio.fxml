@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="180.0" prefWidth="427.0" style="-fx-background-color: #2B3253;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="frontend.InicioController">
+   <children>
+      <Label layoutX="12.0" layoutY="13.0" text="Bienvenido" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="175.0" layoutY="134.0" onAction="#salir" prefHeight="39.0" prefWidth="77.0" text="Salir" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="260.0" layoutY="76.0" onAction="#consumidor" prefHeight="39.0" prefWidth="143.0" text="Consumidor" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="15.0" layoutY="75.0" onAction="#admin" prefHeight="39.0" prefWidth="170.0" text="Administrador" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

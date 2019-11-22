@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Utilitarios.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Rugnitz-Biladoniga&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">frontend</a> &gt; <span class="el_source">Utilitarios.java</span></div><h1>Utilitarios.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package frontend;
+
+import backend.Articulo;
+import backend.Sistema;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.Event;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+/**
+ *
+ * @author Nahuel
+ */
+<span class="nc" id="L28">public class Utilitarios {</span>
+
+    public static FXMLLoader cambiarVentana(Object win, Event event, String fxml) {
+<span class="nc" id="L31">        FXMLLoader loader = new FXMLLoader(win.getClass().getResource(fxml));</span>
+
+        try {
+<span class="nc" id="L34">            Parent tableViewParent = loader.load();</span>
+<span class="nc" id="L35">            Scene tableViewScene = new Scene(tableViewParent);</span>
+
+<span class="nc" id="L37">            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();</span>
+
+<span class="nc" id="L39">            window.setScene(tableViewScene);</span>
+<span class="nc" id="L40">            ((Stage) (window.getScene().getWindow())).centerOnScreen();</span>
+
+<span class="nc" id="L42">            window.show();</span>
+<span class="nc" id="L43">        } catch (IOException ex) {</span>
+<span class="nc" id="L44">            Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L45">        }</span>
+
+<span class="nc" id="L47">        return loader;</span>
+    }
+
+    public static void cerrarSesion(Object win, Event event, Sistema sistema) {
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        if (confirmarPopup(win)) {</span>
+
+<span class="nc" id="L53">            sistema.cerrarSesion();</span>
+
+<span class="nc" id="L55">            FXMLLoader loader = cambiarVentana(win, event, &quot;/frontend/Inicio.fxml&quot;);</span>
+<span class="nc" id="L56">            InicioController controlador = loader.getController();</span>
+<span class="nc" id="L57">            controlador.setSistema(sistema);</span>
+        }
+<span class="nc" id="L59">    }</span>
+
+    public static void crearError(Object win, String mensaje) {
+
+<span class="nc" id="L63">        Stage newstage = new Stage();</span>
+
+<span class="nc" id="L65">        FXMLLoader loader = new FXMLLoader(win.getClass().</span>
+<span class="nc" id="L66">                getResource(&quot;/frontend/ErrorPopup.fxml&quot;));</span>
+
+        try {
+<span class="nc" id="L69">            Parent root = loader.load();</span>
+<span class="nc" id="L70">            Scene scene = new Scene(root);</span>
+
+            //Cargar Mensaje
+<span class="nc" id="L73">            ErrorPopupController errorControlador = loader.getController();</span>
+<span class="nc" id="L74">            errorControlador.setMensaje(mensaje);</span>
+
+<span class="nc" id="L76">            newstage.initStyle(StageStyle.UNDECORATED);</span>
+<span class="nc" id="L77">            newstage.setScene(scene);</span>
+<span class="nc" id="L78">            newstage.initModality(Modality.APPLICATION_MODAL);</span>
+<span class="nc" id="L79">            ((Stage) (newstage.getScene().getWindow())).centerOnScreen();</span>
+
+<span class="nc" id="L81">            newstage.showAndWait();</span>
+
+<span class="nc" id="L83">        } catch (IOException ex) {</span>
+
+<span class="nc" id="L85">            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L86">        }</span>
+<span class="nc" id="L87">    }</span>
+
+    public static boolean confirmarPopup(Object win) {
+
+<span class="nc" id="L91">        Stage newstage = new Stage();</span>
+
+<span class="nc" id="L93">        FXMLLoader loader = new FXMLLoader(win.getClass().</span>
+<span class="nc" id="L94">                getResource(&quot;/frontend/ConfirmacionPopup.fxml&quot;));</span>
+<span class="nc" id="L95">        boolean confirmo = true;</span>
+        try {
+<span class="nc" id="L97">            Parent root = loader.load();</span>
+<span class="nc" id="L98">            Scene scene = new Scene(root);</span>
+
+            //Cargar Mensaje
+<span class="nc" id="L101">            ConfirmacionPopupController errorControlador = loader.getController();</span>
+
+<span class="nc" id="L103">            newstage.initStyle(StageStyle.UNDECORATED);</span>
+<span class="nc" id="L104">            newstage.setScene(scene);</span>
+<span class="nc" id="L105">            newstage.initModality(Modality.APPLICATION_MODAL);</span>
+<span class="nc" id="L106">            ((Stage) (newstage.getScene().getWindow())).centerOnScreen();</span>
+
+<span class="nc" id="L108">            newstage.showAndWait();</span>
+<span class="nc" id="L109">            confirmo = errorControlador.isContinuar();</span>
+
+<span class="nc" id="L111">        } catch (IOException ex) {</span>
+
+<span class="nc" id="L113">            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L114">        }</span>
+<span class="nc" id="L115">        return confirmo;</span>
+    }
+
+    public static void productoDescripcion(Object win, Event event,
+            Sistema sistema, Articulo art) {
+
+<span class="nc" id="L121">        Stage newstage = new Stage();</span>
+
+<span class="nc" id="L123">        FXMLLoader loader = new FXMLLoader(win.getClass().</span>
+<span class="nc" id="L124">                getResource(&quot;/frontend/ProductoDescripcion.fxml&quot;));</span>
+
+        try {
+
+<span class="nc" id="L128">            Parent root = loader.load();</span>
+<span class="nc" id="L129">            Scene scene = new Scene(root);</span>
+
+            //Cargar Mensaje
+<span class="nc" id="L132">            ProductoDescripcionController controlador = loader.getController();</span>
+<span class="nc" id="L133">            controlador.inicializarDatos(art, sistema);</span>
+
+<span class="nc" id="L135">            newstage.initStyle(StageStyle.UNDECORATED);</span>
+<span class="nc" id="L136">            newstage.setScene(scene);</span>
+<span class="nc" id="L137">            newstage.initModality(Modality.APPLICATION_MODAL);</span>
+<span class="nc" id="L138">            ((Stage) (newstage.getScene().getWindow())).centerOnScreen();</span>
+
+<span class="nc" id="L140">            newstage.showAndWait();</span>
+
+<span class="nc" id="L142">        } catch (IOException ex) {</span>
+
+<span class="nc" id="L144">            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L145">        }</span>
+<span class="nc" id="L146">    }</span>
+
+    public static void ir_carrito(Object win, Event event, Sistema sistema) {
+
+<span class="nc bnc" id="L150" title="All 2 branches missed.">        if (sistema.cantCarrito() != 0) {</span>
+<span class="nc" id="L151">            FXMLLoader fxml = frontend.Utilitarios.</span>
+<span class="nc" id="L152">                    cambiarVentana(win, event, &quot;/frontend/Carro.fxml&quot;);</span>
+
+<span class="nc" id="L154">            CarroController controller = fxml.getController();</span>
+<span class="nc" id="L155">            controller.inicializarDatos(sistema);</span>
+
+<span class="nc" id="L157">        } else {</span>
+<span class="nc" id="L158">            crearError(win, &quot;Carrito Vacio&quot;);</span>
+        }
+<span class="nc" id="L160">    }</span>
+
+    public static void ir_tienda(Object win, Event event, Sistema sistema) {
+
+<span class="nc" id="L164">        FXMLLoader fxml = frontend.Utilitarios.</span>
+<span class="nc" id="L165">                cambiarVentana(win, event, &quot;/frontend/Tienda.fxml&quot;);</span>
+
+<span class="nc" id="L167">        TiendaController controller = fxml.getController();</span>
+
+<span class="nc" id="L169">        controller.inicializarDatos(sistema);</span>
+<span class="nc" id="L170">    }</span>
+
+    public static void ir_historial(Object win, Event event, Sistema sistema) {
+
+<span class="nc bnc" id="L174" title="All 2 branches missed.">        boolean esVacio = sistema.getEsAdmin()</span>
+<span class="nc bnc" id="L175" title="All 4 branches missed.">                ? sistema.cantVentas() == 0 : sistema.cantVentasCliente() == 0;</span>
+
+<span class="nc bnc" id="L177" title="All 2 branches missed.">        if (!esVacio) {</span>
+<span class="nc" id="L178">            FXMLLoader fxml = frontend.Utilitarios.</span>
+<span class="nc" id="L179">                    cambiarVentana(win, event, &quot;/frontend/Historial.fxml&quot;);</span>
+
+<span class="nc" id="L181">            HistorialController controller = fxml.getController();</span>
+
+<span class="nc" id="L183">            controller.inicializarDatos(sistema);</span>
+
+<span class="nc" id="L185">        } else {</span>
+<span class="nc" id="L186">            crearError(win, &quot;Historial Vacio&quot;);</span>
+        }
+<span class="nc" id="L188">    }</span>
+
+    public static void ir_puntosVenta(Object win, Event event, Sistema sistema) {
+<span class="nc" id="L191">        FXMLLoader fxml = Utilitarios.cambiarVentana(</span>
+                win, event, &quot;/frontend/Mapa.fxml&quot;);
+        //Carga los datos
+<span class="nc" id="L194">        MapaController controller = fxml.getController();</span>
+<span class="nc" id="L195">        controller.inicializarDatos(sistema);</span>
+<span class="nc" id="L196">    }</span>
+
+    public static void ir_propuestas(Object win, Event event, Sistema sistema) {
+<span class="nc" id="L199">        FXMLLoader fxml = Utilitarios.cambiarVentana(</span>
+                win, event, &quot;/frontend/Propuestas.fxml&quot;);
+        //Carga los datos
+<span class="nc" id="L202">        PropuestasController controller = fxml.getController();</span>
+<span class="nc" id="L203">        controller.inicializarDatos(sistema);</span>
+<span class="nc" id="L204">    }</span>
+
+    public static void centrarImagen(ImageView img) {
+<span class="nc" id="L207">        Image imagen = img.getImage();</span>
+
+<span class="nc" id="L209">        double w = 0;</span>
+<span class="nc" id="L210">        double h = 0;</span>
+
+<span class="nc" id="L212">        double ratioX = img.getFitWidth() / imagen.getWidth();</span>
+<span class="nc" id="L213">        double ratioY = img.getFitHeight() / imagen.getHeight();</span>
+
+<span class="nc" id="L215">        double reducCoeff = 0;</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">        if (ratioX &gt;= ratioY) {</span>
+<span class="nc" id="L217">            reducCoeff = ratioY;</span>
+        } else {
+<span class="nc" id="L219">            reducCoeff = ratioX;</span>
+        }
+
+<span class="nc" id="L222">        w = imagen.getWidth() * reducCoeff;</span>
+<span class="nc" id="L223">        h = imagen.getHeight() * reducCoeff;</span>
+
+<span class="nc" id="L225">        img.setX((img.getFitWidth() - w) / 2);</span>
+<span class="nc" id="L226">        img.setY((img.getFitHeight() - h) / 2);</span>
+
+<span class="nc" id="L228">    }</span>
+
+    public static void ir_estadisticas(Object win, Event event, Sistema sistema) {
+
+<span class="nc" id="L232">        FXMLLoader fxml = frontend.Utilitarios.</span>
+<span class="nc" id="L233">                cambiarVentana(win, event, &quot;/frontend/Estadisticas.fxml&quot;);</span>
+
+<span class="nc" id="L235">        EstadisticasController controller = fxml.getController();</span>
+<span class="nc" id="L236">        controller.inicializarDatos(sistema);</span>
+
+<span class="nc" id="L238">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
