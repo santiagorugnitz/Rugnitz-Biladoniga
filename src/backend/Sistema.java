@@ -155,8 +155,8 @@ public class Sistema {
      * Reordena las listas según el orden predeterminado
      */
     private void actualizarListas() {
-        envases.sort((Envase t, Envase t1) -> t.getVecesUsado() - t1.getVecesUsado());
-        articulos.sort((Articulo a, Articulo a1) -> a.getVecesComprado() - a1.getVecesComprado());
+        envases.sort((Envase t, Envase t1) -> t1.getVecesUsado() - t.getVecesUsado());
+        articulos.sort((Articulo a, Articulo a1) -> a1.getVecesComprado() - a.getVecesComprado());
         ventas.sort((Venta v, Venta v1) -> v.getFecha().compareTo(v1.getFecha()));
         ventasCliente.sort((Venta v, Venta v1) -> v.getFecha().compareTo(v1.getFecha()));
 
