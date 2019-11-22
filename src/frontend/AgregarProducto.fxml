@@ -49,12 +49,12 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txt_precio" alignment="CENTER" focusColor="#6f64f8" labelFloat="true" layoutX="90.0" layoutY="188.0" prefHeight="31.0" prefWidth="262.0" promptText="Precio" style="-fx-prompt-text-fill: #FFFFFF; -fx-text-fill: #FFFFFF;" unFocusColor="WHITE">
+      <JFXTextField fx:id="txt_precio" alignment="CENTER" focusColor="#6f64f8" labelFloat="true" layoutX="90.0" layoutY="188.0" prefHeight="31.0" prefWidth="262.0" promptText="Precio (máx. 999)" style="-fx-prompt-text-fill: #FFFFFF; -fx-text-fill: #FFFFFF;" unFocusColor="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <Label layoutX="170.0" layoutY="337.0" prefHeight="35.0" text="Categoria" textAlignment="RIGHT" textFill="WHITE">
+      <Label layoutX="170.0" layoutY="337.0" prefHeight="35.0" text="Categorías" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

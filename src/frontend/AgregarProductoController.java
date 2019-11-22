@@ -113,9 +113,9 @@ public class AgregarProductoController implements Initializable {
             Articulo.Tipo tipo = (Articulo.Tipo) lst_tipo.getValue();
 
             if (nombre.trim().isEmpty() || origen.trim().isEmpty()
-                    || precio.trim().isEmpty() ||Integer.parseInt(precio)<=0|| (imagen == null
-                    && !this.esEditar)
-                    || tipo == null) {
+                    || precio.trim().isEmpty() || Integer.parseInt(precio) <= 0
+                    || Integer.parseInt(precio) > 999
+                    || (imagen == null && !this.esEditar) || tipo == null) {
                 crearError(this, "Datos Incorrectos");
             } else {
                 ObservableList selectedIndices = lst_categorias.
