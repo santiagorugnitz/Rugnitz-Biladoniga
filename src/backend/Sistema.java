@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package backend;
 
 import java.time.LocalDate;
@@ -11,8 +6,8 @@ import java.util.List;
 import javafx.scene.image.Image;
 
 /**
- *
- * @author Santiago
+ * @author Nahuel Biladoniga-211138
+ * @author Santiago Rugnitz-215381
  */
 public class Sistema {
 
@@ -28,7 +23,7 @@ public class Sistema {
     private Venta carrito;
     private boolean esAdmin;
     private int ultimoId;
-    
+
     public Sistema() {
         this.ventas = new ArrayList();
         this.envases = new ArrayList();
@@ -36,7 +31,7 @@ public class Sistema {
         this.propuestas = new ArrayList();
         this.propuestasCliente = new ArrayList();
         this.ventasCliente = new ArrayList();
-        this.ultimoId=0;
+        this.ultimoId = 0;
 
         this.beneficioAmbiental = 0;
         this.carrito = new Venta();
@@ -59,11 +54,11 @@ public class Sistema {
     public boolean getEsAdmin() {
         return this.esAdmin;
     }
-    
+
     public void setCarrito(Venta v) {
-        this.carrito=v;
+        this.carrito = v;
     }
-    
+
     public Venta getCarrito() {
         return carrito;
     }
@@ -91,13 +86,13 @@ public class Sistema {
     public void setBeneficioAmbiental(int beneficioAmbiental) {
         this.beneficioAmbiental = beneficioAmbiental;
     }
-    
-    private int getUltimoId(){
+
+    private int getUltimoId() {
         return this.ultimoId;
     }
-    
-    private void setUltimoId(int ultimoId){
-        this.ultimoId=ultimoId;
+
+    private void setUltimoId(int ultimoId) {
+        this.ultimoId = ultimoId;
     }
 
     /**
@@ -115,9 +110,8 @@ public class Sistema {
         Image image = img;
         Articulo a = new Articulo(nombre, origen, precio, this.getUltimoId(), tipo, image, categorias);
         this.articulos.add(a);
-        this.setUltimoId(this.getUltimoId()+1);
+        this.setUltimoId(this.getUltimoId() + 1);
     }
-
 
     /**
      * Crea un envase con los parametros recibidos y lo agrega al sistema

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package backend;
 
 import java.time.LocalDate;
@@ -11,8 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *
- * @author Santiago
+ * @author Nahuel Biladoniga-211138
+ * @author Santiago Rugnitz-215381
  */
 public class Venta {
 
@@ -32,13 +27,15 @@ public class Venta {
     }
 
     public Venta() {
-        this.compras=new ArrayList();
+        this.compras = new ArrayList();
         this.setFecha(LocalDate.now());
     }
-    
+
     /**
-     * Calcula el precio total de la venta sumando el precio total de cada compra
-     * @return precio total de la venta 
+     * Calcula el precio total de la venta sumando el precio total de cada
+     * compra
+     *
+     * @return precio total de la venta
      */
     public int getTotal() {
         int total = 0;
@@ -50,10 +47,10 @@ public class Venta {
 
     public void agregarArticulo(Articulo a, Envase e, int unidades) {
         for (int i = 0; i < this.compras.size(); i++) {
-            if(compras.get(i).getArticulo().equals(a)&&compras.get(i).getEnvase().equals(e)){
-                compras.get(i).setCantidad(unidades+compras.get(i).getCantidad());
+            if (compras.get(i).getArticulo().equals(a) && compras.get(i).getEnvase().equals(e)) {
+                compras.get(i).setCantidad(unidades + compras.get(i).getCantidad());
                 return;
-            }   
+            }
         }
         this.compras.add(new Compra(a, e, unidades));
     }
@@ -61,8 +58,11 @@ public class Venta {
     public void quitarArticulo(int pos) {
         compras.remove(pos);
     }
+
     /**
-     * Genera un html con el ticket electrónico de la venta siguiendo las normas de la DGI 
+     * Genera un html con el ticket electrónico de la venta siguiendo las normas
+     * de la DGI
+     *
      * @return codigo html del ticket de la venta
      */
     public String generarTicketDGI() {
@@ -238,8 +238,5 @@ public class Venta {
         }
         return true;
     }
-    
-    
-    
 
 }

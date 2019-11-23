@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package backend;
 
 import java.util.Objects;
 import javafx.scene.image.Image;
 
 /**
- *
- * @author Nahuel
+ * @author Nahuel Biladoniga-211138
+ * @author Santiago Rugnitz-215381
  */
 public class Propuesta {
 
@@ -98,7 +93,5 @@ public class Propuesta {
         }
         return true;
     }
-    
-    
 
 }

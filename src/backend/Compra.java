@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package backend;
 
 import java.util.Objects;
 
 /**
- *
- * @author Santiago
+ * @author Nahuel Biladoniga-211138
+ * @author Santiago Rugnitz-215381
  */
 public class Compra {
+
     private Articulo articulo;
     private Envase envase;
     private int cantidad;
@@ -40,31 +36,32 @@ public class Compra {
         this.cantidad = cantidad;
     }
 
-    public Compra(){
+    public Compra() {
         this.setArticulo(new Articulo());
         this.setEnvase(new Envase());
         this.setCantidad(0);
     }
-    
+
     public Compra(Articulo articulo, Envase envase, int cantidad) {
         this.setArticulo(articulo);
         this.setEnvase(envase);
         this.setCantidad(cantidad);
     }
-    
+
     /**
      * Retorna el precio total de la compra
+     *
      * @return precio del articulo multiplicado por la cantidad de articulos
      */
-    public int total(){
-        return articulo.getPrecio()*cantidad;
+    public int total() {
+        return articulo.getPrecio() * cantidad;
     }
 
     @Override
     public String toString() {
         return "Compra{" + "articulo=" + articulo + ", envase=" + envase + ", cantidad=" + cantidad + '}';
-    }    
-    
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -88,6 +85,5 @@ public class Compra {
         }
         return true;
     }
-    
-    
+
 }

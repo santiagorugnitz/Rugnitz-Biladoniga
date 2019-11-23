@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package backend;
 
 /**
- *
- * @author Santiago
+ * @author Nahuel Biladoniga-211138
+ * @author Santiago Rugnitz-215381
  */
 public class Envase {
 
@@ -65,7 +60,7 @@ public class Envase {
         this.setVecesUsado(0);
     }
 
-    public Envase(String nombre,int id, Articulo.Tipo[] tipos, int costeProduccion) {
+    public Envase(String nombre, int id, Articulo.Tipo[] tipos, int costeProduccion) {
         this.setNombre(nombre);
         this.setId(id);
         this.setVecesUsado(0);
@@ -79,6 +74,7 @@ public class Envase {
 
     /**
      * Busca si el tipo recibido pertenece al array de tipos
+     *
      * @param t tipo de articulo que se quiere comprobar
      * @return true si el envase admite el tipo, de lo contrario false
      */
@@ -113,8 +109,5 @@ public class Envase {
     public String toString() {
         return this.getNombre();
     }
-    
-    
-    
 
 }
