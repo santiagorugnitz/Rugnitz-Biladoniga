@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package frontend;
 
 import backend.Articulo;
@@ -25,9 +20,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * FXML Controller class
- *
- * @author Nahuel
+ * @author Nahuel Biladoniga-211138
+ * @author Santiago Rugnitz-215381
  */
 public class EstadisticasController implements Initializable {
 
@@ -49,7 +43,7 @@ public class EstadisticasController implements Initializable {
     public void inicializarDatos(Sistema sistema) {
         this.sistema = sistema;
         //Cargar Estadisticas
-        this.lbl_ganancias.setText("$"+String.valueOf(sistema.gananciasTotales()));
+        this.lbl_ganancias.setText("$" + String.valueOf(sistema.gananciasTotales()));
         this.lbl_beneficio.setText(String.valueOf(sistema.getBeneficioAmbiental()));
         this.lbl_ventas.setText(String.valueOf(sistema.cantVentas()));
         this.lbl_ventas_hoy.setText(String.valueOf(sistema.cantVentasHoy()));

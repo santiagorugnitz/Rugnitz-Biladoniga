@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package frontend;
 
 import java.net.URL;
@@ -14,9 +9,8 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
- * @author Nahuel
+ * @author Nahuel Biladoniga-211138
+ * @author Santiago Rugnitz-215381
  */
 public class ConfirmacionPopupController implements Initializable {
 

@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package backend;
 
 import javafx.scene.image.Image;
 
 /**
- *
- * @author Santiago
+ * @author Nahuel Biladoniga-211138
+ * @author Santiago Rugnitz-215381
  */
 public class Articulo {
 
@@ -144,13 +139,16 @@ public class Articulo {
     public void aumentarUso(int n) {
         this.setVecesComprado(this.getVecesComprado() + n);
     }
+
     /**
-    * Actualiza la valoracion y la cantidad de valoraciones según la valoracion recibida. 
-    * valoracion es un promedio de todas las valoraciones realizadas
-    * 1- Se divide entre la cantidad de valoraciones para obtener la sumatoria de valoraciones
-    * 2- Se agrega la valoracion nueva y se divide entre la nueva cant de valoraciones
-    * @param valoracion valoracion nueva a agregar 
-    */
+     * Actualiza la valoracion y la cantidad de valoraciones según la valoracion
+     * recibida. valoracion es un promedio de todas las valoraciones realizadas
+     * 1- Se divide entre la cantidad de valoraciones para obtener la sumatoria
+     * de valoraciones 2- Se agrega la valoracion nueva y se divide entre la
+     * nueva cant de valoraciones
+     *
+     * @param valoracion valoracion nueva a agregar
+     */
     public void agregarValoracion(double valoracion) {
         this.setValoracion(this.getValoracion() * this.getVecesValorado() + valoracion);
         this.setVecesValorado(this.getVecesValorado() + 1);
@@ -161,7 +159,7 @@ public class Articulo {
     public String toString() {
         return "Articulo{" + "nombre=" + nombre + ", precio=" + precio + '}';
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -179,7 +177,5 @@ public class Articulo {
         }
         return true;
     }
-    
-    
 
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package frontend;
 
 import backend.Articulo;
@@ -31,12 +26,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * FXML Controller class
- *
- * @author Nahuel
+ * @author Nahuel Biladoniga-211138
+ * @author Santiago Rugnitz-215381
  */
 public class ProductoController implements Initializable {
-    
+
     @FXML
     private VBox vbox;
     @FXML
@@ -51,12 +45,12 @@ public class ProductoController implements Initializable {
     private ImageView image;
     @FXML
     private Button btn_comprar;
-    
+
     private Sistema sistema;
     private Articulo articulo;
     private Label lbl_cantidadCarrito;
     private TiendaController controlador;
-    
+
     public void inicializarDatos(Articulo articulo, Sistema sistema,
             Label cantidad, TiendaController controlador) {
         lbl_precio.setText("$" + String.valueOf(articulo.getPrecio()));
@@ -64,36 +58,36 @@ public class ProductoController implements Initializable {
         lbl_nota.setText(String.valueOf(articulo.getValoracion()));
         image.setImage(articulo.getImagen());
         this.controlador = controlador;
-        
+
         centrarImagen(image);
-        
+
         this.sistema = sistema;
         this.articulo = articulo;
         this.lbl_cantidadCarrito = cantidad;
-        
+
         this.btn_comprar.setVisible(!sistema.getEsAdmin());
     }
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
-    
+
     @FXML
     private void comprar(ActionEvent evento) {
         Stage newstage = new Stage();
-        
+
         FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/frontend/Comprar.fxml"));
         Parent root;
-        
+
         try {
             root = loader.load();
             Scene scene = new Scene(root);
-            
+
             ComprarController controlador = loader.getController();
             controlador.inicializarDatos(sistema, articulo, lbl_cantidadCarrito);
             loader.setController(controlador);
-            
+
             newstage.initStyle(StageStyle.UNDECORATED);
             newstage.setScene(scene);
             newstage.initModality(Modality.APPLICATION_MODAL);
@@ -101,13 +95,13 @@ public class ProductoController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     @FXML
     private void descripcion(MouseEvent evento) {
         productoDescripcion(this, evento, sistema, articulo);
         controlador.cargarArticulos(sistema.getArticulos());
     }
-    
+
 }
