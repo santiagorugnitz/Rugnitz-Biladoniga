@@ -60,6 +60,12 @@ public class Compra {
     @Override
     public String toString() {
         return "Compra{" + "articulo=" + articulo + ", envase=" + envase + ", cantidad=" + cantidad + '}';
+    }    
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
     }
 
     @Override

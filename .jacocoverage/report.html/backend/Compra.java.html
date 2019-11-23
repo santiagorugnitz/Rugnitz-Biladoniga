@@ -40,11 +40,11 @@ public class Compra {
 <span class="fc" id="L40">        this.cantidad = cantidad;</span>
 <span class="fc" id="L41">    }</span>
 
-<span class="nc" id="L43">    public Compra(){</span>
-<span class="nc" id="L44">        this.setArticulo(new Articulo());</span>
-<span class="nc" id="L45">        this.setEnvase(new Envase());</span>
-<span class="nc" id="L46">        this.setCantidad(0);</span>
-<span class="nc" id="L47">    }</span>
+<span class="fc" id="L43">    public Compra(){</span>
+<span class="fc" id="L44">        this.setArticulo(new Articulo());</span>
+<span class="fc" id="L45">        this.setEnvase(new Envase());</span>
+<span class="fc" id="L46">        this.setCantidad(0);</span>
+<span class="fc" id="L47">    }</span>
     
 <span class="fc" id="L49">    public Compra(Articulo articulo, Envase envase, int cantidad) {</span>
 <span class="fc" id="L50">        this.setArticulo(articulo);</span>
@@ -64,30 +64,38 @@ public class Compra {
     public String toString() {
 <span class="nc" id="L65">        return &quot;Compra{&quot; + &quot;articulo=&quot; + articulo + &quot;, envase=&quot; + envase + &quot;, cantidad=&quot; + cantidad + '}';</span>
     }    
-    
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L70">        int hash = 3;</span>
+<span class="nc" id="L71">        return hash;</span>
+    }
+
     @Override
     public boolean equals(Object obj) {
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (this == obj) {</span>
-<span class="nc" id="L71">            return true;</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L77">            return true;</span>
         }
-<span class="nc bnc" id="L73" title="All 2 branches missed.">        if (obj == null) {</span>
-<span class="nc" id="L74">            return false;</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L80">            return false;</span>
         }
-<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
-<span class="nc" id="L77">            return false;</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
+<span class="nc" id="L83">            return false;</span>
         }
-<span class="nc" id="L79">        final Compra other = (Compra) obj;</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (this.cantidad != other.cantidad) {</span>
-<span class="nc" id="L81">            return false;</span>
-        }
-<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (!Objects.equals(this.articulo, other.articulo)) {</span>
-<span class="nc" id="L84">            return false;</span>
-        }
-<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (!Objects.equals(this.envase, other.envase)) {</span>
+<span class="fc" id="L85">        final Compra other = (Compra) obj;</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">        if (this.cantidad != other.cantidad) {</span>
 <span class="nc" id="L87">            return false;</span>
         }
-<span class="nc" id="L89">        return true;</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">        if (!Objects.equals(this.articulo, other.articulo)) {</span>
+<span class="nc" id="L90">            return false;</span>
+        }
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">        if (!Objects.equals(this.envase, other.envase)) {</span>
+<span class="nc" id="L93">            return false;</span>
+        }
+<span class="fc" id="L95">        return true;</span>
     }
+    
+
     
     
 }

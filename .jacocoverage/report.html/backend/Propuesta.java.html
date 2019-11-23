@@ -20,7 +20,7 @@ public class Propuesta {
     private Image imagen;
 
     public String getNombre() {
-<span class="nc" id="L23">        return nombre;</span>
+<span class="fc" id="L23">        return nombre;</span>
     }
 
     private void setNombre(String nombre) {
@@ -28,7 +28,7 @@ public class Propuesta {
 <span class="fc" id="L28">    }</span>
 
     public String getDescripcion() {
-<span class="nc" id="L31">        return descripcion;</span>
+<span class="fc" id="L31">        return descripcion;</span>
     }
 
     private void setDescripcion(String descripcion) {
@@ -36,7 +36,7 @@ public class Propuesta {
 <span class="fc" id="L36">    }</span>
 
     public int getCantidadVotos() {
-<span class="nc" id="L39">        return cantidadVotos;</span>
+<span class="fc" id="L39">        return cantidadVotos;</span>
     }
 
     private void setCantidadVotos(int cantidadVotos) {
@@ -44,20 +44,20 @@ public class Propuesta {
 <span class="fc" id="L44">    }</span>
 
     public Image getImagen() {
-<span class="nc" id="L47">        return imagen;</span>
+<span class="fc" id="L47">        return imagen;</span>
     }
 
     private void setImagen(Image imagen) {
 <span class="fc" id="L51">        this.imagen = imagen;</span>
 <span class="fc" id="L52">    }</span>
 
-<span class="nc" id="L54">    public Propuesta() {</span>
-<span class="nc" id="L55">        this.setNombre(&quot;&quot;);</span>
-<span class="nc" id="L56">        this.setDescripcion(&quot;&quot;);</span>
-<span class="nc" id="L57">        this.setCantidadVotos(0);</span>
-<span class="nc" id="L58">        this.setImagen(null);</span>
+<span class="fc" id="L54">    public Propuesta() {</span>
+<span class="fc" id="L55">        this.setNombre(&quot;&quot;);</span>
+<span class="fc" id="L56">        this.setDescripcion(&quot;&quot;);</span>
+<span class="fc" id="L57">        this.setCantidadVotos(0);</span>
+<span class="fc" id="L58">        this.setImagen(null);</span>
 
-<span class="nc" id="L60">    }</span>
+<span class="fc" id="L60">    }</span>
 
 <span class="fc" id="L62">    public Propuesta(String nombre, String descripcion, int cantidadVotos, Image imagen) {</span>
 <span class="fc" id="L63">        this.setNombre(nombre);</span>
@@ -67,8 +67,8 @@ public class Propuesta {
 <span class="fc" id="L67">    }</span>
 
     public void agregarVoto() {
-<span class="nc" id="L70">        this.setCantidadVotos(this.getCantidadVotos() + 1);</span>
-<span class="nc" id="L71">    }</span>
+<span class="fc" id="L70">        this.setCantidadVotos(this.getCantidadVotos() + 1);</span>
+<span class="fc" id="L71">    }</span>
 
     @Override
     public String toString() {
@@ -76,28 +76,39 @@ public class Propuesta {
     }
 
     @Override
-    public boolean equals(Object obj) {
-<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (this == obj) {</span>
-<span class="nc" id="L81">            return true;</span>
-        }
-<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (obj == null) {</span>
-<span class="nc" id="L84">            return false;</span>
-        }
-<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
-<span class="nc" id="L87">            return false;</span>
-        }
-<span class="nc" id="L89">        final Propuesta other = (Propuesta) obj;</span>
-<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (this.cantidadVotos != other.cantidadVotos) {</span>
-<span class="nc" id="L91">            return false;</span>
-        }
-<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (!Objects.equals(this.nombre, other.nombre)) {</span>
-<span class="nc" id="L94">            return false;</span>
-        }
-<span class="nc bnc" id="L96" title="All 2 branches missed.">        if (!Objects.equals(this.descripcion, other.descripcion)) {</span>
-<span class="nc" id="L97">            return false;</span>
-        }
-<span class="nc" id="L99">        return true;</span>
+    public int hashCode() {
+<span class="nc" id="L80">        int hash = 7;</span>
+<span class="nc" id="L81">        return hash;</span>
     }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        if (this == obj) {</span>
+<span class="fc" id="L87">            return true;</span>
+        }
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L90">            return false;</span>
+        }
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
+<span class="nc" id="L93">            return false;</span>
+        }
+<span class="fc" id="L95">        final Propuesta other = (Propuesta) obj;</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        if (this.cantidadVotos != other.cantidadVotos) {</span>
+<span class="fc" id="L97">            return false;</span>
+        }
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">        if (!Objects.equals(this.nombre, other.nombre)) {</span>
+<span class="nc" id="L100">            return false;</span>
+        }
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">        if (!Objects.equals(this.descripcion, other.descripcion)) {</span>
+<span class="nc" id="L103">            return false;</span>
+        }
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">        if (!Objects.equals(this.imagen, other.imagen)) {</span>
+<span class="nc" id="L106">            return false;</span>
+        }
+<span class="fc" id="L108">        return true;</span>
+    }
+
+
     
     
 

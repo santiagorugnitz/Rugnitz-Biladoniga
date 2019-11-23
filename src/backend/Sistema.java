@@ -3,6 +3,7 @@ package backend;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javafx.scene.image.Image;
 
 /**
@@ -149,8 +150,10 @@ public class Sistema {
      * Reordena las listas según el orden predeterminado
      */
     private void actualizarListas() {
+        //ordena de mayor a menor
         envases.sort((Envase t, Envase t1) -> t1.getVecesUsado() - t.getVecesUsado());
         articulos.sort((Articulo a, Articulo a1) -> a1.getVecesComprado() - a.getVecesComprado());
+        //ordena de menor a mayor
         ventas.sort((Venta v, Venta v1) -> v.getFecha().compareTo(v1.getFecha()));
         ventasCliente.sort((Venta v, Venta v1) -> v.getFecha().compareTo(v1.getFecha()));
 
@@ -251,9 +254,6 @@ public class Sistema {
         carrito.getCompras().get(pos).setCantidad(cantNueva);
     }
 
-    public void borrarCarrito() {
-        carrito = new Venta();
-    }
 
     public int cantCarrito() {
         return carrito.getCompras().size();

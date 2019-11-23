@@ -36,7 +36,6 @@ public class Main extends Application {
         //Cargo el sistema
         Sistema s = new Sistema();
         //DATOS POR DEFECTO
-        Image img = new Image(new File("src/frontend/img/default.png").toURI().toURL().toExternalForm());
 
         s.agregarEnvase("Caja de cartón", new Articulo.Tipo[]{Articulo.Tipo.SECO}, 3);
         s.agregarEnvase("Contenedor de plástico", new Articulo.Tipo[]{Articulo.Tipo.SECO, Articulo.Tipo.HUMEDO}, 70);

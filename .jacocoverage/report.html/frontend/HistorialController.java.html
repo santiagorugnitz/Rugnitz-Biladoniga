@@ -22,7 +22,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -31,7 +33,7 @@ import javafx.scene.layout.VBox;
  *
  * @author Nahuel
  */
-<span class="nc" id="L34">public class HistorialController implements Initializable {</span>
+<span class="nc" id="L36">public class HistorialController implements Initializable {</span>
 
     @FXML
     private VBox lista_ordenes;
@@ -39,77 +41,91 @@ import javafx.scene.layout.VBox;
     private VBox lista_ventas;
     @FXML
     private Label lbl_cantidad_carro;
+    @FXML
+    private Button btn_carro;
+    @FXML
+    private Group gpr_cantidad;
 
     private Sistema sistema;
+    private boolean esAdmin;
 
     public void inicializarDatos(Sistema sistema) {
-<span class="nc" id="L46">        this.sistema = sistema;</span>
-<span class="nc" id="L47">        String cantidadCarro = String.valueOf(sistema.cantCarrito());</span>
-<span class="nc" id="L48">        this.lbl_cantidad_carro.setText(cantidadCarro);</span>
-<span class="nc" id="L49">        this.cargarHistorial();</span>
-<span class="nc" id="L50">    }</span>
+<span class="nc" id="L53">        this.sistema = sistema;</span>
+<span class="nc" id="L54">        String cantidadCarro = String.valueOf(sistema.cantCarrito());</span>
+<span class="nc" id="L55">        this.lbl_cantidad_carro.setText(cantidadCarro);</span>
+<span class="nc" id="L56">        this.cargarHistorial();</span>
+
+<span class="nc" id="L58">        this.esAdmin = sistema.getEsAdmin();</span>
+
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (esAdmin) {</span>
+<span class="nc" id="L61">            btn_carro.setText(&quot;Estadisticas&quot;);</span>
+        }
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        gpr_cantidad.setVisible(!this.esAdmin);</span>
+
+<span class="nc" id="L66">    }</span>
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-<span class="nc" id="L55">    }</span>
+<span class="nc" id="L71">    }</span>
 
     public void cargarHistorial() {
-<span class="nc bnc" id="L58" title="All 2 branches missed.">        List&lt;Venta&gt; listCompras = sistema.getEsAdmin()</span>
-<span class="nc" id="L59">                ? this.sistema.getVentas() : this.sistema.getVentasCliente();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        List&lt;Venta&gt; listCompras = sistema.getEsAdmin()</span>
+<span class="nc" id="L75">                ? this.sistema.getVentas() : this.sistema.getVentasCliente();</span>
 
-<span class="nc" id="L61">        this.lista_ordenes.getChildren().clear();</span>
+<span class="nc" id="L77">        this.lista_ordenes.getChildren().clear();</span>
 
-<span class="nc bnc" id="L63" title="All 2 branches missed.">        for (int i = 0; i &lt; listCompras.size(); i++) {</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        for (int i = 0; i &lt; listCompras.size(); i++) {</span>
             try {
 
                 //Cargar el objeto
-<span class="nc" id="L67">                FXMLLoader fxml = new FXMLLoader(</span>
-<span class="nc" id="L68">                        getClass().getResource(&quot;/frontend/HistorialOrden.fxml&quot;));</span>
-<span class="nc" id="L69">                Parent nodo = fxml.load();</span>
+<span class="nc" id="L83">                FXMLLoader fxml = new FXMLLoader(</span>
+<span class="nc" id="L84">                        getClass().getResource(&quot;/frontend/HistorialOrden.fxml&quot;));</span>
+<span class="nc" id="L85">                Parent nodo = fxml.load();</span>
 
                 //Carga los datos
-<span class="nc" id="L72">                HistorialOrdenController controller = fxml.getController();</span>
+<span class="nc" id="L88">                HistorialOrdenController controller = fxml.getController();</span>
 
-<span class="nc" id="L74">                controller.inicializarDatos(listCompras.get(i), i, lista_ventas);</span>
+<span class="nc" id="L90">                controller.inicializarDatos(listCompras.get(i), i, lista_ventas);</span>
 
                 //Cargo el nuevo objeto
-<span class="nc" id="L77">                this.lista_ordenes.getChildren().add(nodo);</span>
+<span class="nc" id="L93">                this.lista_ordenes.getChildren().add(nodo);</span>
 
-<span class="nc" id="L79">            } catch (IOException ex) {</span>
-<span class="nc" id="L80">                Logger.getLogger(TiendaController.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="nc" id="L81">            }</span>
+<span class="nc" id="L95">            } catch (IOException ex) {</span>
+<span class="nc" id="L96">                Logger.getLogger(TiendaController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L97">            }</span>
         }
 
-<span class="nc" id="L84">    }</span>
+<span class="nc" id="L100">    }</span>
 
     @FXML
     private void carrito(ActionEvent event) {
-<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (sistema.getEsAdmin()) {</span>
-<span class="nc" id="L89">            ir_estadisticas(this, event, sistema);</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (sistema.getEsAdmin()) {</span>
+<span class="nc" id="L105">            ir_estadisticas(this, event, sistema);</span>
         } else {
-<span class="nc" id="L91">            ir_carrito(this, event, sistema);</span>
+<span class="nc" id="L107">            ir_carrito(this, event, sistema);</span>
         }
-<span class="nc" id="L93">    }</span>
+<span class="nc" id="L109">    }</span>
 
     @FXML
     private void tienda(ActionEvent event) {
-<span class="nc" id="L97">        ir_tienda(this, event, sistema);</span>
-<span class="nc" id="L98">    }</span>
+<span class="nc" id="L113">        ir_tienda(this, event, sistema);</span>
+<span class="nc" id="L114">    }</span>
 
     @FXML
     private void cerrarSesion(ActionEvent event) {
-<span class="nc" id="L102">        frontend.Utilitarios.cerrarSesion(this, event, this.sistema);</span>
-<span class="nc" id="L103">    }</span>
+<span class="nc" id="L118">        frontend.Utilitarios.cerrarSesion(this, event, this.sistema);</span>
+<span class="nc" id="L119">    }</span>
 
     @FXML
     private void puntosVenta(ActionEvent event) {
-<span class="nc" id="L107">        ir_puntosVenta(this, event, sistema);</span>
-<span class="nc" id="L108">    }</span>
+<span class="nc" id="L123">        ir_puntosVenta(this, event, sistema);</span>
+<span class="nc" id="L124">    }</span>
 
     @FXML
     private void propuestas(ActionEvent event) {
-<span class="nc" id="L112">        ir_propuestas(this, event, sistema);</span>
-<span class="nc" id="L113">    }</span>
+<span class="nc" id="L128">        ir_propuestas(this, event, sistema);</span>
+<span class="nc" id="L129">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

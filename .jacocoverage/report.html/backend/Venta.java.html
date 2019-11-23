@@ -49,18 +49,18 @@ public class Venta {
     }
 
     public void agregarArticulo(Articulo a, Envase e, int unidades) {
-<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        for (int i = 0; i &lt; this.compras.size(); i++) {</span>
-<span class="nc bnc" id="L53" title="All 4 branches missed.">            if(compras.get(i).getArticulo().equals(a)&amp;&amp;compras.get(i).getEnvase().equals(e)){</span>
-<span class="nc" id="L54">                compras.get(i).setCantidad(unidades+compras.get(i).getCantidad());</span>
-<span class="nc" id="L55">                return;</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        for (int i = 0; i &lt; this.compras.size(); i++) {</span>
+<span class="pc bpc" id="L53" title="1 of 4 branches missed.">            if(compras.get(i).getArticulo().equals(a)&amp;&amp;compras.get(i).getEnvase().equals(e)){</span>
+<span class="fc" id="L54">                compras.get(i).setCantidad(unidades+compras.get(i).getCantidad());</span>
+<span class="fc" id="L55">                return;</span>
             }   
         }
 <span class="fc" id="L58">        this.compras.add(new Compra(a, e, unidades));</span>
 <span class="fc" id="L59">    }</span>
 
     public void quitarArticulo(int pos) {
-<span class="nc" id="L62">        compras.remove(pos);</span>
-<span class="nc" id="L63">    }</span>
+<span class="fc" id="L62">        compras.remove(pos);</span>
+<span class="fc" id="L63">    }</span>
     /**
      * Genera un html con el ticket electrónico de la venta siguiendo las normas de la DGI 
      * @return codigo html del ticket de la venta
@@ -158,25 +158,27 @@ public class Venta {
                 + &quot;    &lt;td style=\&quot;text-align:center\&quot;&gt;Precio Unitario&lt;/td&gt;\n&quot;
                 + &quot;	&lt;td style=\&quot;text-align:center\&quot;&gt;Total&lt;/td&gt;\n&quot;
                 + &quot;  &lt;/tr&gt;&quot;;
-<span class="fc bfc" id="L161" title="All 2 branches covered.">        for (int i = 0; i &lt; compras.size(); i++) {</span>
-<span class="fc" id="L162">            Compra c = compras.get(i);</span>
-<span class="fc" id="L163">            String nombre = c.getArticulo().getNombre();</span>
-<span class="fc" id="L164">            int[] datos = new int[3];</span>
-<span class="fc" id="L165">            datos[0] = c.getCantidad();</span>
-<span class="fc" id="L166">            datos[1] = c.getArticulo().getPrecio();</span>
-<span class="fc" id="L167">            datos[2] = datos[0] * datos[1];</span>
-<span class="fc" id="L168">            ret += &quot;&lt;tr&gt; &lt;td style=\&quot;text-align:left\&quot;&gt;&quot;;</span>
-<span class="fc" id="L169">            ret += nombre;</span>
-<span class="fc bfc" id="L170" title="All 2 branches covered.">            for (int j = 0; j &lt; datos.length; j++) {</span>
-<span class="fc" id="L171">                ret += &quot;&lt;td&gt;&quot;;</span>
-<span class="fc" id="L172">                ret += datos[j];</span>
-<span class="fc" id="L173">                ret += &quot;&lt;/td&gt;&quot;;</span>
+<span class="fc" id="L161">        StringBuilder buffer = new StringBuilder();</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        for (int i = 0; i &lt; compras.size(); i++) {</span>
+<span class="fc" id="L163">            Compra c = compras.get(i);</span>
+<span class="fc" id="L164">            String nombre = c.getArticulo().getNombre();</span>
+<span class="fc" id="L165">            int[] datos = new int[3];</span>
+<span class="fc" id="L166">            datos[0] = c.getCantidad();</span>
+<span class="fc" id="L167">            datos[1] = c.getArticulo().getPrecio();</span>
+<span class="fc" id="L168">            datos[2] = datos[0] * datos[1];</span>
+<span class="fc" id="L169">            buffer.append(&quot;&lt;tr&gt; &lt;td style=\&quot;text-align:left\&quot;&gt;&quot;);</span>
+<span class="fc" id="L170">            buffer.append(nombre);</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">            for (int j = 0; j &lt; datos.length; j++) {</span>
+<span class="fc" id="L172">                buffer.append(&quot;&lt;td&gt;&quot;);</span>
+<span class="fc" id="L173">                buffer.append(datos[j]);</span>
+<span class="fc" id="L174">                buffer.append(&quot;&lt;/td&gt;&quot;);</span>
             }
-<span class="fc" id="L175">            ret += &quot;&lt;/tr&gt;&quot;;</span>
+<span class="fc" id="L176">            buffer.append(&quot;&lt;/tr&gt;&quot;);</span>
         }
-<span class="fc" id="L177">        ret += &quot;  &lt;tr id=\&quot;total\&quot;&gt;\n&quot;</span>
+<span class="fc" id="L178">        ret+=buffer.toString();</span>
+<span class="fc" id="L179">        ret += &quot;  &lt;tr id=\&quot;total\&quot;&gt;\n&quot;</span>
                 + &quot;  &lt;td colspan=\&quot;3\&quot; id=\&quot;total\&quot;&gt;Total IVA incluido&lt;/td&gt;\n&quot;
-<span class="fc" id="L179">                + &quot;  &lt;td&gt;&quot; + this.getTotal() + &quot;&lt;/td&gt;\n&quot;</span>
+<span class="fc" id="L181">                + &quot;  &lt;td&gt;&quot; + this.getTotal() + &quot;&lt;/td&gt;\n&quot;</span>
                 + &quot;  &lt;/tr&gt;\n&quot;
                 + &quot;&lt;/table&gt;\n&quot;
                 + &quot;\n&quot;
@@ -204,40 +206,41 @@ public class Venta {
                 + &quot;\n&quot;
                 + &quot;&lt;/body&gt;\n&quot;
                 + &quot;&lt;/html&gt;&quot;;
-<span class="fc" id="L207">        return ret;</span>
+<span class="fc" id="L209">        return ret;</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L212">        return &quot;Venta{&quot; + &quot;compras=&quot; + compras + &quot;, fecha=&quot; + fecha + '}';</span>
+<span class="nc" id="L214">        return &quot;Venta{&quot; + &quot;compras=&quot; + compras + &quot;, fecha=&quot; + fecha + '}';</span>
     }
 
     @Override
     public int hashCode() {
-<span class="nc" id="L217">        int hash = 3;</span>
-<span class="nc" id="L218">        return hash;</span>
+<span class="nc" id="L219">        int hash = 3;</span>
+<span class="nc" id="L220">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object obj) {
-<span class="nc bnc" id="L223" title="All 2 branches missed.">        if (this == obj) {</span>
-<span class="nc" id="L224">            return true;</span>
+<span class="fc bfc" id="L225" title="All 2 branches covered.">        if (this == obj) {</span>
+<span class="fc" id="L226">            return true;</span>
         }
-<span class="nc bnc" id="L226" title="All 2 branches missed.">        if (obj == null) {</span>
-<span class="nc" id="L227">            return false;</span>
+<span class="pc bpc" id="L228" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L229">            return false;</span>
         }
-<span class="nc bnc" id="L229" title="All 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
-<span class="nc" id="L230">            return false;</span>
+<span class="pc bpc" id="L231" title="1 of 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
+<span class="nc" id="L232">            return false;</span>
         }
-<span class="nc" id="L232">        final Venta other = (Venta) obj;</span>
-<span class="nc bnc" id="L233" title="All 2 branches missed.">        if (!Objects.equals(this.compras, other.compras)) {</span>
-<span class="nc" id="L234">            return false;</span>
+<span class="fc" id="L234">        final Venta other = (Venta) obj;</span>
+<span class="pc bpc" id="L235" title="1 of 2 branches missed.">        if (!Objects.equals(this.compras, other.compras)) {</span>
+<span class="nc" id="L236">            return false;</span>
         }
-<span class="nc bnc" id="L236" title="All 2 branches missed.">        if (!Objects.equals(this.fecha, other.fecha)) {</span>
-<span class="nc" id="L237">            return false;</span>
+<span class="pc bpc" id="L238" title="1 of 2 branches missed.">        if (!Objects.equals(this.fecha, other.fecha)) {</span>
+<span class="nc" id="L239">            return false;</span>
         }
-<span class="nc" id="L239">        return true;</span>
+<span class="fc" id="L241">        return true;</span>
     }
+
     
     
     

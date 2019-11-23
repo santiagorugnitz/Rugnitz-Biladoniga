@@ -18,7 +18,7 @@ public class Envase {
     private int costeProduccion;
 
     public String getNombre() {
-<span class="nc" id="L21">        return nombre;</span>
+<span class="fc" id="L21">        return nombre;</span>
     }
 
     public void setNombre(String nombre) {
@@ -26,7 +26,7 @@ public class Envase {
 <span class="fc" id="L26">    }</span>
 
     public int getId() {
-<span class="nc" id="L29">        return id;</span>
+<span class="fc" id="L29">        return id;</span>
     }
 
     private void setId(int id) {
@@ -42,7 +42,7 @@ public class Envase {
 <span class="fc" id="L42">    }</span>
 
     public Articulo.Tipo[] getTipos() {
-<span class="nc" id="L45">        return tipos;</span>
+<span class="fc" id="L45">        return tipos;</span>
     }
 
     public void setTipos(Articulo.Tipo[] tipos) {
@@ -57,13 +57,13 @@ public class Envase {
 <span class="fc" id="L57">        this.costeProduccion = costeProduccion;</span>
 <span class="fc" id="L58">    }</span>
 
-<span class="nc" id="L60">    public Envase() {</span>
-<span class="nc" id="L61">        this.setNombre(&quot;&quot;);</span>
-<span class="nc" id="L62">        this.setId(0);</span>
-<span class="nc" id="L63">        this.setTipos(new Articulo.Tipo[0]);</span>
-<span class="nc" id="L64">        this.setCosteProduccion(0);</span>
-<span class="nc" id="L65">        this.setVecesUsado(0);</span>
-<span class="nc" id="L66">    }</span>
+<span class="fc" id="L60">    public Envase() {</span>
+<span class="fc" id="L61">        this.setNombre(&quot;&quot;);</span>
+<span class="fc" id="L62">        this.setId(0);</span>
+<span class="fc" id="L63">        this.setTipos(new Articulo.Tipo[0]);</span>
+<span class="fc" id="L64">        this.setCosteProduccion(0);</span>
+<span class="fc" id="L65">        this.setVecesUsado(0);</span>
+<span class="fc" id="L66">    }</span>
 
 <span class="fc" id="L68">    public Envase(String nombre,int id, Articulo.Tipo[] tipos, int costeProduccion) {</span>
 <span class="fc" id="L69">        this.setNombre(nombre);</span>
@@ -92,26 +92,34 @@ public class Envase {
     }
 
     @Override
-    public boolean equals(Object obj) {
-<span class="nc bnc" id="L96" title="All 2 branches missed.">        if (this == obj) {</span>
-<span class="nc" id="L97">            return true;</span>
-        }
-<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (obj == null) {</span>
-<span class="nc" id="L100">            return false;</span>
-        }
-<span class="nc bnc" id="L102" title="All 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
-<span class="nc" id="L103">            return false;</span>
-        }
-<span class="nc" id="L105">        final Envase other = (Envase) obj;</span>
-<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (this.id != other.id) {</span>
-<span class="nc" id="L107">            return false;</span>
-        }
-<span class="nc" id="L109">        return true;</span>
+    public int hashCode() {
+<span class="nc" id="L96">        int hash = 5;</span>
+<span class="nc" id="L97">        return hash;</span>
     }
 
     @Override
+    public boolean equals(Object obj) {
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (this == obj) {</span>
+<span class="fc" id="L103">            return true;</span>
+        }
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L106">            return false;</span>
+        }
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
+<span class="nc" id="L109">            return false;</span>
+        }
+<span class="fc" id="L111">        final Envase other = (Envase) obj;</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">        if (this.id != other.id) {</span>
+<span class="nc" id="L113">            return false;</span>
+        }
+<span class="fc" id="L115">        return true;</span>
+    }
+
+
+
+    @Override
     public String toString() {
-<span class="nc" id="L114">        return this.getNombre();</span>
+<span class="nc" id="L122">        return this.getNombre();</span>
     }
     
     

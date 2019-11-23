@@ -158,6 +158,7 @@ public class Venta {
                 + "    <td style=\"text-align:center\">Precio Unitario</td>\n"
                 + "	<td style=\"text-align:center\">Total</td>\n"
                 + "  </tr>";
+        StringBuilder buffer = new StringBuilder();
         for (int i = 0; i < compras.size(); i++) {
             Compra c = compras.get(i);
             String nombre = c.getArticulo().getNombre();
@@ -165,15 +166,16 @@ public class Venta {
             datos[0] = c.getCantidad();
             datos[1] = c.getArticulo().getPrecio();
             datos[2] = datos[0] * datos[1];
-            ret += "<tr> <td style=\"text-align:left\">";
-            ret += nombre;
+            buffer.append("<tr> <td style=\"text-align:left\">");
+            buffer.append(nombre);
             for (int j = 0; j < datos.length; j++) {
-                ret += "<td>";
-                ret += datos[j];
-                ret += "</td>";
+                buffer.append("<td>");
+                buffer.append(datos[j]);
+                buffer.append("</td>");
             }
-            ret += "</tr>";
+            buffer.append("</tr>");
         }
+        ret+=buffer.toString();
         ret += "  <tr id=\"total\">\n"
                 + "  <td colspan=\"3\" id=\"total\">Total IVA incluido</td>\n"
                 + "  <td>" + this.getTotal() + "</td>\n"

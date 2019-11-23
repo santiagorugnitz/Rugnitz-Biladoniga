@@ -88,6 +88,12 @@ public class Envase {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -104,6 +110,8 @@ public class Envase {
         }
         return true;
     }
+
+
 
     @Override
     public String toString() {

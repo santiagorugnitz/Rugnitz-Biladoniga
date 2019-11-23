@@ -42,7 +42,7 @@ public class Articulo {
 <span class="fc" id="L42">    }</span>
 
     public String getOrigen() {
-<span class="nc" id="L45">        return origen;</span>
+<span class="fc" id="L45">        return origen;</span>
     }
 
     public void setOrigen(String origen) {
@@ -58,7 +58,7 @@ public class Articulo {
 <span class="fc" id="L58">    }</span>
 
     public Categoria[] getCategorias() {
-<span class="nc" id="L61">        return categorias;</span>
+<span class="fc" id="L61">        return categorias;</span>
     }
 
     public void setCategorias(Categoria[] categorias) {
@@ -66,7 +66,7 @@ public class Articulo {
 <span class="fc" id="L66">    }</span>
 
     public int getId() {
-<span class="nc" id="L69">        return id;</span>
+<span class="fc" id="L69">        return id;</span>
     }
 
     private void setId(int id) {
@@ -90,7 +90,7 @@ public class Articulo {
 <span class="fc" id="L90">    }</span>
 
     public Image getImagen() {
-<span class="nc" id="L93">        return imagen;</span>
+<span class="fc" id="L93">        return imagen;</span>
     }
 
     public void setImagen(Image imagen) {
@@ -113,19 +113,19 @@ public class Articulo {
 <span class="fc" id="L113">        this.vecesValorado = vecesValorado;</span>
 <span class="fc" id="L114">    }</span>
 
-<span class="nc" id="L116">    public Articulo() {</span>
-<span class="nc" id="L117">        this.setNombre(&quot;&quot;);</span>
-<span class="nc" id="L118">        this.setOrigen(&quot;&quot;);</span>
-<span class="nc" id="L119">        this.setPrecio(10);</span>
-<span class="nc" id="L120">        this.setId(-1);</span>
-<span class="nc" id="L121">        this.setTipo(Tipo.SECO);</span>
-<span class="nc" id="L122">        this.setVecesComprado(0);</span>
-<span class="nc" id="L123">        this.setImagen(null);</span>
-<span class="nc" id="L124">        this.setValoracion(0);</span>
-<span class="nc" id="L125">        this.setCategorias(new Categoria[0]);</span>
-<span class="nc" id="L126">        this.setVecesValorado(0);</span>
+<span class="fc" id="L116">    public Articulo() {</span>
+<span class="fc" id="L117">        this.setNombre(&quot;&quot;);</span>
+<span class="fc" id="L118">        this.setOrigen(&quot;&quot;);</span>
+<span class="fc" id="L119">        this.setPrecio(10);</span>
+<span class="fc" id="L120">        this.setId(-1);</span>
+<span class="fc" id="L121">        this.setTipo(Tipo.SECO);</span>
+<span class="fc" id="L122">        this.setVecesComprado(0);</span>
+<span class="fc" id="L123">        this.setImagen(null);</span>
+<span class="fc" id="L124">        this.setValoracion(0);</span>
+<span class="fc" id="L125">        this.setCategorias(new Categoria[0]);</span>
+<span class="fc" id="L126">        this.setVecesValorado(0);</span>
 
-<span class="nc" id="L128">    }</span>
+<span class="fc" id="L128">    }</span>
 
 <span class="fc" id="L130">    public Articulo(String nombre, String origen, int precio, int id, Tipo tipo, Image imagen, Categoria[] categorias) {</span>
 <span class="fc" id="L131">        this.setNombre(nombre);</span>
@@ -161,24 +161,32 @@ public class Articulo {
     public String toString() {
 <span class="nc" id="L162">        return &quot;Articulo{&quot; + &quot;nombre=&quot; + nombre + &quot;, precio=&quot; + precio + '}';</span>
     }
-    
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L167">        int hash = 7;</span>
+<span class="nc" id="L168">        return hash;</span>
+    }
+
     @Override
     public boolean equals(Object obj) {
-<span class="nc bnc" id="L167" title="All 2 branches missed.">        if (this == obj) {</span>
-<span class="nc" id="L168">            return true;</span>
+<span class="fc bfc" id="L173" title="All 2 branches covered.">        if (this == obj) {</span>
+<span class="fc" id="L174">            return true;</span>
         }
-<span class="nc bnc" id="L170" title="All 2 branches missed.">        if (obj == null) {</span>
-<span class="nc" id="L171">            return false;</span>
+<span class="pc bpc" id="L176" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L177">            return false;</span>
         }
-<span class="nc bnc" id="L173" title="All 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
-<span class="nc" id="L174">            return false;</span>
+<span class="pc bpc" id="L179" title="1 of 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
+<span class="nc" id="L180">            return false;</span>
         }
-<span class="nc" id="L176">        final Articulo other = (Articulo) obj;</span>
-<span class="nc bnc" id="L177" title="All 2 branches missed.">        if (this.id != other.id) {</span>
-<span class="nc" id="L178">            return false;</span>
+<span class="fc" id="L182">        final Articulo other = (Articulo) obj;</span>
+<span class="fc bfc" id="L183" title="All 2 branches covered.">        if (this.id != other.id) {</span>
+<span class="fc" id="L184">            return false;</span>
         }
-<span class="nc" id="L180">        return true;</span>
+<span class="fc" id="L186">        return true;</span>
     }
+    
+
     
     
 

@@ -113,9 +113,9 @@ import javafx.stage.Stage;
 <span class="nc" id="L113">            Articulo.Tipo tipo = (Articulo.Tipo) lst_tipo.getValue();</span>
 
 <span class="nc bnc" id="L115" title="All 4 branches missed.">            if (nombre.trim().isEmpty() || origen.trim().isEmpty()</span>
-<span class="nc bnc" id="L116" title="All 10 branches missed.">                    || precio.trim().isEmpty() ||Integer.parseInt(precio)&lt;=0|| (imagen == null</span>
-                    &amp;&amp; !this.esEditar)
-                    || tipo == null) {
+<span class="nc bnc" id="L116" title="All 4 branches missed.">                    || precio.trim().isEmpty() || Integer.parseInt(precio) &lt;= 0</span>
+<span class="nc bnc" id="L117" title="All 8 branches missed.">                    || Integer.parseInt(precio) &gt; 999</span>
+                    || (imagen == null &amp;&amp; !this.esEditar) || tipo == null) {
 <span class="nc" id="L119">                crearError(this, &quot;Datos Incorrectos&quot;);</span>
             } else {
 <span class="nc" id="L121">                ObservableList selectedIndices = lst_categorias.</span>
