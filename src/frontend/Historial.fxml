@@ -35,7 +35,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" onAction="#carrito" prefHeight="37.0" prefWidth="75.0" text="Carrito" textFill="WHITE">
+                  <JFXButton fx:id="btn_carro" alignment="TOP_LEFT" onAction="#carrito" text="Carrito" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -102,7 +102,7 @@
                   </JFXButton>
                </children>
             </VBox>
-            <Group layoutX="126.0" layoutY="378.0">
+            <Group fx:id="gpr_cantidad" layoutX="126.0" layoutY="378.0">
                <children>
                   <Circle fill="#7e72f2" layoutX="17.0" layoutY="16.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
                   <Label fx:id="lbl_cantidad_carro" alignment="CENTER" layoutX="3.0" layoutY="5.0" prefHeight="22.0" prefWidth="27.0" text="20" textFill="WHITE">

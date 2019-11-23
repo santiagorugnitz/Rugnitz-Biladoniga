@@ -22,7 +22,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -39,14 +41,28 @@ public class HistorialController implements Initializable {
     private VBox lista_ventas;
     @FXML
     private Label lbl_cantidad_carro;
+    @FXML
+    private Button btn_carro;
+    @FXML
+    private Group gpr_cantidad;
 
     private Sistema sistema;
+    private boolean esAdmin;
 
     public void inicializarDatos(Sistema sistema) {
         this.sistema = sistema;
         String cantidadCarro = String.valueOf(sistema.cantCarrito());
         this.lbl_cantidad_carro.setText(cantidadCarro);
         this.cargarHistorial();
+
+        this.esAdmin = sistema.getEsAdmin();
+
+        if (esAdmin) {
+            btn_carro.setText("Estadisticas");
+        }
+
+        gpr_cantidad.setVisible(!this.esAdmin);
+
     }
 
     @Override
