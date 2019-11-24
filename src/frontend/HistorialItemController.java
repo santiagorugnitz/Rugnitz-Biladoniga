@@ -3,6 +3,7 @@ package frontend;
 import backend.Compra;
 import backend.Sistema;
 import backend.Venta;
+import static frontend.Utilitarios.centrarImagen;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -44,6 +45,7 @@ public class HistorialItemController implements Initializable {
         this.lbl_precio.setText("$" + String.valueOf(venta.total()));
         this.lbl_cantidad.setText(String.valueOf(venta.getCantidad()));
         this.imagen.setImage(venta.getArticulo().getImagen());
+        centrarImagen(imagen);
     }
 
 }
