@@ -36,7 +36,6 @@ public class Main extends Application {
         //Cargo el sistema
         Sistema s = new Sistema();
         //DATOS POR DEFECTO
-        Image img = new Image(new File("src/frontend/img/default.png").toURI().toURL().toExternalForm());
 
         s.agregarEnvase("Caja de cartón", new Articulo.Tipo[]{Articulo.Tipo.SECO}, 3);
         s.agregarEnvase("Contenedor de plástico", new Articulo.Tipo[]{Articulo.Tipo.SECO, Articulo.Tipo.HUMEDO}, 70);
@@ -44,28 +43,28 @@ public class Main extends Application {
         s.agregarEnvase("Botella de plástico", new Articulo.Tipo[]{Articulo.Tipo.BEBIDA}, 50);
         s.agregarEnvase("Cantimplora", new Articulo.Tipo[]{Articulo.Tipo.BEBIDA}, 28);
 
-        s.agregarArticulo("Jugo de Maracuya", "Brasil", 32, Articulo.Tipo.BEBIDA, new Image(new File("src/frontend/img/jugo.jpg").toURI().toURL().toExternalForm()), new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN, Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO});
+        s.agregarArticulo("Jugo de Maracuya", "Brasil", 32, Articulo.Tipo.BEBIDA, new Image(getClass().getClassLoader().getResource("frontend/img/jugo.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN, Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO});
         s.getArticulos().get(0).agregarValoracion(5);
-        s.agregarArticulo("Cerveza Artesanal", "Alemania", 150, Articulo.Tipo.BEBIDA, new Image(new File("src/frontend/img/cerveza.jpg").toURI().toURL().toExternalForm()), new Articulo.Categoria[]{Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO});
+        s.agregarArticulo("Cerveza Artesanal", "Alemania", 150, Articulo.Tipo.BEBIDA, new Image(getClass().getClassLoader().getResource("frontend/img/cerveza.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO});
         s.getArticulos().get(1).agregarValoracion(3);
-        s.agregarArticulo("Arroz con leche", "Uruguay", 60, Articulo.Tipo.HUMEDO, new Image(new File("src/frontend/img/arrozConLeche.jpg").toURI().toURL().toExternalForm()), new Articulo.Categoria[]{Articulo.Categoria.ORGANICO});
+        s.agregarArticulo("Arroz con leche", "Uruguay", 60, Articulo.Tipo.HUMEDO, new Image(getClass().getClassLoader().getResource("frontend/img/arrozConLeche.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.ORGANICO});
         s.getArticulos().get(2).agregarValoracion(2);
-        s.agregarArticulo("Hamburguesa completa", "Uruguay", 330, Articulo.Tipo.SECO, new Image(new File("src/frontend/img/burgerComun.jpg").toURI().toURL().toExternalForm()), new Articulo.Categoria[]{});
+        s.agregarArticulo("Hamburguesa completa", "Uruguay", 330, Articulo.Tipo.SECO, new Image(getClass().getClassLoader().getResource("frontend/img/burgerComun.jpg").toString()), new Articulo.Categoria[]{});
         s.getArticulos().get(3).agregarValoracion(5);
-        s.agregarArticulo("Hamburguesa vegana", "Uruguay", 360, Articulo.Tipo.SECO, new Image(new File("src/frontend/img/burgerVegana.jpg").toURI().toURL().toExternalForm()), new Articulo.Categoria[]{Articulo.Categoria.VEGANO});
+        s.agregarArticulo("Hamburguesa vegana", "Uruguay", 360, Articulo.Tipo.SECO, new Image(getClass().getClassLoader().getResource("frontend/img/burgerVegana.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.VEGANO});
         s.getArticulos().get(4).agregarValoracion(1);
-        s.agregarArticulo("Ensalada de frutas", "Brasil",  30, Articulo.Tipo.HUMEDO, new Image(new File("src/frontend/img/ensaladaFrutas.jpg").toURI().toURL().toExternalForm()), new Articulo.Categoria[]{Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO, Articulo.Categoria.LIBRE_DE_GLUTEN});
+        s.agregarArticulo("Ensalada de frutas", "Brasil",  30, Articulo.Tipo.HUMEDO, new Image(getClass().getClassLoader().getResource("frontend/img/ensaladaFrutas.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO, Articulo.Categoria.LIBRE_DE_GLUTEN});
         s.getArticulos().get(5).agregarValoracion(2);
-        s.agregarArticulo("CocaCola", "Uruguay",  32, Articulo.Tipo.BEBIDA, new Image(new File("src/frontend/img/coca.jpg").toURI().toURL().toExternalForm()), new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN});
+        s.agregarArticulo("CocaCola", "Uruguay",  32, Articulo.Tipo.BEBIDA, new Image(getClass().getClassLoader().getResource("frontend/img/coca.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN});
         s.getArticulos().get(6).agregarValoracion(1);
-        s.agregarArticulo("Yogurt Light", "Uruguay", 26, Articulo.Tipo.HUMEDO, new Image(new File("src/frontend/img/yogurt.jpg").toURI().toURL().toExternalForm()), new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS, Articulo.Categoria.LIBRE_DE_AZUCAR, Articulo.Categoria.LIBRE_DE_GLUTEN, Articulo.Categoria.ORGANICO});
+        s.agregarArticulo("Yogurt Light", "Uruguay", 26, Articulo.Tipo.HUMEDO, new Image(getClass().getClassLoader().getResource("frontend/img/yogurt.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS, Articulo.Categoria.LIBRE_DE_AZUCAR, Articulo.Categoria.LIBRE_DE_GLUTEN, Articulo.Categoria.ORGANICO});
         s.getArticulos().get(7).agregarValoracion(5);
-        s.agregarArticulo("Sushi", "Japón", 600, Articulo.Tipo.SECO, new Image(new File("src/frontend/img/sushi.jpg").toURI().toURL().toExternalForm()), new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN, Articulo.Categoria.ORGANICO});
+        s.agregarArticulo("Sushi", "Japón", 600, Articulo.Tipo.SECO, new Image(getClass().getClassLoader().getResource("frontend/img/sushi.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN, Articulo.Categoria.ORGANICO});
         s.getArticulos().get(8).agregarValoracion(4);
 
-        s.agregarPropuesta("Más jugos", "Agreguen más jugos por favor", 8, new Image(new File("src/frontend/img/jugos.jpg").toURI().toURL().toExternalForm()));
-        s.agregarPropuesta("Más opciones veganas", "Agreguen más opciones veganas por favor", 1, new Image(new File("src/frontend/img/vegetales.jpg").toURI().toURL().toExternalForm()));
-        s.agregarPropuesta("Elegir rango de precios", "Creo que estaria bueno poder elegir los rangos de precios en vez de tener que elegir los predeterminados", 45, new Image(new File("src/frontend/img/dollar.jpg").toURI().toURL().toExternalForm()));
+        s.agregarPropuesta("Más jugos", "Agreguen más jugos por favor", 8, new Image(getClass().getClassLoader().getResource("frontend/img/jugos.jpg").toString()));
+        s.agregarPropuesta("Más opciones veganas", "Agreguen más opciones veganas por favor", 1, new Image(getClass().getClassLoader().getResource("frontend/img/vegetales.jpg").toString()));
+        s.agregarPropuesta("Elegir rango de precios", "Creo que estaria bueno poder elegir los rangos de precios en vez de tener que elegir los predeterminados", 45, new Image(getClass().getClassLoader().getResource("frontend/img/dollar.jpg").toString()));
 
         //3 ventas al azar en cada mes
         for (int i = 1; i <= 12; i++) {
