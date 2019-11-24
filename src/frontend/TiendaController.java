@@ -2,7 +2,6 @@ package frontend;
 
 import backend.Articulo;
 import backend.Sistema;
-import com.jfoenix.controls.JFXCheckBox;
 import static frontend.Utilitarios.ir_carrito;
 import static frontend.Utilitarios.ir_estadisticas;
 import static frontend.Utilitarios.ir_historial;

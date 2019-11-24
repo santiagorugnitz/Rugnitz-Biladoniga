@@ -4,9 +4,7 @@
  */
 package frontend;
 
-import backend.Articulo;
 import backend.Propuesta;
-import backend.Sistema;
 import static frontend.Utilitarios.centrarImagen;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;

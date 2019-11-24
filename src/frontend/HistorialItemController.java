@@ -1,8 +1,6 @@
 package frontend;
 
 import backend.Compra;
-import backend.Sistema;
-import backend.Venta;
 import static frontend.Utilitarios.centrarImagen;
 import java.net.URL;
 import java.util.ResourceBundle;

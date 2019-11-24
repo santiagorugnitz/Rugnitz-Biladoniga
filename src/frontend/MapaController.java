@@ -1,16 +1,13 @@
 package frontend;
 
 import backend.Sistema;
-import com.jfoenix.controls.JFXButton;
 import static frontend.Utilitarios.ir_propuestas;
 import static frontend.Utilitarios.ir_tienda;
-import java.io.File;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.web.WebView;
 
 /**
@@ -34,8 +31,9 @@ public class MapaController implements Initializable {
 
     public void inicializarDatos(Sistema s) {
         this.sistema = s;
-        File f = new File("leaflet\\mapa.html");
-        mapa.getEngine().load(f.toURI().toString());
+        
+        mapa.getEngine().load(this.getClass().getClassLoader()
+                .getResource("leaflet/mapa.html").toString());
     }
 
     @FXML
