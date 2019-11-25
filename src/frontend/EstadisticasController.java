@@ -61,6 +61,10 @@ public class EstadisticasController implements Initializable {
         for (Articulo art : sistema.getArticulos()) {
             valoraciones.getItems().add(art);
         }
+        column2.setSortType(TableColumn.SortType.DESCENDING);
+
+        valoraciones.getSortOrder().clear();
+        valoraciones.getSortOrder().add(column2);
 
         //Cargar grafica
         final NumberAxis xAxis = new NumberAxis();
