@@ -1,16 +1,7 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template img, choose Tools | Templates
- * and open the template in the editor.
- */
 package backend;
 
 import frontend.InicioController;
-import java.io.File;
-import java.net.URL;
 import java.time.LocalDate;
-import java.time.Month;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -21,8 +12,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- *
- * @author Santiago
+ * @author Nahuel Biladoniga-211138
+ * @author Santiago Rugnitz-215381
  */
 public class Main extends Application {
 
@@ -65,7 +56,6 @@ public class Main extends Application {
         s.agregarPropuesta("Más jugos", "Agreguen más jugos por favor", 8, new Image(getClass().getClassLoader().getResource("frontend/img/jugos.jpg").toString()));
         s.agregarPropuesta("Más opciones veganas", "Agreguen más opciones veganas por favor", 1, new Image(getClass().getClassLoader().getResource("frontend/img/vegetales.jpg").toString()));
         s.agregarPropuesta("Elegir rango de precios", "Creo que estaria bueno poder elegir los rangos de precios en vez de tener que elegir los predeterminados", 45, new Image(getClass().getClassLoader().getResource("frontend/img/dollar.jpg").toString()));
-
         //3 ventas al azar en cada mes
         for (int i = 1; i <= 12; i++) {
             for (int j = 0; j < 3; j++) {
