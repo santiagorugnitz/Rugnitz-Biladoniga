@@ -39,19 +39,17 @@ public class Main extends Application {
         s.agregarArticulo("Cerveza Artesanal", "Alemania", 150, Articulo.Tipo.BEBIDA, new Image(getClass().getClassLoader().getResource("frontend/img/cerveza.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO});
         s.getArticulos().get(1).agregarValoracion(3);
         s.agregarArticulo("Arroz con leche", "Uruguay", 60, Articulo.Tipo.HUMEDO, new Image(getClass().getClassLoader().getResource("frontend/img/arrozConLeche.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.ORGANICO});
-        s.getArticulos().get(2).agregarValoracion(2);
-        s.agregarArticulo("Hamburguesa completa", "Uruguay", 330, Articulo.Tipo.SECO, new Image(getClass().getClassLoader().getResource("frontend/img/burgerComun.jpg").toString()), new Articulo.Categoria[]{});
+        s.getArticulos().get(2).agregarValoracion(1);
+        s.agregarArticulo("Hamburguesa", "Uruguay", 330, Articulo.Tipo.SECO, new Image(getClass().getClassLoader().getResource("frontend/img/burgerComun.jpg").toString()), new Articulo.Categoria[]{});
         s.getArticulos().get(3).agregarValoracion(5);
-        s.agregarArticulo("Hamburguesa vegana", "Uruguay", 360, Articulo.Tipo.SECO, new Image(getClass().getClassLoader().getResource("frontend/img/burgerVegana.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.VEGANO});
-        s.getArticulos().get(4).agregarValoracion(1);
         s.agregarArticulo("Ensalada de frutas", "Brasil",  30, Articulo.Tipo.HUMEDO, new Image(getClass().getClassLoader().getResource("frontend/img/ensaladaFrutas.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.ORGANICO, Articulo.Categoria.VEGANO, Articulo.Categoria.LIBRE_DE_GLUTEN});
-        s.getArticulos().get(5).agregarValoracion(2);
+        s.getArticulos().get(4).agregarValoracion(2);
         s.agregarArticulo("CocaCola", "Uruguay",  32, Articulo.Tipo.BEBIDA, new Image(getClass().getClassLoader().getResource("frontend/img/coca.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN});
-        s.getArticulos().get(6).agregarValoracion(1);
+        s.getArticulos().get(5).agregarValoracion(1);
         s.agregarArticulo("Yogurt Light", "Uruguay", 26, Articulo.Tipo.HUMEDO, new Image(getClass().getClassLoader().getResource("frontend/img/yogurt.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.BAJAS_CALORIAS, Articulo.Categoria.LIBRE_DE_AZUCAR, Articulo.Categoria.LIBRE_DE_GLUTEN, Articulo.Categoria.ORGANICO});
-        s.getArticulos().get(7).agregarValoracion(5);
+        s.getArticulos().get(6).agregarValoracion(5);
         s.agregarArticulo("Sushi", "Japón", 600, Articulo.Tipo.SECO, new Image(getClass().getClassLoader().getResource("frontend/img/sushi.jpg").toString()), new Articulo.Categoria[]{Articulo.Categoria.LIBRE_DE_GLUTEN, Articulo.Categoria.ORGANICO});
-        s.getArticulos().get(8).agregarValoracion(4);
+        s.getArticulos().get(7).agregarValoracion(4);
 
         s.agregarPropuesta("Más jugos", "Agreguen más jugos por favor", 8, new Image(getClass().getClassLoader().getResource("frontend/img/jugos.jpg").toString()));
         s.agregarPropuesta("Más opciones veganas", "Agreguen más opciones veganas por favor", 1, new Image(getClass().getClassLoader().getResource("frontend/img/vegetales.jpg").toString()));
